@@ -1,36 +1,39 @@
-/* Neon Typography Effects */
+/* Simplified Typography Effects - Better Readability */
 .neon-title {
   font-family: "Impact", "Arial Black", "Franklin Gothic Bold", sans-serif;
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  text-shadow: 0 0 5px #bbff00, 0 0 10px #bbff00, 0 0 15px #bbff00, 0 0 20px #bbff00, 0 0 35px #70ff00, 0 0 40px #70ff00;
-  animation: neon-flicker 2s infinite alternate;
+  /* Reduced neon effect for better readability */
+  text-shadow: 0 0 2px #bbff00, 0 0 4px #bbff00;
+  /* Remove distracting animation */
+  /* animation: neon-flicker 2s infinite alternate; */
 }
 
+/* Simplified animation - less intense */
 @keyframes neon-flicker {
   0%,
   100% {
-    text-shadow: 0 0 5px #bbff00, 0 0 10px #bbff00, 0 0 15px #bbff00, 0 0 20px #bbff00, 0 0 35px #70ff00, 0 0 40px
-      #70ff00;
+    text-shadow: 0 0 2px #bbff00, 0 0 4px #bbff00;
   }
   50% {
-    text-shadow: 0 0 2px #bbff00, 0 0 5px #bbff00, 0 0 8px #bbff00, 0 0 12px #bbff00, 0 0 18px #70ff00, 0 0 22px #70ff00;
+    text-shadow: 0 0 1px #bbff00, 0 0 2px #bbff00;
   }
 }
 
-/* Neon Button Effects */
+/* Simplified Button Effects */
 .neon-button-primary {
   background: linear-gradient(135deg, #bbff00 0%, #70ff00 50%, #5acc00 100%);
-  border: 2px solid #bbff00;
+  border: 1px solid #bbff00;
   border-radius: 8px;
   font-family: "Impact", "Arial Black", "Franklin Gothic Bold", sans-serif;
   font-weight: 900;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #000;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(187, 255, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+  /* Reduced shadow intensity */
+  box-shadow: 0 0 5px rgba(187, 255, 0, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -42,8 +45,8 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  transition: left 0.5s;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.3s;
 }
 
 .neon-button-primary:hover::before {
@@ -51,47 +54,52 @@
 }
 
 .neon-button-primary:hover {
-  box-shadow: 0 0 20px rgba(187, 255, 0, 0.8), 0 0 30px rgba(112, 255, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
+  /* Reduced hover effects for performance */
+  box-shadow: 0 0 8px rgba(187, 255, 0, 0.5);
+  transform: translateY(-1px);
 }
 
 .neon-button-secondary {
   background: rgba(0, 0, 0, 0.8);
-  border: 2px solid #bbff00;
+  border: 1px solid #bbff00;
   border-radius: 8px;
   font-family: "Impact", "Arial Black", "Franklin Gothic Bold", sans-serif;
   font-weight: 900;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(187, 255, 0, 0.3), inset 0 0 10px rgba(187, 255, 0, 0.1);
+  transition: all 0.2s ease;
+  /* Simplified shadow */
+  box-shadow: 0 0 3px rgba(187, 255, 0, 0.2);
   position: relative;
   overflow: hidden;
 }
 
 .neon-button-secondary:hover {
   background: rgba(187, 255, 0, 0.1);
-  box-shadow: 0 0 20px rgba(187, 255, 0, 0.6), 0 0 30px rgba(112, 255, 0, 0.4), inset 0 0 20px rgba(187, 255, 0, 0.2);
-  transform: translateY(-2px);
+  /* Reduced hover effects */
+  box-shadow: 0 0 6px rgba(187, 255, 0, 0.4);
+  transform: translateY(-1px);
 }
 
-/* Neon Cards */
+/* Simplified Cards */
 .neon-card {
   background: linear-gradient(
     135deg,
     rgba(0, 0, 0, 0.9) 0%,
-    rgba(187, 255, 0, 0.05) 30%,
-    rgba(112, 255, 0, 0.08) 70%,
+    rgba(187, 255, 0, 0.03) 30%,
+    rgba(112, 255, 0, 0.05) 70%,
     rgba(0, 0, 0, 0.9) 100%
   );
-  border: 2px solid rgba(187, 255, 0, 0.6);
+  border: 1px solid rgba(187, 255, 0, 0.4);
   border-radius: 12px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 20px rgba(187, 255, 0, 0.2), inset 0 0 20px rgba(187, 255, 0, 0.05);
+  backdrop-filter: blur(5px);
+  /* Reduced shadow for performance */
+  box-shadow: 0 0 10px rgba(187, 255, 0, 0.1);
   position: relative;
   overflow: hidden;
 }
 
+/* Remove resource-intensive scan line animation */
 .neon-card::before {
   content: "";
   position: absolute;
@@ -100,9 +108,12 @@
   right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, #bbff00, transparent);
-  animation: scan-line 3s linear infinite;
+  /* Remove animation for performance */
+  /* animation: scan-line 3s linear infinite; */
 }
 
+/* Removed scan-line animation for performance */
+/*
 @keyframes scan-line {
   0% {
     transform: translateX(-100%);
@@ -111,8 +122,9 @@
     transform: translateX(100%);
   }
 }
+*/
 
-/* Futuristic Elements */
+/* Simplified animations for better performance */
 @keyframes spin-slow {
   from {
     transform: rotate(0deg);
@@ -123,7 +135,8 @@
 }
 
 .animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
+  /* Slower animation, less resource intensive */
+  animation: spin-slow 12s linear infinite;
 }
 
 /* Gradient Radial Utility */
@@ -131,10 +144,11 @@
   background: radial-gradient(circle, var(--tw-gradient-stops));
 }
 
-/* Subtitle Effects */
+/* Simplified Subtitle Effects */
 .slime-subtitle {
   font-family: "Impact", "Arial Black", "Franklin Gothic Bold", sans-serif;
   font-weight: 800;
   letter-spacing: 0.05em;
-  text-shadow: 0 0 8px #bbff00, 0 0 16px #bbff00;
+  /* Much more subtle text shadow for better readability */
+  text-shadow: 0 0 1px #bbff00;
 }

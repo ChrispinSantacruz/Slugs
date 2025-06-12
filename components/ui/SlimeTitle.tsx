@@ -23,8 +23,10 @@ export function SlimeTitle({ children, size = "lg", className = "", animate = tr
       >
         {children}
       </h1>
-      {/* Solo efecto neon de fondo, sin líneas */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#BBFF00]/20 via-[#70FF00]/30 to-[#BBFF00]/20 blur-xl -z-10 animate-pulse"></div>
+      {/* Simplified background effect - less resource intensive */}
+      {animate && (
+        <div className="absolute inset-0 bg-gradient-to-r from-[#BBFF00]/10 via-[#70FF00]/15 to-[#BBFF00]/10 blur-lg -z-10"></div>
+      )}
     </div>
   )
 }

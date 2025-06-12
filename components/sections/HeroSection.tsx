@@ -11,7 +11,7 @@ export function HeroSection() {
     <section id="home" className="relative min-h-screen flex items-center justify-center py-20">
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          {/* Left Side - Image simplificada */}
+          {/* Left Side - Optimized Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -24,7 +24,12 @@ export function HeroSection() {
                 alt="SlugDudes Character"
                 width={400}
                 height={400}
-                className="rounded-2xl border-2 border-[#BBFF00]/50"
+                priority={true}
+                quality={85}
+                sizes="(max-width: 768px) 100vw, 400px"
+                className="rounded-2xl border border-[#BBFF00]/30"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R7p4v8AHTAHcXRAgjfQdg6QkfO8ueWOhJHvwQAWZKFMpqGTTQfqk4fk66kE2W1g3sHoHf6U8PfHlGAqI5+P7lnP7Q6mOkXdG6j2l5IwAiEcXFdYCOMhC8bGAMq2bFKyXG+lJFKShN4QD/P8AH/aWQmAzSAQJm/xJC6WtEtZvmeyJyBaBTxRNS30Fb5YIEBZTZPkTSN5DdQCFJG4K1tXGANYKJNcXNJyLRUGgGQMYTJ6/4YcNzQUWbKNf57MvWGpkmGAJCRMJJ6cZG44iDlFg3eA/9k="
               />
             </div>
           </motion.div>
@@ -36,7 +41,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-center md:text-left"
           >
-            <SlimeTitle size="xl" className="mb-6">
+            <SlimeTitle size="xl" className="mb-6" animate={false}>
               SLUG DUDES
             </SlimeTitle>
 
@@ -79,9 +84,19 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Fondo simplificado */}
+      {/* Optimized Background Image */}
       <div className="absolute inset-0 opacity-10 z-0">
-        <Image src="/images/slug-banner.jpg" alt="SlugDudes Universe" fill className="object-cover" />
+        <Image 
+          src="/images/slug-banner.jpg" 
+          alt="SlugDudes Universe" 
+          fill 
+          className="object-cover" 
+          quality={60}
+          sizes="100vw"
+          priority={false}
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R7p4v8AHTAHcXRAgjfQdg6QkfO8ueWOhJHvwQAWZKFMpqGTTQfqk4fk66kE2W1g3sHoHf6U8PfHlGAqI5+P7lnP7Q6mOkXdG6j2l5IwAiEcXFdYCOMhC8bGAMq2bFKyXG+lJFKShN4QD/P8AH/aWQmAzSAQJm/xJC6WtEtZvmeyJyBaBTxRNS30Fb5YIEBZTZPkTSN5DdQCFJG4K1tXGANYKJNcXNJyLRUGgGQMYTJ6/4YcNzQUWbKNf57MvWGpkmGAJCRMJJ6cZG44iDlFg3eA/9k="
+        />
       </div>
     </section>
   )
