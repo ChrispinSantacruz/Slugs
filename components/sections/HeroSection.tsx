@@ -8,8 +8,8 @@ import { SlimeButton } from "@/components/ui/SlimeButton"
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative flex items-center justify-center py-20">
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="home" className="relative flex items-center justify-center py-20 bg-transparent">
+      <div className="container mx-auto px-4 relative z-20">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Left Side - Optimized Image */}
           <motion.div
@@ -84,19 +84,21 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Optimized Background Image */}
-      <div className="absolute inset-0 opacity-10 z-0">
+      {/* Background específico del banner principal - Hero Background */}
+      <div className="absolute inset-0 z-10">
         <Image 
-          src="/images/slug-banner.jpg" 
-          alt="SlugDudes Universe" 
+          src="/images/backgrounds/hero-background.png" 
+          alt="SlugDudes City with Vibrant Green Slime" 
           fill 
-          className="object-cover" 
-          quality={60}
+          className="object-cover opacity-25" 
+          quality={90}
           sizes="100vw"
-          priority={false}
+          priority={true}
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R7p4v8AHTAHcXRAgjfQdg6QkfO8ueWOhJHvwQAWZKFMpqGTTQfqk4fk66kE2W1g3sHoHf6U8PfHlGAqI5+P7lnP7Q6mOkXdG6j2l5IwAiEcXFdYCOMhC8bGAMq2bFKyXG+lJFKShN4QD/P8AH/aWQmAzSAQJm/xJC6WtEtZvmeyJyBaBTxRNS30Fb5YIEBZTZPkTSN5DdQCFJG4K1tXGANYKJNcXNJyLRUGgGQMYTJ6/4YcNzQUWbKNf57MvWGpkmGAJCRMJJ6cZG44iDlFg3eA/9k="
         />
+        {/* Overlay específico para el banner para mejor legibilidad */}
+        <div className="absolute inset-0 bg-black/50" />
       </div>
     </section>
   )

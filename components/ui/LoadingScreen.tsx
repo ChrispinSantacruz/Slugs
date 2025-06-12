@@ -2,14 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import dynamic from "next/dynamic"
-
-const DestroyedCityBackground = dynamic(
-  () => import("@/components/effects/DestroyedCityBackground").then((mod) => ({ 
-    default: mod.DestroyedCityBackground 
-  })),
-  { ssr: false }
-)
+import { GlobalPageBackground } from "@/components/effects/GlobalPageBackground"
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void
@@ -56,13 +49,11 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
     >
-      {/* City background */}
-      <div className="absolute inset-0">
-        <DestroyedCityBackground />
-      </div>
+      {/* Fondo global también en la pantalla de carga */}
+      <GlobalPageBackground />
       
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/60 z-10" />
+      {/* Dark overlay adicional para la carga */}
+      <div className="absolute inset-0 bg-black/70 z-10" />
 
       {/* Loading content */}
       <div className="relative z-20 text-center max-w-md mx-auto px-4">

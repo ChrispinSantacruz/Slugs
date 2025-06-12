@@ -8,6 +8,13 @@ import { TOKENOMICS_DATA } from "@/lib/constants"
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180
   const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props
+  
+  // Validación para prevenir valores undefined
+  if (!cx || !cy || typeof midAngle !== 'number' || !innerRadius || !outerRadius || !fill || !payload) {
+    // Retornar un elemento válido en lugar de null
+    return <g></g>
+  }
+  
   const sin = Math.sin(-RADIAN * midAngle)
   const cos = Math.cos(-RADIAN * midAngle)
   const sx = cx + (outerRadius + 10) * cos
@@ -17,6 +24,11 @@ const renderActiveShape = (props: any) => {
   const ex = mx + (cos >= 0 ? 1 : -1) * 22
   const ey = my
   const textAnchor = cos >= 0 ? "start" : "end"
+
+  // Validación adicional para coordenadas calculadas
+  if (isNaN(sx) || isNaN(sy) || isNaN(mx) || isNaN(my) || isNaN(ex) || isNaN(ey)) {
+    return <g></g>
+  }
 
   return (
     <g>
@@ -85,7 +97,7 @@ export function TokenomicsChart() {
             <Pie
               activeIndex={activeIndex}
               activeShape={renderActiveShape}
-              data={TOKENOMICS_DATA}
+              data={[...TOKENOMICS_DATA]}
               cx="50%"
               cy="50%"
               innerRadius={50}

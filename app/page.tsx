@@ -13,14 +13,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { TEAM_MEMBERS } from "@/lib/constants"
 import { useState, useEffect } from "react"
-import dynamic from "next/dynamic"
-
-// Only load the destroyed city background as the global bubbles are now handled by ThemeProvider
-const DestroyedCityBackground = dynamic(
-  () =>
-    import("@/components/effects/DestroyedCityBackground").then((mod) => ({ default: mod.DestroyedCityBackground })),
-  { ssr: false },
-)
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true)
@@ -53,12 +45,7 @@ export default function HomePage() {
       </AnimatePresence>
 
       {showContent && (
-        <div className="min-h-screen w-full bg-black text-white relative">
-          {/* Background de ciudad destruida - fixed */}
-          <div className="fixed inset-0 z-0">
-            <DestroyedCityBackground />
-          </div>
-
+        <div className="min-h-screen w-full text-white relative">
           {/* Contenido principal con scroll único */}
           <div className="relative z-10">
             <SlimeNavbar />
