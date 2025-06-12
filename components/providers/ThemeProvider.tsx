@@ -58,8 +58,10 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   return (
     <ThemeContext.Provider value={value}>
-      {/* Global viscous bubbles background - only render if mounted and effects are enabled */}
-      {mounted && effectsEnabled && <GlobalViscousBubblesBackground />}
+      {/* Always render the container to prevent layout shift, but conditionally show content */}
+      <div className="fixed inset-0 pointer-events-none z-[1]">
+        {mounted && effectsEnabled && <GlobalViscousBubblesBackground />}
+      </div>
       {children}
     </ThemeContext.Provider>
   )

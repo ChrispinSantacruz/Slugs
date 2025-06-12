@@ -16,104 +16,138 @@ export function GlobalViscousBubblesBackground() {
     return null
   }
 
-  // Reduce significantly the number of bubbles for global use
+  // Increased number of bubbles for better visibility
   const bubbleCount = isLowPerformance 
-    ? { large: 1, medium: 2, small: 3 }
+    ? { large: 2, medium: 4, small: 6, micro: 8 }
     : isMobile 
-    ? { large: 2, medium: 3, small: 4 }
-    : { large: 3, medium: 4, small: 5 }
+    ? { large: 3, medium: 5, small: 8, micro: 10 }
+    : { large: 5, medium: 8, small: 12, micro: 15 }
 
-  // Simplified animation for global use
-  const globalBubbleAnimation = {
-    y: [0, -20, 0],
-    scale: [1, 1.05, 1],
-    opacity: [0.3, 0.6, 0.3],
+  // More dynamic animations
+  const intenseBubbleAnimation = {
+    y: [0, -40, 0],
+    x: [0, 15, 0],
+    scale: [1, 1.2, 1],
+    opacity: [0.4, 0.8, 0.4],
   }
 
-  const globalTransition = {
-    duration: reduceAnimations ? 12 : 10,
+  const microBubbleAnimation = {
+    y: [0, -60, 0],
+    x: [0, 10, -5, 0],
+    scale: [1, 1.3, 1],
+    opacity: [0.6, 1, 0.6],
+  }
+
+  const dynamicTransition = {
+    duration: reduceAnimations ? 15 : 12,
     repeat: Number.POSITIVE_INFINITY,
     ease: "easeInOut",
   }
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[1] opacity-40">
-      {/* Large subtle bubbles - More visible */}
+    <div className="absolute inset-0 w-full h-full opacity-60 overflow-hidden">
+      {/* Large dramatic bubbles */}
       {[...Array(bubbleCount.large)].map((_, i) => (
         <motion.div
           key={`global-large-bubble-${i}`}
-          className="absolute bg-gradient-radial from-[#BBFF00]/25 to-[#70FF00]/8 rounded-full"
+          className="absolute bg-gradient-radial from-[#BBFF00]/40 to-[#70FF00]/15 rounded-full"
           style={{
-            width: `${150 + i * 30}px`,
-            height: `${150 + i * 30}px`,
-            left: `${20 + i * 35}%`,
-            top: `${15 + i * 25}%`,
-            filter: "blur(2px)",
+            width: `${180 + i * 40}px`,
+            height: `${180 + i * 40}px`,
+            left: `${Math.random() * 80}%`,
+            top: `${Math.random() * 80}%`,
+            filter: "blur(3px)",
             willChange: "transform",
             backfaceVisibility: "hidden",
           }}
-          animate={globalBubbleAnimation}
+          animate={intenseBubbleAnimation}
           transition={{
-            ...globalTransition,
+            ...dynamicTransition,
             delay: i * 1.5,
           }}
         />
       ))}
 
-      {/* Medium bubbles - Enhanced visibility */}
+      {/* Medium bubbles with movement */}
       {[...Array(bubbleCount.medium)].map((_, i) => (
         <motion.div
           key={`global-medium-bubble-${i}`}
-          className="absolute bg-gradient-radial from-[#70FF00]/30 to-[#BBFF00]/10 rounded-full"
+          className="absolute bg-gradient-radial from-[#70FF00]/45 to-[#BBFF00]/20 rounded-full"
           style={{
-            width: `${80 + i * 15}px`,
-            height: `${80 + i * 15}px`,
-            left: `${60 + i * 20}%`,
-            top: `${30 + i * 20}%`,
-            filter: "blur(1.5px)",
+            width: `${100 + i * 20}px`,
+            height: `${100 + i * 20}px`,
+            left: `${Math.random() * 90}%`,
+            top: `${Math.random() * 90}%`,
+            filter: "blur(2px)",
             willChange: "transform",
             backfaceVisibility: "hidden",
           }}
-          animate={globalBubbleAnimation}
+          animate={intenseBubbleAnimation}
           transition={{
-            ...globalTransition,
+            ...dynamicTransition,
             delay: i * 1,
           }}
         />
       ))}
 
-      {/* Small floating bubbles - More prominent */}
+      {/* Small floating bubbles */}
       {[...Array(bubbleCount.small)].map((_, i) => (
         <motion.div
           key={`global-small-bubble-${i}`}
-          className="absolute bg-gradient-radial from-[#BBFF00]/35 to-[#70FF00]/12 rounded-full"
+          className="absolute bg-gradient-radial from-[#BBFF00]/50 to-[#70FF00]/25 rounded-full"
           style={{
-            width: `${40 + i * 8}px`,
-            height: `${40 + i * 8}px`,
-            left: `${10 + i * 18}%`,
-            top: `${60 + i * 15}%`,
-            filter: "blur(0.5px)",
+            width: `${50 + i * 10}px`,
+            height: `${50 + i * 10}px`,
+            left: `${Math.random() * 95}%`,
+            top: `${Math.random() * 95}%`,
+            filter: "blur(1px)",
             willChange: "transform",
             backfaceVisibility: "hidden",
           }}
-          animate={globalBubbleAnimation}
+          animate={intenseBubbleAnimation}
           transition={{
-            ...globalTransition,
+            ...dynamicTransition,
             delay: i * 0.8,
           }}
         />
       ))}
 
-      {/* Enhanced global gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#BBFF00]/4 via-transparent to-[#70FF00]/4" />
+      {/* Micro bubbles for atmosphere */}
+      {[...Array(bubbleCount.micro)].map((_, i) => (
+        <motion.div
+          key={`global-micro-bubble-${i}`}
+          className="absolute bg-[#BBFF00]/70 rounded-full"
+          style={{
+            width: `${15 + i * 3}px`,
+            height: `${15 + i * 3}px`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            filter: "blur(0.5px)",
+            willChange: "transform",
+            backfaceVisibility: "hidden",
+          }}
+          animate={microBubbleAnimation}
+          transition={{
+            duration: 8 + i * 0.5,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: i * 0.3,
+          }}
+        />
+      ))}
+
+      {/* Strong atmospheric gradients */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#BBFF00]/8 via-transparent to-[#70FF00]/8" />
+      <div className="absolute inset-0 bg-gradient-radial from-[#BBFF00]/12 via-transparent to-[#70FF00]/12" />
       
-      {/* More visible corner accents */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-radial from-[#BBFF00]/15 to-transparent rounded-full blur-xl" />
-      <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-radial from-[#70FF00]/12 to-transparent rounded-full blur-xl" />
+      {/* Corner dramatic accents */}
+      <div className="absolute top-0 left-0 w-48 h-48 bg-gradient-radial from-[#BBFF00]/25 to-transparent rounded-full blur-2xl" />
+      <div className="absolute bottom-0 right-0 w-56 h-56 bg-gradient-radial from-[#70FF00]/20 to-transparent rounded-full blur-2xl" />
+      <div className="absolute top-1/3 right-1/3 w-32 h-32 bg-gradient-radial from-[#BBFF00]/30 to-transparent rounded-full blur-xl animate-pulse" />
+      <div className="absolute bottom-1/4 left-1/4 w-40 h-40 bg-gradient-radial from-[#70FF00]/25 to-transparent rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }} />
       
-      {/* Additional floating particles for more atmosphere */}
-      <div className="absolute top-1/4 right-1/4 w-20 h-20 bg-gradient-radial from-[#BBFF00]/20 to-transparent rounded-full blur-lg animate-pulse" />
-      <div className="absolute bottom-1/3 left-1/3 w-24 h-24 bg-gradient-radial from-[#70FF00]/15 to-transparent rounded-full blur-lg animate-pulse" style={{ animationDelay: '1s' }} />
+      {/* Additional floating atmosphere */}
+      <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-gradient-radial from-[#BBFF00]/35 to-transparent rounded-full blur-lg animate-pulse" style={{ animationDelay: '1s' }} />
     </div>
   )
 } 
