@@ -15,9 +15,9 @@ export function VideogameAvatarsSection() {
     <section id="videogame-avatars" className="py-20 relative">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
@@ -31,38 +31,42 @@ export function VideogameAvatarsSection() {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            variants={fadeInLeft}
-            initial="initial"
-            whileInView="animate"
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="relative"
           >
             <SlimeCard className="p-8">
               <div className="aspect-square bg-black/70 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                <motion.div className="text-8xl relative z-10" animate={slimeRotate}>
+                <motion.div 
+                  className="text-8xl relative z-10"
+                  animate={{ rotate: [0, 5, -5, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
                   🐌
                 </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#BBFF00]/30 to-transparent" />
 
-                {/* Slime bubbles in demo */}
-                {Array.from({ length: 6 }).map((_, i) => (
+                {/* Burbujas optimizadas - solo 3 en lugar de 6 */}
+                {Array.from({ length: 3 }).map((_, i) => (
                   <motion.div
                     key={i}
                     className="absolute w-3 h-3 bg-[#BBFF00]/60 rounded-full"
                     style={{
-                      left: `${Math.random() * 80 + 10}%`,
-                      top: `${Math.random() * 80 + 10}%`,
+                      left: `${20 + i * 30}%`,
+                      top: `${60 + i * 10}%`,
                     }}
                     animate={{
                       scale: [0, 1, 0],
                       opacity: [0, 1, 0],
-                      y: [0, -20, -40],
+                      y: [0, -30],
                     }}
                     transition={{
-                      duration: 2,
-                      repeat: Number.POSITIVE_INFINITY,
-                      delay: i * 0.3,
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: i * 1,
+                      ease: "easeOut",
                     }}
                   />
                 ))}
@@ -72,10 +76,9 @@ export function VideogameAvatarsSection() {
           </motion.div>
 
           <motion.div
-            variants={fadeInRight}
-            initial="initial"
-            whileInView="animate"
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             viewport={{ once: true }}
             className="space-y-6"
           >

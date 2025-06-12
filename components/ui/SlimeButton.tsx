@@ -33,22 +33,27 @@ export function SlimeButton({
   }
 
   return (
-    <motion.div whileHover={{ scale: disabled ? 1 : 1.05 }} whileTap={{ scale: disabled ? 1 : 0.95 }}>
+    <motion.div 
+      whileHover={{ scale: disabled ? 1 : 1.02 }} 
+      whileTap={{ scale: disabled ? 1 : 0.98 }}
+      transition={{ duration: 0.2 }}
+      className="motion-element"
+    >
       <div className="relative group">
         <Button
           onClick={onClick}
           disabled={disabled}
-          className={`${variantClasses[variant]} ${sizeClasses[size]} ${className} font-bold transition-all duration-300 relative z-10 border-2`}
+          className={`${variantClasses[variant]} ${sizeClasses[size]} ${className} font-bold transition-all duration-200 relative z-10 border-2`}
         >
           {children}
         </Button>
-        {/* Efecto neon del botón */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#BBFF00]/30 to-[#70FF00]/30 blur-md group-hover:blur-lg transition-all duration-300 -z-10"></div>
-        {/* Esquinas futuristas */}
-        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#BBFF00] -translate-x-1 -translate-y-1"></div>
-        <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#BBFF00] translate-x-1 -translate-y-1"></div>
-        <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#70FF00] -translate-x-1 translate-y-1"></div>
-        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#70FF00] translate-x-1 translate-y-1"></div>
+        {/* Efecto neon optimizado */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#BBFF00]/20 to-[#70FF00]/20 blur-sm group-hover:blur-md transition-all duration-200 -z-10"></div>
+        {/* Esquinas futuristas optimizadas */}
+        <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#BBFF00] -translate-x-1 -translate-y-1 group-hover:w-4 group-hover:h-4 transition-all duration-200"></div>
+        <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#BBFF00] translate-x-1 -translate-y-1 group-hover:w-4 group-hover:h-4 transition-all duration-200"></div>
+        <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#70FF00] -translate-x-1 translate-y-1 group-hover:w-4 group-hover:h-4 transition-all duration-200"></div>
+        <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#70FF00] translate-x-1 translate-y-1 group-hover:w-4 group-hover:h-4 transition-all duration-200"></div>
       </div>
     </motion.div>
   )

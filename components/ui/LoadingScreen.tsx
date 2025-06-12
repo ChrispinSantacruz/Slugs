@@ -24,48 +24,48 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
       "Initializing Slime...",
       "Loading Viscous Universe...",
       "Awakening SlugDudes...",
-      "Preparing Colony...",
       "Ready!"
     ]
 
     const interval = setInterval(() => {
       setProgress(prev => {
-        const newProgress = prev + Math.random() * 15 + 5
+        const newProgress = prev + Math.random() * 20 + 10
         
         // Update loading text based on progress
-        if (newProgress >= 80) setLoadingText(texts[4])
-        else if (newProgress >= 60) setLoadingText(texts[3])
-        else if (newProgress >= 40) setLoadingText(texts[2])
-        else if (newProgress >= 20) setLoadingText(texts[1])
+        if (newProgress >= 85) setLoadingText(texts[3])
+        else if (newProgress >= 60) setLoadingText(texts[2])
+        else if (newProgress >= 30) setLoadingText(texts[1])
         else setLoadingText(texts[0])
 
         if (newProgress >= 100) {
           clearInterval(interval)
-          setTimeout(() => onLoadingComplete(), 500)
+          setTimeout(() => onLoadingComplete(), 200)
           return 100
         }
         return newProgress
       })
-    }, 200)
+    }, 150)
 
     return () => clearInterval(interval)
   }, [onLoadingComplete])
 
   return (
     <motion.div
-      className="fixed inset-0 z-[9999] bg-black flex items-center justify-center"
+      className="fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
     >
       {/* City background */}
-      <DestroyedCityBackground />
+      <div className="absolute inset-0">
+        <DestroyedCityBackground />
+      </div>
       
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60 z-10" />
 
       {/* Loading content */}
-      <div className="relative z-20 text-center">
+      <div className="relative z-20 text-center max-w-md mx-auto px-4">
         {/* SlugDudes logo/title */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -73,10 +73,10 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
           transition={{ duration: 0.8 }}
           className="mb-12"
         >
-          <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-[#BBFF00] to-[#70FF00] bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold bg-gradient-to-r from-[#BBFF00] to-[#70FF00] bg-clip-text text-transparent mb-4">
             SlugDudes
           </h1>
-          <p className="text-[#BBFF00] text-xl md:text-2xl font-bold">
+          <p className="text-[#BBFF00] text-lg md:text-xl lg:text-2xl font-bold">
             Immortal Mutant Slug Colony
           </p>
         </motion.div>

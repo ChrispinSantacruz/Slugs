@@ -8,14 +8,14 @@ import { SlimeButton } from "@/components/ui/SlimeButton"
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center py-20">
+    <section id="home" className="relative flex items-center justify-center py-20">
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Left Side - Optimized Image */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="relative"
           >
             <div className="relative">
@@ -36,9 +36,9 @@ export function HeroSection() {
 
           {/* Right Side - Text Content */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             className="text-center md:text-left"
           >
             <SlimeTitle size="xl" className="mb-6" animate={false}>
@@ -49,7 +49,7 @@ export function HeroSection() {
               className="text-xl md:text-2xl mb-4 text-[#BBFF00] font-bold"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
             >
               FROM PRIMORDIAL SLIME TO IMMORTAL COLONY
             </motion.p>
@@ -58,7 +58,7 @@ export function HeroSection() {
               className="text-lg md:text-xl mb-8 text-gray-300 max-w-3xl mx-auto md:mx-0 font-semibold"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
+              transition={{ delay: 0.3, duration: 0.3 }}
             >
               Enter the viscous universe of immortal mutant slugs born from the primordial ooze. The future is slimy,
               and it's here to stay!
@@ -66,9 +66,9 @@ export function HeroSection() {
 
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
+              transition={{ delay: 0.4, duration: 0.3 }}
             >
               <SlimeButton size="lg">
                 <Sparkles className="mr-2 h-5 w-5" />

@@ -30,36 +30,30 @@
 @layer base {
   * {
     @apply border-border;
-    /* Prevent horizontal overflow */
     box-sizing: border-box;
   }
   
   html {
-    /* Prevent horizontal scroll and layout shifts */
-    overflow-x: hidden;
     scroll-behavior: smooth;
+    overflow-x: hidden;
     height: 100%;
   }
   
   body {
     @apply bg-background text-foreground;
-    font-family: "Impact", "Arial Black", "Franklin Gothic Bold", sans-serif;
-    font-weight: 900;
-    /* Prevent horizontal overflow and layout expansion */
+    font-family: "Inter", sans-serif;
     overflow-x: hidden;
     min-height: 100vh;
-    max-height: 100vh;
-    width: 100vw;
-    max-width: 100vw;
-    position: relative;
-    /* Prevent content from expanding beyond viewport */
-    contain: layout;
+    overflow-y: auto;
   }
   
-  /* Ensure main content containers don't expand */
-  main, section, div[data-main] {
-    max-width: 100vw;
-    overflow-x: hidden;
+  section, div, main {
+    overflow: visible !important;
+  }
+  
+  .scroll-container {
+    overflow-x: auto;
+    overflow-y: visible;
   }
 }
 
@@ -68,40 +62,142 @@
   @import "./styles/slime-effects.css";
 }
 
-/* Optimized scrollbar with slime theme */
+/* Efecto neon más sutil y optimizado */
+.neon-title {
+  text-shadow: 
+    0 0 1px #bbff00,
+    0 0 2px #bbff00;
+  animation: gentle-pulse 6s ease-in-out infinite;
+  will-change: text-shadow;
+}
+
+.neon-subtitle {
+  text-shadow: 
+    0 0 1px #70ff00,
+    0 0 2px #70ff00;
+}
+
+.slime-subtitle {
+  text-shadow: 
+    0 0 1px #bbff00,
+    0 0 1px #bbff00;
+}
+
+/* Tarjetas con efectos neon */
+.neon-card {
+  @apply bg-black/80 border border-[#BBFF00]/30 backdrop-blur-sm;
+  box-shadow: 
+    0 0 5px rgba(187, 255, 0, 0.2),
+    inset 0 0 5px rgba(187, 255, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.neon-card:hover {
+  border-color: rgba(187, 255, 0, 0.6);
+  box-shadow: 
+    0 0 10px rgba(187, 255, 0, 0.3),
+    inset 0 0 10px rgba(187, 255, 0, 0.15);
+}
+
+/* Botones neon */
+.neon-button {
+  @apply bg-gradient-to-r from-[#BBFF00]/20 to-[#70FF00]/20 border border-[#BBFF00]/50 hover:from-[#BBFF00]/30 hover:to-[#70FF00]/30 transition-all duration-300;
+  box-shadow: 0 0 5px rgba(187, 255, 0, 0.3);
+}
+
+.neon-button:hover {
+  box-shadow: 0 0 10px rgba(187, 255, 0, 0.5);
+  text-shadow: 0 0 2px #bbff00;
+}
+
+/* Badges neon */
+.neon-badge {
+  @apply bg-[#BBFF00]/10 hover:bg-[#BBFF00]/20 transition-colors duration-300;
+  text-shadow: 0 0 1px #bbff00;
+}
+
+/* Iconos sociales */
+.neon-social:hover {
+  box-shadow: 0 0 8px rgba(187, 255, 0, 0.4);
+  text-shadow: 0 0 2px #bbff00;
+}
+
+/* Animaciones optimizadas para rendimiento */
+@keyframes gentle-pulse {
+  0%, 100% { 
+    text-shadow: 
+      0 0 1px #bbff00,
+      0 0 2px #bbff00;
+  }
+  50% { 
+    text-shadow: 
+      0 0 2px #bbff00,
+      0 0 3px #bbff00;
+  }
+}
+
+/* Efectos de texto shadow hover */
+.hover\:text-shadow-neon:hover {
+  text-shadow: 0 0 2px #bbff00;
+}
+
+/* Gradientes personalizados */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Scrollbar personalizada */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #000;
-  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #bbff00, #70ff00);
   border-radius: 4px;
-  border: 1px solid #000;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #70ff00, #bbff00);
 }
 
+/* Asegurar que los elementos no interfieran con el scroll */
+.pointer-events-none {
+  pointer-events: none !important;
+}
+
+/* Contenedor principal */
+.main-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Fix para elementos que puedan expandir el layout */
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 /* Optimized selection color */
 ::selection {
   background: #bbff00;
   color: #000;
-  text-shadow: none;
 }
 
 ::-moz-selection {
   background: #bbff00;
   color: #000;
-  text-shadow: none;
 }
 
-/* Enhanced motion reduction for better performance */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -109,72 +205,79 @@
     transition-duration: 0.01ms !important;
   }
   
-  /* Disable resource-intensive effects on low-performance devices */
   .neon-card::before,
-  .animate-spin-slow,
-  .animate-pulse {
+  .neon-card::after {
     animation: none !important;
   }
 }
 
-/* Performance optimizations */
 * {
-  /* Enable hardware acceleration for smoother animations */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
 }
 
-/* Optimize blur effects */
 .blur-lg {
-  filter: blur(8px);
+  filter: blur(16px);
 }
 
 .blur-xl {
-  filter: blur(12px);
+  filter: blur(24px);
 }
 
-/* Responsive utilities */
-@layer utilities {
+/* Responsive container */
+@media (min-width: 640px) {
   .container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    max-width: 100%;
-    overflow-x: hidden;
-    /* Prevent container expansion */
-    contain: layout;
+    max-width: 640px;
   }
+}
 
-  @media (min-width: 640px) {
-    .container {
-      max-width: 640px;
-    }
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
   }
+}
 
-  @media (min-width: 768px) {
-    .container {
-      max-width: 768px;
-    }
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
   }
+}
 
-  @media (min-width: 1024px) {
-    .container {
-      max-width: 1024px;
-    }
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
   }
+}
 
-  @media (min-width: 1280px) {
-    .container {
-      max-width: 1280px;
-    }
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
   }
+}
 
-  @media (min-width: 1536px) {
-    .container {
-      max-width: 1536px;
-    }
-  }
+/* Prevenir scrolls individuales en secciones */
+section, div[class*="section"], main, article {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+/* Permitir scroll solo en contenedores específicos */
+.scroll-container, .overflow-auto, .overflow-scroll {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* Asegurar que no haya alturas fijas problemáticas */
+section {
+  min-height: auto !important;
+  max-height: none !important;
+}
+
+/* Optimización de hardware para animaciones */
+.motion-element {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }

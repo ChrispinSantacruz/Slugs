@@ -7,7 +7,6 @@ import { RoadmapSection } from "@/components/sections/RoadmapSection"
 import { PromotionalBanner } from "@/components/sections/PromotionalBanner"
 import { TokenomicsSection } from "@/components/sections/TokenomicsSection"
 import { BackToTop } from "@/components/ui/BackToTop"
-import { EffectsToggle } from "@/components/ui/EffectsToggle"
 import { LoadingScreen } from "@/components/ui/LoadingScreen"
 import { motion, AnimatePresence } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
@@ -37,11 +36,11 @@ export default function HomePage() {
     if (isLoading) {
       document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = 'auto'
     }
     
     return () => {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = 'auto'
     }
   }, [isLoading])
 
@@ -54,26 +53,23 @@ export default function HomePage() {
       </AnimatePresence>
 
       {showContent && (
-        <div className="min-h-screen w-full bg-black text-white relative overflow-x-hidden">
-          {/* Background de ciudad destruida */}
-          <DestroyedCityBackground />
+        <div className="min-h-screen w-full bg-black text-white relative">
+          {/* Background de ciudad destruida - fixed */}
+          <div className="fixed inset-0 z-0">
+            <DestroyedCityBackground />
+          </div>
 
-          {/* Global viscous bubbles are now handled by ThemeProvider in layout */}
-
-          <div className="relative z-10 w-full overflow-x-hidden">
+          {/* Contenido principal con scroll único */}
+          <div className="relative z-10">
             <SlimeNavbar />
             <HeroSection />
-
             <VideogameAvatarsSection />
-
-            {/* Nueva sección de Roadmap */}
             <RoadmapSection />
-
             <PromotionalBanner />
             <TokenomicsSection />
 
             {/* Team Section con efectos neon */}
-            <section id="team" className="py-20 relative overflow-x-hidden">
+            <section id="team" className="py-20 relative">
               <div className="container mx-auto px-4">
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
@@ -143,8 +139,8 @@ export default function HomePage() {
               </div>
             </section>
 
-            {/* Footer con efectos neon - Fixed to be the final element */}
-            <footer className="relative py-12 bg-black/90 border-t border-[#BBFF00]/20 w-full overflow-x-hidden">
+            {/* Footer con efectos neon */}
+            <footer className="relative py-12 bg-black/90 border-t border-[#BBFF00]/20">
               <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-4 gap-8">
                   <div className="md:col-span-2">
@@ -214,9 +210,7 @@ export default function HomePage() {
               </div>
             </footer>
 
-            {/* Controls de la interfaz */}
             <BackToTop />
-            <EffectsToggle />
           </div>
         </div>
       )}
