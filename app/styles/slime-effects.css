@@ -1,11 +1,11 @@
 /* Subtle Typography Effects - Improved Readability */
 .neon-title {
-  font-family: "Impact", "Arial Black", "Franklin Gothic Bold", sans-serif;
-  font-weight: 900;
-  letter-spacing: 0.1em;
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   /* Much more subtle neon effect for better readability */
-  text-shadow: 0 0 1px #bbff00, 0 0 2px #bbff00;
+  text-shadow: 0 0 0.5px #bbff00, 0 0 1px #bbff00;
   /* Remove distracting animation */
   /* animation: neon-flicker 2s infinite alternate; */
 }
@@ -14,10 +14,10 @@
 @keyframes neon-flicker {
   0%,
   100% {
-    text-shadow: 0 0 1px #bbff00, 0 0 2px #bbff00;
+    text-shadow: 0 0 0.5px #bbff00, 0 0 1px #bbff00;
   }
   50% {
-    text-shadow: 0 0 0.5px #bbff00, 0 0 1px #bbff00;
+    text-shadow: 0 0 0.3px #bbff00, 0 0 0.5px #bbff00;
   }
 }
 

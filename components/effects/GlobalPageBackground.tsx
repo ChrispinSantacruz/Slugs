@@ -10,7 +10,7 @@ export function GlobalPageBackground() {
         src="/images/backgrounds/page-background.png" 
         alt="SlugDudes Dark City with SLUG SHOP" 
         fill 
-        className="object-cover opacity-35" 
+        className="object-cover opacity-15" 
         quality={80}
         sizes="100vw"
         priority={false}
@@ -19,10 +19,10 @@ export function GlobalPageBackground() {
       />
       
       {/* Overlay para el fondo global */}
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-black/30" />
       
       {/* Gradiente para mejor integración y transición con el banner */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/30" />
     </div>
   )
 } 

@@ -7,19 +7,19 @@ import { SlimeCard } from "@/components/ui/SlimeCard"
 
 export function RoadmapSection() {
   return (
-    <section id="roadmap" className="py-20 relative">
+    <section id="roadmap" className="py-32 relative">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <SlimeTitle size="lg" className="mb-6">
-            OBJETIVO
+          <SlimeTitle size="xl" className="mb-8" animate={false}>
+            ROADMAP
           </SlimeTitle>
-          <p className="text-xl text-[#BBFF00] max-w-2xl mx-auto font-bold slime-subtitle">
+          <p className="text-2xl text-[#BBFF00] max-w-3xl mx-auto font-bold slime-subtitle">
             Nuestra misión hacia la dominación viscosa del universo
           </p>
         </motion.div>
@@ -31,15 +31,15 @@ export function RoadmapSection() {
           viewport={{ once: true }}
           className="flex justify-center"
         >
-          <SlimeCard className="max-w-4xl w-full">
+          <SlimeCard className="max-w-6xl w-full">
             <div className="relative">
               <Image
-                src="/images/slug-banner.jpg"
+                src="/images/map.png"
                 alt="SlugDudes Roadmap - Objetivo"
-                width={800}
-                height={600}
-                quality={85}
-                sizes="(max-width: 768px) 100vw, 800px"
+                width={1200}
+                height={900}
+                quality={90}
+                sizes="(max-width: 768px) 100vw, 1200px"
                 className="w-full h-auto rounded-lg border-2 border-[#BBFF00]/30"
                 style={{
                   filter: "drop-shadow(0 0 20px rgba(187, 255, 0, 0.3))",
@@ -56,15 +56,6 @@ export function RoadmapSection() {
               <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-[#BBFF00]"></div>
               <div className="absolute bottom-2 left-2 w-8 h-8 border-b-2 border-l-2 border-[#70FF00]"></div>
               <div className="absolute bottom-2 right-2 w-8 h-8 border-b-2 border-r-2 border-[#70FF00]"></div>
-            </div>
-
-            <div className="mt-6 text-center">
-              <h3 className="text-2xl font-bold text-[#BBFF00] mb-4 neon-title">LA EVOLUCIÓN CONTINÚA</h3>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                Desde las profundidades del limo primordial hasta la conquista galáctica, los SlugDudes están destinados
-                a transformar el universo en su hogar viscoso. Únete a la colonia inmortal y sé parte de la revolución
-                babosa.
-              </p>
             </div>
           </SlimeCard>
         </motion.div>

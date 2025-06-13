@@ -62,11 +62,13 @@
   @import "./styles/slime-effects.css";
 }
 
-/* Efecto neon más sutil y optimizado */
+/* Efecto neon más sutil y legible */
 .neon-title {
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-shadow: 
-    0 0 1px #bbff00,
-    0 0 2px #bbff00;
+    0 0 0.5px #bbff00,
+    0 0 1px #bbff00;
   animation: gentle-pulse 6s ease-in-out infinite;
   will-change: text-shadow;
 }

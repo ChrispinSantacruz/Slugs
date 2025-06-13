@@ -29,7 +29,7 @@ export function VideogameAvatarsSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -37,42 +37,42 @@ export function VideogameAvatarsSection() {
             viewport={{ once: true }}
             className="relative"
           >
-            <SlimeCard className="p-8">
-              <div className="aspect-square bg-black/70 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                <motion.div 
-                  className="text-8xl relative z-10"
-                  animate={{ rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  🐌
-                </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#BBFF00]/30 to-transparent" />
+            <div className="relative aspect-square bg-gradient-to-br from-[#BBFF00]/10 to-[#70FF00]/10 rounded-2xl flex items-center justify-center overflow-hidden border border-[#BBFF00]/20">
+              <motion.div
+                animate={slimeRotate}
+                className="text-9xl opacity-60 motion-element"
+              >
+                🐌
+              </motion.div>
 
-                {/* Burbujas optimizadas - solo 3 en lugar de 6 */}
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-3 h-3 bg-[#BBFF00]/60 rounded-full"
-                    style={{
-                      left: `${20 + i * 30}%`,
-                      top: `${60 + i * 10}%`,
-                    }}
-                    animate={{
-                      scale: [0, 1, 0],
-                      opacity: [0, 1, 0],
-                      y: [0, -30],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      delay: i * 1,
-                      ease: "easeOut",
-                    }}
-                  />
-                ))}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+
+              <div className="absolute bottom-8 left-8 right-8">
+                <div className="grid grid-cols-4 gap-3">
+                  {["🎩", "😎", "⚔️", "📿"].map((accessory, index) => (
+                    <motion.div
+                      key={accessory}
+                      className="aspect-square bg-black/60 rounded-lg flex items-center justify-center text-2xl border border-[#BBFF00]/30"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      {accessory}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-              <p className="text-center mt-4 text-[#BBFF00] font-bold text-lg slime-glow">Interactive Dress-Up Demo</p>
-            </SlimeCard>
+
+              <div className="absolute top-4 left-4 right-4">
+                <div className="bg-black/80 rounded-lg p-3 border border-[#BBFF00]/30">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#BBFF00] text-sm font-bold">SlugDude #1337</span>
+                    <span className="text-[#70FF00] text-sm">⚡ Immortal</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div
@@ -102,12 +102,14 @@ export function VideogameAvatarsSection() {
               ))}
             </div>
 
-            <Link href="/dress-up-game">
-              <SlimeButton size="lg" className="w-full text-xl py-6">
-                <Gamepad2 className="mr-2 h-6 w-6" />
-                Create Your Slug!
-              </SlimeButton>
-            </Link>
+            <div className="pt-8 pb-16">
+              <Link href="/dress-up-game">
+                <SlimeButton size="lg" className="w-full text-xl py-6">
+                  <Gamepad2 className="mr-2 h-6 w-6" />
+                  Create Your Slug!
+                </SlimeButton>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>

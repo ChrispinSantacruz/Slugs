@@ -47,8 +47,6 @@ export function SlimeButton({
         >
           {children}
         </Button>
-        {/* Efecto neon optimizado */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#BBFF00]/20 to-[#70FF00]/20 blur-sm group-hover:blur-md transition-all duration-200 -z-10"></div>
         {/* Esquinas futuristas optimizadas */}
         <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#BBFF00] -translate-x-1 -translate-y-1 group-hover:w-4 group-hover:h-4 transition-all duration-200"></div>
         <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#BBFF00] translate-x-1 -translate-y-1 group-hover:w-4 group-hover:h-4 transition-all duration-200"></div>
