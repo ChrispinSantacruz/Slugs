@@ -10,7 +10,7 @@ export function GlobalPageBackground() {
         src="/images/backgrounds/page-background.png" 
         alt="SlugDudes Dark City with SLUG SHOP" 
         fill 
-        className="object-cover opacity-15" 
+        className="object-cover opacity-25" 
         quality={80}
         sizes="100vw"
         priority={false}
@@ -18,11 +18,11 @@ export function GlobalPageBackground() {
         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkrHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R7p4v8AHTAHcXRAgjfQdg6QkfO8ueWOhJHvwQAWZKFMpqGTTQfqk4fk66kE2W1g3sHoHf6U8PfHlGAqI5+P7lnP7Q6mOkXdG6j2l5IwAiEcXFdYCOMhC8bGAMq2bFKyXG+lJFKShN4QD/P8AH/aWQmAzSAQJm/xJC6WtEtZvmeyJyBaBTxRNS30Fb5YIEBZTZPkTSN5DdQCFJG4K1tXGANYKJNcXNJyLRUGgGQMYTJ6/4YcNzQUWbKNf57MvWGpkmGAJCRMJJ6cZG44iDlFg3eA/9k="
       />
       
-      {/* Overlay para el fondo global */}
-      <div className="absolute inset-0 bg-black/30" />
+      {/* Overlay para el fondo global - reducido para mayor claridad */}
+      <div className="absolute inset-0 bg-black/15" />
       
-      {/* Gradiente para mejor integración y transición con el banner */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/30" />
+      {/* Gradiente para mejor integración y transición con el banner - más sutil */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/15" />
     </div>
   )
 } 
