@@ -14,18 +14,29 @@ interface SlugCustomization {
   mouth: string
   hat: string
   coat: string
-  jacket: string
   chain: string
-  weapon: string
 }
 
-// Configuración de opciones de personalización con imágenes reales
+// Configuración de opciones de personalización reorganizada
 const customizationOptions = {
+  // 1. SKIN BASE
   baseSkin: [
     { id: "base-01", name: "Verde Clásico", src: "/images/Game/GAME avatars/SLUGS_base-01.png" },
     { id: "base-02", name: "Azul Cristal", src: "/images/Game/GAME avatars/SLUGS_base-02.png" },
     { id: "base-03", name: "Dorado Solar", src: "/images/Game/GAME avatars/SLUGS_base-03.png" },
   ],
+  // 2. EYES
+  eyes: [
+    { id: "eyes-01", name: "Ojos Normales", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-01.png" },
+    { id: "eyes-02", name: "Ojos Pequeños", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-02.png" },
+    { id: "eyes-03", name: "Ojos Cerrados", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-03.png" },
+    { id: "eyes-04", name: "Ojos Grandes", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-04.png" },
+    { id: "eyes-05", name: "Ojos Traviesos", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-05.png" },
+    { id: "eyes-06", name: "Ojos Sorprendidos", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-06.png" },
+    { id: "eyes-07", name: "Ojos Serios", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-07.png" },
+    { id: "eyes-08", name: "Ojos Especiales", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-08.png" },
+  ],
+  // 3. MOUTH
   mouth: [
     { id: "mouth-01", name: "Sonrisa", src: "/images/Game/GAME avatars/mouth/slugs_mouth-01.png" },
     { id: "mouth-02", name: "Risa", src: "/images/Game/GAME avatars/mouth/slugs_mouth-02.png" },
@@ -34,6 +45,14 @@ const customizationOptions = {
     { id: "mouth-05", name: "Sorpresa", src: "/images/Game/GAME avatars/mouth/slugs_mouth-05.png" },
     { id: "mouth-06", name: "Travieso", src: "/images/Game/GAME avatars/mouth/slugs_mouth-06.png" },
   ],
+  // 4. DRESS (COAT)
+  coat: [
+    { id: "coat-01", name: "Abrigo Clásico", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-01.png" },
+    { id: "coat-02", name: "Abrigo Sport", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-02.png" },
+    { id: "coat-03", name: "Abrigo Elegante", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-03.png" },
+    { id: "coat-04", name: "Abrigo Premium", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-04.png" },
+  ],
+  // 5. HATS
   hat: [
     { id: "hat-01", name: "Gorra Básica", src: "/images/Game/GAME avatars/caps/SLUGs_hats-01.png" },
     { id: "hat-02", name: "Gorra Sport", src: "/images/Game/GAME avatars/caps/SLUGs_hats-02.png" },
@@ -46,28 +65,18 @@ const customizationOptions = {
     { id: "hat-09", name: "Gorra Future", src: "/images/Game/GAME avatars/caps/SLUGs_hats-09.png" },
     { id: "hat-10", name: "Gorra Master", src: "/images/Game/GAME avatars/caps/SLUGs_hats-10.png" },
   ],
-  coat: [
-    { id: "coat-01", name: "Abrigo Clásico", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-01.png" },
-    { id: "coat-02", name: "Abrigo Sport", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-02.png" },
-    { id: "coat-03", name: "Abrigo Elegante", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-03.png" },
-    { id: "coat-04", name: "Abrigo Premium", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-04.png" },
-  ],
-  eyes: ["👀", "😎", "🤖", "👁️", "🔥", "⭐"],
-  jacket: ["🦺", "🧥", "👔", "🥼", "🎽", "🦸"],
+  // 6. ACCESSORIES
   chain: ["📿", "⛓️", "🔗", "💎", "🏅", "🎖️"],
-  weapon: ["⚔️", "🔫", "🏹", "🔨", "⚡", "🚀"],
 }
 
 export default function DressUpGame() {
   const [slug, setSlug] = useState<SlugCustomization>({
     baseSkin: "base-01",
-    eyes: "👀",
+    eyes: "",
     mouth: "",
     hat: "",
     coat: "",
-    jacket: "",
     chain: "",
-    weapon: "",
   })
 
   const [activeCategory, setActiveCategory] = useState<keyof SlugCustomization>("baseSkin")
@@ -85,16 +94,12 @@ export default function DressUpGame() {
     // Siempre seleccionar una skin base
     newSlug.baseSkin = customizationOptions.baseSkin[Math.floor(Math.random() * customizationOptions.baseSkin.length)].id
     
-    // Para mouth, hat y coat, usar las nuevas opciones de imagen
+    // Para mouth, hat, coat y eyes, usar las nuevas opciones de imagen
     newSlug.mouth = Math.random() > 0.3 ? customizationOptions.mouth[Math.floor(Math.random() * customizationOptions.mouth.length)].id : ""
     newSlug.hat = Math.random() > 0.3 ? customizationOptions.hat[Math.floor(Math.random() * customizationOptions.hat.length)].id : ""
     newSlug.coat = Math.random() > 0.3 ? customizationOptions.coat[Math.floor(Math.random() * customizationOptions.coat.length)].id : ""
-    
-    // Para el resto, usar las opciones existentes de emoji
-    newSlug.eyes = Math.random() > 0.3 ? customizationOptions.eyes[Math.floor(Math.random() * customizationOptions.eyes.length)] : ""
-    newSlug.jacket = Math.random() > 0.3 ? customizationOptions.jacket[Math.floor(Math.random() * customizationOptions.jacket.length)] : ""
+    newSlug.eyes = Math.random() > 0.3 ? customizationOptions.eyes[Math.floor(Math.random() * customizationOptions.eyes.length)].id : ""
     newSlug.chain = Math.random() > 0.3 ? customizationOptions.chain[Math.floor(Math.random() * customizationOptions.chain.length)] : ""
-    newSlug.weapon = Math.random() > 0.3 ? customizationOptions.weapon[Math.floor(Math.random() * customizationOptions.weapon.length)] : ""
     
     setSlug(newSlug)
   }
@@ -102,13 +107,11 @@ export default function DressUpGame() {
   const resetSlug = () => {
     setSlug({
       baseSkin: "base-01",
-      eyes: "👀",
+      eyes: "",
       mouth: "",
       hat: "",
       coat: "",
-      jacket: "",
       chain: "",
-      weapon: "",
     })
   }
 
@@ -137,6 +140,13 @@ export default function DressUpGame() {
     if (!slug.coat) return null
     const coat = customizationOptions.coat.find(c => c.id === slug.coat)
     return coat?.src || null
+  }
+
+  // Función para obtener la imagen de los ojos seleccionados
+  const getEyesImage = () => {
+    if (!slug.eyes) return null
+    const eyes = customizationOptions.eyes.find(e => e.id === slug.eyes)
+    return eyes?.src || null
   }
 
   return (
@@ -201,18 +211,40 @@ export default function DressUpGame() {
         <div className="container mx-auto p-6">
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Slug Display */}
-            <div className="lg:col-span-1">
-              <Card className="bg-gradient-to-br from-[#BBFF00]/10 to-[#70FF00]/10 border-[#BBFF00]/20 sticky top-6">
-                <CardHeader>
-                  <CardTitle className="text-center text-[#BBFF00]">Tu SlugDude</CardTitle>
-                </CardHeader>
-                <CardContent>
+            <div className="lg:col-span-1 flex flex-col items-center">
+              <Card className="bg-transparent border-transparent sticky top-6 w-full">
+
+                <CardContent className="flex flex-col items-center justify-center p-8">
+                  {/* 🎯 CONTENEDOR DEL MARCO CON TAMAÑO FIJO */}
                   <motion.div
-                    className="aspect-square bg-black/50 rounded-2xl flex items-center justify-center relative overflow-hidden mb-6"
-                    whileHover={{ scale: 1.05 }}
+                    className="relative overflow-visible mb-6"
+                    whileHover={{ scale: 1.08 }}
                     transition={{ duration: 0.3 }}
+                    style={{
+                      width: '383px',   // 📏 MARCO REDUCIDO 15% MÁS (450px - 15% = 383px)
+                      height: '383px',  // 📏 REDUCIDO 15% ADICIONAL
+                      aspectRatio: '1/1',
+                      margin: '0 auto',
+                      backgroundImage: `url('/images/Game/GAME avatars/slugs_box-02.png')`,
+                      backgroundSize: 'contain',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'center',
+                    }}
                   >
-                    <div className="relative w-full h-full">
+                    {/* 🎯 ÁREA DEL SLUG CENTRADA */}
+                    <div 
+                      className="absolute inset-0 flex items-center justify-center"
+                      style={{ 
+                        padding: '75px', // 📐 SEPARACIÓN DEL MARCO MANTENIDA
+                      }}
+                    >
+                      <div 
+                        className="relative"
+                        style={{ 
+                          width: '300px',   // 📐 TAMAÑO REDUCIDO DEL SLUG (360px → 300px)
+                          height: '300px',  // 📐 REDUCIDO PROPORCIONALMENTE
+                        }}
+                      >
                       {/* Base Slug Skin */}
                       <motion.div
                         key={slug.baseSkin}
@@ -238,10 +270,10 @@ export default function DressUpGame() {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
-                            // 🎯 POSICIÓN DE LA BOCA - Ajusta estos valores:
-                            // top: posición vertical (0% arriba, 100% abajo)
-                            // left: posición horizontal (0% izquierda, 100% derecha)
+                            // 📍 POSICIÓN DE LA BOCA:
                             className="absolute top-[26%] left-[44.7%] transform -translate-x-1/2 -translate-y-1/2"
+                            // ⬆️ ARRIBA: top-[20%]  ⬇️ ABAJO: top-[30%]
+                            // ⬅️ IZQUIERDA: left-[40%]  ➡️ DERECHA: left-[50%]
                             style={{ 
                               width: '12%', // 80% de reducción = 20% del tamaño original
                               height: '12%',
@@ -267,10 +299,10 @@ export default function DressUpGame() {
                             initial={{ y: -50, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -50, opacity: 0 }}
-                            // 🎯 POSICIÓN DEL GORRO - Ajusta estos valores:
-                            // top: posición vertical (usa valores negativos para subir más)
-                            // left: posición horizontal
+                            // 📍 POSICIÓN DEL GORRO:
                             className="absolute top-[8%] left-[41%] transform -translate-x-1/2"
+                            // ⬆️ MÁS ARRIBA: top-[5%]  ⬇️ MÁS ABAJO: top-[12%]
+                            // ⬅️ IZQUIERDA: left-[38%]  ➡️ DERECHA: left-[44%]
                             style={{ 
                               width: '20%', // 80% de reducción = 20% del tamaño original
                               height: '20%',
@@ -296,8 +328,10 @@ export default function DressUpGame() {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
-                            // 🎯 POSICIÓN DEL ABRIGO - Ajusta estos valores:
+                            // 📍 POSICIÓN DEL ABRIGO:
                             className="absolute top-[34%] left-[23.9%] transform -translate-x-1/2"
+                            // ⬆️ MÁS ARRIBA: top-[30%]  ⬇️ MÁS ABAJO: top-[38%]
+                            // ⬅️ IZQUIERDA: left-[20%]  ➡️ DERECHA: left-[27%]
                             style={{ 
                               width: '54%', 
                               height: '54%',
@@ -315,29 +349,32 @@ export default function DressUpGame() {
                         )}
                       </AnimatePresence>
 
-                      {/* Emoji Accessories (mantenemos los existentes) */}
+                      {/* Eyes */}
                       <AnimatePresence>
-                        {slug.jacket && (
-                          <motion.span
-                            key={`jacket-${slug.jacket}`}
-                            initial={{ scale: 0, rotate: -180 }}
-                            animate={{ scale: 1, rotate: 0 }}
-                            exit={{ scale: 0, rotate: 180 }}
-                            className="absolute top-1/3 left-1/2 transform -translate-x-1/2 text-6xl z-10"
-                          >
-                            {slug.jacket}
-                          </motion.span>
-                        )}
-                        {slug.eyes && (
-                          <motion.span
+                        {slug.eyes && getEyesImage() && (
+                          <motion.div
                             key={`eyes-${slug.eyes}`}
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0 }}
-                            className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-3xl z-20"
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0, opacity: 0 }}
+                            // 📍 POSICIÓN DE LOS OJOS:
+                            className="absolute top-[15%] left-[42.3%] transform -translate-x-1/2 -translate-y-1/2"
+                            // ⬆️ MÁS ARRIBA: top-[12%]  ⬇️ MÁS ABAJO: top-[18%]
+                            // ⬅️ IZQUIERDA: left-[39%]  ➡️ DERECHA: left-[45%]
+                            style={{ 
+                              width: '18%',
+                              height: '18%',
+                              zIndex: 20 
+                            }}
                           >
-                            {slug.eyes}
-                          </motion.span>
+                            <Image
+                              src={getEyesImage()!}
+                              alt="Eyes"
+                              width={75}
+                              height={75}
+                              className="w-full h-full object-contain"
+                            />
+                          </motion.div>
                         )}
                         {slug.chain && (
                           <motion.span
@@ -350,24 +387,48 @@ export default function DressUpGame() {
                             {slug.chain}
                           </motion.span>
                         )}
-                        {slug.weapon && (
-                          <motion.span
-                            key={`weapon-${slug.weapon}`}
-                            initial={{ x: 50, opacity: 0 }}
-                            animate={{ x: 20, opacity: 1 }}
-                            exit={{ x: 50, opacity: 0 }}
-                            className="absolute top-1/3 right-4 text-4xl z-10"
-                          >
-                            {slug.weapon}
-                          </motion.span>
-                        )}
+
                       </AnimatePresence>
+                      </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#BBFF00]/10 to-transparent" />
                   </motion.div>
 
+
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Customization Options */}
+            <div className="lg:col-span-2">
+              <div className="space-y-6">
+                {/* Category Tabs + Botón Guardar */}
+                <div className="flex flex-wrap gap-2 items-center justify-between mb-4">
+                  <div className="flex flex-wrap gap-2">
+                    {Object.keys(customizationOptions).map((category) => (
+                      <Button
+                        key={category}
+                        onClick={() => setActiveCategory(category as keyof SlugCustomization)}
+                        variant={activeCategory === category ? "default" : "outline"}
+                        className={
+                          activeCategory === category
+                            ? "bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold"
+                            : "border-[#BBFF00]/50 text-[#BBFF00] hover:bg-[#BBFF00]/10"
+                        }
+                      >
+                        {category === 'baseSkin' ? 'Skin Base' :
+                         category === 'eyes' ? 'Eyes' :
+                         category === 'mouth' ? 'Mouth' :
+                         category === 'coat' ? 'Dress' :
+                         category === 'hat' ? 'Hats' :
+                         category === 'chain' ? 'Accessories' :
+                         category.charAt(0).toUpperCase() + category.slice(1)}
+                      </Button>
+                    ))}
+                  </div>
+                  
+                  {/* Botón Guardar */}
                   <div className="flex gap-2">
-                    <Button className="flex-1 bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold hover:scale-105 transition-transform duration-300">
+                    <Button className="bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold hover:scale-105 transition-transform duration-300">
                       <Download className="mr-2 h-4 w-4" />
                       Guardar
                     </Button>
@@ -378,52 +439,30 @@ export default function DressUpGame() {
                       <Share2 className="h-4 w-4" />
                     </Button>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Customization Options */}
-            <div className="lg:col-span-2">
-              <div className="space-y-6">
-                {/* Category Tabs */}
-                <div className="flex flex-wrap gap-2">
-                  {Object.keys(customizationOptions).map((category) => (
-                    <Button
-                      key={category}
-                      onClick={() => setActiveCategory(category as keyof SlugCustomization)}
-                      variant={activeCategory === category ? "default" : "outline"}
-                      className={
-                        activeCategory === category
-                          ? "bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold"
-                          : "border-[#BBFF00]/50 text-[#BBFF00] hover:bg-[#BBFF00]/10"
-                      }
-                    >
-                      {category === 'baseSkin' ? 'Skin Base' :
-                       category === 'mouth' ? 'Boca' :
-                       category === 'hat' ? 'Gorro' :
-                       category === 'coat' ? 'Abrigo' :
-                       category === 'eyes' ? 'Ojos' :
-                       category === 'jacket' ? 'Chaqueta' :
-                       category === 'chain' ? 'Cadena' :
-                       category === 'weapon' ? 'Arma' :
-                       category.charAt(0).toUpperCase() + category.slice(1)}
-                    </Button>
-                  ))}
                 </div>
 
                 {/* Options Grid */}
-                <Card className="bg-gradient-to-br from-[#BBFF00]/5 to-[#70FF00]/5 border-[#BBFF00]/20">
+                <Card 
+                  className="relative bg-transparent border-2 border-[#BBFF00] rounded-lg"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,20,0,0.8) 50%, rgba(0,40,0,0.9) 100%)',
+                    boxShadow: '0 0 20px rgba(187, 255, 0, 0.3), inset 0 0 20px rgba(187, 255, 0, 0.1)',
+                    padding: '20px',
+                    position: 'relative',
+                  }}
+                >
+                  {/* Efectos neon adicionales */}
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-[#BBFF00]/20 to-transparent animate-pulse" />
+                  <div className="relative z-10">
                   <CardHeader>
                     <CardTitle className="text-[#BBFF00] capitalize">
-                      Elige {activeCategory === 'baseSkin' ? 'Skin Base' :
-                             activeCategory === 'mouth' ? 'Boca' :
-                             activeCategory === 'hat' ? 'Gorro' :
-                             activeCategory === 'coat' ? 'Abrigo' :
-                             activeCategory === 'eyes' ? 'Ojos' :
-                             activeCategory === 'jacket' ? 'Chaqueta' :
-                             activeCategory === 'chain' ? 'Cadena' :
-                             activeCategory === 'weapon' ? 'Arma' :
-                             activeCategory}
+                      Choose {activeCategory === 'baseSkin' ? 'Skin Base' :
+                              activeCategory === 'eyes' ? 'Eyes' :
+                              activeCategory === 'mouth' ? 'Mouth' :
+                              activeCategory === 'coat' ? 'Dress' :
+                              activeCategory === 'hat' ? 'Hats' :
+                              activeCategory === 'chain' ? 'Accessories' :
+                              activeCategory}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -445,7 +484,7 @@ export default function DressUpGame() {
                       )}
 
                       {/* Render options based on category */}
-                      {(activeCategory === 'baseSkin' || activeCategory === 'mouth' || activeCategory === 'hat' || activeCategory === 'coat') ? (
+                      {(activeCategory === 'baseSkin' || activeCategory === 'mouth' || activeCategory === 'hat' || activeCategory === 'coat' || activeCategory === 'eyes') ? (
                         // Render image options
                         customizationOptions[activeCategory].map((option: any, index: number) => (
                           <motion.button
@@ -495,10 +534,22 @@ export default function DressUpGame() {
                       )}
                     </div>
                   </CardContent>
+                  </div>
                 </Card>
 
                 {/* Stats */}
-                <Card className="bg-gradient-to-br from-[#70FF00]/5 to-[#BBFF00]/5 border-[#70FF00]/20">
+                <Card 
+                  className="relative bg-transparent border-2 border-[#BBFF00] rounded-lg"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,20,0,0.8) 50%, rgba(0,40,0,0.9) 100%)',
+                    boxShadow: '0 0 20px rgba(187, 255, 0, 0.3), inset 0 0 20px rgba(187, 255, 0, 0.1)',
+                    padding: '20px',
+                    position: 'relative',
+                  }}
+                >
+                  {/* Efectos neon adicionales */}
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-[#BBFF00]/20 to-transparent animate-pulse" />
+                  <div className="relative z-10">
                   <CardContent className="p-6">
                     <h3 className="text-[#70FF00] font-bold mb-4">Estadísticas del SlugDude</h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -522,6 +573,7 @@ export default function DressUpGame() {
                       </div>
                     </div>
                   </CardContent>
+                  </div>
                 </Card>
               </div>
             </div>
