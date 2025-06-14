@@ -241,7 +241,7 @@ export default function DressUpGame() {
                             // 🎯 POSICIÓN DE LA BOCA - Ajusta estos valores:
                             // top: posición vertical (0% arriba, 100% abajo)
                             // left: posición horizontal (0% izquierda, 100% derecha)
-                            className="absolute top-[26%] left-[45%] transform -translate-x-1/2 -translate-y-1/2"
+                            className="absolute top-[26%] left-[44.7%] transform -translate-x-1/2 -translate-y-1/2"
                             style={{ 
                               width: '12%', // 80% de reducción = 20% del tamaño original
                               height: '12%',
