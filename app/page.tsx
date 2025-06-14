@@ -1,7 +1,7 @@
 "use client"
 
-import { SlimeNavbar } from "@/components/layout/SlimeNavbar"
-import { HeroSection } from "@/components/sections/HeroSection"
+// import { SlimeNavbar } from "@/components/layout/SlimeNavbar"
+import { HomeSection } from "@/components/sections/HomeSection"
 import { VideogameAvatarsSection } from "@/components/sections/VideogameAvatarsSection"
 import { RoadmapSection } from "@/components/sections/RoadmapSection"
 import { PromotionalBanner } from "@/components/sections/PromotionalBanner"
@@ -48,8 +48,8 @@ export default function HomePage() {
         <div className="min-h-screen w-full text-white relative">
           {/* Contenido principal con scroll único */}
           <div className="relative z-10">
-            <SlimeNavbar />
-            <HeroSection />
+            {/* <SlimeNavbar /> */}
+            <HomeSection />
             <VideogameAvatarsSection />
             <RoadmapSection />
             <PromotionalBanner />

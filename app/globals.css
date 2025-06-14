@@ -283,3 +283,33 @@ section {
   backface-visibility: hidden;
   transform: translateZ(0);
 }
+
+/* FIX: Estilos específicos para la HomeSection */
+#home-banner {
+  position: relative !important;
+  z-index: 1 !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#home-banner .absolute {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#home-banner img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
