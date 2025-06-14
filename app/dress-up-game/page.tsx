@@ -13,6 +13,7 @@ interface SlugCustomization {
   eyes: string
   mouth: string
   hat: string
+  coat: string
   jacket: string
   chain: string
   weapon: string
@@ -45,6 +46,12 @@ const customizationOptions = {
     { id: "hat-09", name: "Gorra Future", src: "/images/Game/GAME avatars/caps/SLUGs_hats-09.png" },
     { id: "hat-10", name: "Gorra Master", src: "/images/Game/GAME avatars/caps/SLUGs_hats-10.png" },
   ],
+  coat: [
+    { id: "coat-01", name: "Abrigo Clásico", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-01.png" },
+    { id: "coat-02", name: "Abrigo Sport", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-02.png" },
+    { id: "coat-03", name: "Abrigo Elegante", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-03.png" },
+    { id: "coat-04", name: "Abrigo Premium", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-04.png" },
+  ],
   eyes: ["👀", "😎", "🤖", "👁️", "🔥", "⭐"],
   jacket: ["🦺", "🧥", "👔", "🥼", "🎽", "🦸"],
   chain: ["📿", "⛓️", "🔗", "💎", "🏅", "🎖️"],
@@ -57,6 +64,7 @@ export default function DressUpGame() {
     eyes: "👀",
     mouth: "",
     hat: "",
+    coat: "",
     jacket: "",
     chain: "",
     weapon: "",
@@ -77,9 +85,10 @@ export default function DressUpGame() {
     // Siempre seleccionar una skin base
     newSlug.baseSkin = customizationOptions.baseSkin[Math.floor(Math.random() * customizationOptions.baseSkin.length)].id
     
-    // Para mouth y hat, usar las nuevas opciones de imagen
+    // Para mouth, hat y coat, usar las nuevas opciones de imagen
     newSlug.mouth = Math.random() > 0.3 ? customizationOptions.mouth[Math.floor(Math.random() * customizationOptions.mouth.length)].id : ""
     newSlug.hat = Math.random() > 0.3 ? customizationOptions.hat[Math.floor(Math.random() * customizationOptions.hat.length)].id : ""
+    newSlug.coat = Math.random() > 0.3 ? customizationOptions.coat[Math.floor(Math.random() * customizationOptions.coat.length)].id : ""
     
     // Para el resto, usar las opciones existentes de emoji
     newSlug.eyes = Math.random() > 0.3 ? customizationOptions.eyes[Math.floor(Math.random() * customizationOptions.eyes.length)] : ""
@@ -96,6 +105,7 @@ export default function DressUpGame() {
       eyes: "👀",
       mouth: "",
       hat: "",
+      coat: "",
       jacket: "",
       chain: "",
       weapon: "",
@@ -120,6 +130,13 @@ export default function DressUpGame() {
     if (!slug.hat) return null
     const hat = customizationOptions.hat.find(h => h.id === slug.hat)
     return hat?.src || null
+  }
+
+  // Función para obtener la imagen del abrigo seleccionado
+  const getCoatImage = () => {
+    if (!slug.coat) return null
+    const coat = customizationOptions.coat.find(c => c.id === slug.coat)
+    return coat?.src || null
   }
 
   return (
@@ -271,6 +288,33 @@ export default function DressUpGame() {
                         )}
                       </AnimatePresence>
 
+                      {/* Coat Overlay - Abrigo */}
+                      <AnimatePresence>
+                        {slug.coat && getCoatImage() && (
+                          <motion.div
+                            key={`coat-${slug.coat}`}
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0, opacity: 0 }}
+                            // 🎯 POSICIÓN DEL ABRIGO - Ajusta estos valores:
+                            className="absolute top-[34%] left-[25%] transform -translate-x-1/2"
+                            style={{ 
+                              width: '52%', 
+                              height: '52%',
+                              zIndex: 5 
+                            }}
+                          >
+                            <Image
+                              src={getCoatImage()!}
+                              alt="Coat"
+                              width={300}
+                              height={300}
+                              className="w-full h-full object-contain"
+                            />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
                       {/* Emoji Accessories (mantenemos los existentes) */}
                       <AnimatePresence>
                         {slug.jacket && (
@@ -357,6 +401,7 @@ export default function DressUpGame() {
                       {category === 'baseSkin' ? 'Skin Base' :
                        category === 'mouth' ? 'Boca' :
                        category === 'hat' ? 'Gorro' :
+                       category === 'coat' ? 'Abrigo' :
                        category === 'eyes' ? 'Ojos' :
                        category === 'jacket' ? 'Chaqueta' :
                        category === 'chain' ? 'Cadena' :
@@ -373,6 +418,7 @@ export default function DressUpGame() {
                       Elige {activeCategory === 'baseSkin' ? 'Skin Base' :
                              activeCategory === 'mouth' ? 'Boca' :
                              activeCategory === 'hat' ? 'Gorro' :
+                             activeCategory === 'coat' ? 'Abrigo' :
                              activeCategory === 'eyes' ? 'Ojos' :
                              activeCategory === 'jacket' ? 'Chaqueta' :
                              activeCategory === 'chain' ? 'Cadena' :
@@ -399,7 +445,7 @@ export default function DressUpGame() {
                       )}
 
                       {/* Render options based on category */}
-                      {(activeCategory === 'baseSkin' || activeCategory === 'mouth' || activeCategory === 'hat') ? (
+                      {(activeCategory === 'baseSkin' || activeCategory === 'mouth' || activeCategory === 'hat' || activeCategory === 'coat') ? (
                         // Render image options
                         customizationOptions[activeCategory].map((option: any, index: number) => (
                           <motion.button
