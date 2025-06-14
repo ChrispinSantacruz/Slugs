@@ -33,7 +33,7 @@ export function HomeSection() {
         }}
       >
         <Image
-          src="/images/backgrounds/HOME_SLUGS_REAL-01.png"
+          src="/images/backgrounds/HOME_SLUGS_background-11.png"
           alt="Slug Dudes Background"
           fill
           className="object-cover object-center"
