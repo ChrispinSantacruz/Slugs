@@ -297,10 +297,10 @@ export default function DressUpGame() {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
                             // 🎯 POSICIÓN DEL ABRIGO - Ajusta estos valores:
-                            className="absolute top-[34%] left-[25%] transform -translate-x-1/2"
+                            className="absolute top-[34%] left-[23.9%] transform -translate-x-1/2"
                             style={{ 
-                              width: '52%', 
-                              height: '52%',
+                              width: '54%', 
+                              height: '54%',
                               zIndex: 5 
                             }}
                           >
