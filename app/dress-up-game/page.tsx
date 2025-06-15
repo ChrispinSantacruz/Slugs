@@ -172,7 +172,7 @@ export default function DressUpGame() {
       <div 
         className="fixed inset-0 z-0"
         style={{
-          backgroundImage: `url('/images/backgrounds/slug_background_game-02.png')`,
+          backgroundImage: `url('/images/backgrounds/background.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
