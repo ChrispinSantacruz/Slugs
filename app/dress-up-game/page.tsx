@@ -167,35 +167,50 @@ export default function DressUpGame() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Background Effects */}
-      <div className="fixed inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#BBFF00]/20 via-transparent to-[#70FF00]/20" />
-        {[...Array(8)].map((_, i) => (
+    <div className="min-h-screen bg-black text-white relative">
+      {/* 🎨 BACKGROUND PRINCIPAL - IMAGEN DE LABORATORIO */}
+      <div 
+        className="fixed inset-0 z-0"
+        style={{
+          backgroundImage: `url('/images/backgrounds/slug_background_game-02.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.35, // 🎯 OPACIDAD AUMENTADA PARA MAYOR VISIBILIDAD
+        }}
+      />
+      
+      {/* 🌟 OVERLAY DE PROFUNDIDAD - GRADIENTE OSCURO REDUCIDO */}
+      <div className="fixed inset-0 z-1 bg-gradient-to-b from-black/40 via-black/20 to-black/50" />
+      
+      {/* ✨ EFECTOS ADICIONALES DE PARTÍCULAS */}
+      <div className="fixed inset-0 z-2 opacity-8">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#BBFF00]/10 via-transparent to-[#70FF00]/10" />
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-3 h-3 bg-[#BBFF00]/20 rounded-full blur-sm"
+            className="absolute w-2 h-2 bg-[#BBFF00]/30 rounded-full blur-sm"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.6, 0.2],
-              scale: [1, 1.5, 1],
+              y: [0, -40, 0],
+              opacity: [0.1, 0.4, 0.1],
+              scale: [0.8, 1.2, 0.8],
             }}
             transition={{
-              duration: 4 + Math.random() * 2,
+              duration: 5 + Math.random() * 3,
               repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 2,
+              delay: Math.random() * 3,
             }}
           />
         ))}
       </div>
 
-      <div className="relative z-10">
+      <div className="relative z-20">
         {/* Header */}
-        <header className="p-6 border-b border-[#BBFF00]/20">
+        <header className="p-6 border-b border-[#BBFF00]/20 backdrop-blur-sm bg-black/30">
           <div className="container mx-auto flex items-center justify-between">
             <Link href="/">
               <Button variant="ghost" className="text-[#BBFF00] hover:text-[#70FF00]">
@@ -464,10 +479,10 @@ export default function DressUpGame() {
 
                 {/* Options Grid */}
                 <Card 
-                  className="relative bg-transparent border-2 border-[#BBFF00] rounded-lg"
+                  className="relative bg-transparent border-2 border-[#BBFF00] rounded-lg backdrop-blur-md"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,20,0,0.8) 50%, rgba(0,40,0,0.9) 100%)',
-                    boxShadow: '0 0 20px rgba(187, 255, 0, 0.3), inset 0 0 20px rgba(187, 255, 0, 0.1)',
+                    background: 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,20,0,0.75) 50%, rgba(0,40,0,0.85) 100%)',
+                    boxShadow: '0 0 25px rgba(187, 255, 0, 0.4), inset 0 0 25px rgba(187, 255, 0, 0.15)',
                     padding: '20px',
                     position: 'relative',
                   }}
@@ -560,10 +575,10 @@ export default function DressUpGame() {
 
                 {/* Stats */}
                 <Card 
-                  className="relative bg-transparent border-2 border-[#BBFF00] rounded-lg"
+                  className="relative bg-transparent border-2 border-[#BBFF00] rounded-lg backdrop-blur-md"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,20,0,0.8) 50%, rgba(0,40,0,0.9) 100%)',
-                    boxShadow: '0 0 20px rgba(187, 255, 0, 0.3), inset 0 0 20px rgba(187, 255, 0, 0.1)',
+                    background: 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,20,0,0.75) 50%, rgba(0,40,0,0.85) 100%)',
+                    boxShadow: '0 0 25px rgba(187, 255, 0, 0.4), inset 0 0 25px rgba(187, 255, 0, 0.15)',
                     padding: '20px',
                     position: 'relative',
                   }}
