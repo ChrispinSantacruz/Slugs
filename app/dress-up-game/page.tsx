@@ -17,61 +17,76 @@ interface SlugCustomization {
   chain: string
 }
 
-// Configuración de opciones de personalización reorganizada
+// 🎨 CONFIGURACIÓN ACTUALIZADA CON NUEVOS ASSETS
 const customizationOptions = {
-  // 1. SKIN BASE
+  // 1. SKIN BASE - NUEVAS SKINS
   baseSkin: [
-    { id: "base-01", name: "Verde Clásico", src: "/images/Game/GAME avatars/SLUGS_base-01.png" },
-    { id: "base-02", name: "Azul Cristal", src: "/images/Game/GAME avatars/SLUGS_base-02.png" },
-    { id: "base-03", name: "Dorado Solar", src: "/images/Game/GAME avatars/SLUGS_base-03.png" },
+    { id: "skin-01", name: "Skin Clásica", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-01.png" },
+    { id: "skin-02", name: "Skin Premium", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-02.png" },
+    { id: "skin-03", name: "Skin Élite", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-03.png" },
+    { id: "skin-04", name: "Skin Legendaria", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-04.png" },
+    { id: "skin-05", name: "Skin Épica", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-05.png" },
+    { id: "skin-06", name: "Skin Mítica", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-06.png" },
   ],
-  // 2. EYES
+  
+  // 2. EYES - NUEVOS OJOS
   eyes: [
-    { id: "eyes-01", name: "Ojos Normales", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-01.png" },
-    { id: "eyes-02", name: "Ojos Pequeños", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-02.png" },
-    { id: "eyes-03", name: "Ojos Cerrados", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-03.png" },
-    { id: "eyes-04", name: "Ojos Grandes", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-04.png" },
-    { id: "eyes-05", name: "Ojos Traviesos", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-05.png" },
-    { id: "eyes-06", name: "Ojos Sorprendidos", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-06.png" },
-    { id: "eyes-07", name: "Ojos Serios", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-07.png" },
-    { id: "eyes-08", name: "Ojos Especiales", src: "/images/Game/GAME avatars/eyes/eyes/slugs_eyes_avatars-08.png" },
+    { id: "eyes-03", name: "Ojos Expresivos", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-03.png" },
+    { id: "eyes-04", name: "Ojos Minimalistas", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-04.png" },
+    { id: "eyes-05", name: "Ojos Brillantes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-05.png" },
+    { id: "eyes-06", name: "Ojos Elegantes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-06.png" },
+    { id: "eyes-07", name: "Ojos Serios", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-07.png" },
+    { id: "eyes-08", name: "Ojos Intensos", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-08.png" },
+    { id: "eyes-09", name: "Ojos Misteriosos", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-09.png" },
+    { id: "eyes-10", name: "Ojos Únicos", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-10.png" },
   ],
-  // 3. MOUTH
+  
+  // 3. MOUTH - NUEVAS BOCAS
   mouth: [
-    { id: "mouth-01", name: "Sonrisa", src: "/images/Game/GAME avatars/mouth/slugs_mouth-01.png" },
-    { id: "mouth-02", name: "Risa", src: "/images/Game/GAME avatars/mouth/slugs_mouth-02.png" },
-    { id: "mouth-03", name: "Mueca", src: "/images/Game/GAME avatars/mouth/slugs_mouth-03.png" },
-    { id: "mouth-04", name: "Serio", src: "/images/Game/GAME avatars/mouth/slugs_mouth-04.png" },
-    { id: "mouth-05", name: "Sorpresa", src: "/images/Game/GAME avatars/mouth/slugs_mouth-05.png" },
-    { id: "mouth-06", name: "Travieso", src: "/images/Game/GAME avatars/mouth/slugs_mouth-06.png" },
+    { id: "mouth-03", name: "Sonrisa Sutil", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-03.png" },
+    { id: "mouth-04", name: "Expresión Neutra", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-04.png" },
+    { id: "mouth-05", name: "Sonrisa Amplia", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-05.png" },
+    { id: "mouth-06", name: "Expresión Cool", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-06.png" },
+    { id: "mouth-07", name: "Sonrisa Traviesa", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-07.png" },
+    { id: "mouth-08", name: "Expresión Sorprendida", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-08.png" },
+    { id: "mouth-09", name: "Sonrisa Discreta", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-09.png" },
+    { id: "mouth-10", name: "Expresión Épica", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-10.png" },
   ],
-  // 4. DRESS (COAT)
+  
+  // 4. COATS - ABRIGOS DE LA CARPETA ORIGINAL
   coat: [
     { id: "coat-01", name: "Abrigo Clásico", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-01.png" },
     { id: "coat-02", name: "Abrigo Sport", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-02.png" },
     { id: "coat-03", name: "Abrigo Elegante", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-03.png" },
     { id: "coat-04", name: "Abrigo Premium", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-04.png" },
   ],
-  // 5. HATS
+
+  // 5. HATS - NUEVOS SOMBREROS (MÁS VARIEDAD)
   hat: [
-    { id: "hat-01", name: "Gorra Básica", src: "/images/Game/GAME avatars/caps/SLUGs_hats-01.png" },
-    { id: "hat-02", name: "Gorra Sport", src: "/images/Game/GAME avatars/caps/SLUGs_hats-02.png" },
-    { id: "hat-03", name: "Gorra Retro", src: "/images/Game/GAME avatars/caps/SLUGs_hats-03.png" },
-    { id: "hat-04", name: "Gorra Neon", src: "/images/Game/GAME avatars/caps/SLUGs_hats-04.png" },
-    { id: "hat-05", name: "Gorra Elite", src: "/images/Game/GAME avatars/caps/SLUGs_hats-05.png" },
-    { id: "hat-06", name: "Gorra Punk", src: "/images/Game/GAME avatars/caps/SLUGs_hats-06.png" },
-    { id: "hat-07", name: "Gorra Cyber", src: "/images/Game/GAME avatars/caps/SLUGs_hats-07.png" },
-    { id: "hat-08", name: "Gorra Legend", src: "/images/Game/GAME avatars/caps/SLUGs_hats-08.png" },
-    { id: "hat-09", name: "Gorra Future", src: "/images/Game/GAME avatars/caps/SLUGs_hats-09.png" },
-    { id: "hat-10", name: "Gorra Master", src: "/images/Game/GAME avatars/caps/SLUGs_hats-10.png" },
+    { id: "hat-03", name: "Gorra Básica", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-03.png" },
+    { id: "hat-04", name: "Sombrero Sport", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-04.png" },
+    { id: "hat-05", name: "Gorra Premium", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-05.png" },
+    { id: "hat-06", name: "Sombrero Elegante", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-06.png" },
+    { id: "hat-07", name: "Gorra Retro", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-07.png" },
+    { id: "hat-08", name: "Sombrero Moderno", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-08.png" },
+    { id: "hat-09", name: "Gorra Minimalista", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-09.png" },
+    { id: "hat-10", name: "Sombrero Clásico", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-10.png" },
+    { id: "hat-11", name: "Gorra Única", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-11.png" },
+    { id: "hat-12", name: "Sombrero Épico", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-12.png" },
+    { id: "hat-13", name: "Gorra Legendaria", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-13.png" },
+    { id: "hat-14", name: "Sombrero Cyber", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-14.png" },
+    { id: "hat-15", name: "Gorra Futurista", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-15.png" },
+    { id: "hat-16", name: "Sombrero Espacial", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-16.png" },
+    { id: "hat-17", name: "Gorra Mítica", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-17.png" },
   ],
-  // 6. ACCESSORIES
-  chain: ["📿", "⛓️", "🔗", "💎", "🏅", "🎖️"],
+  
+  // 6. ACCESSORIES - MANTENEMOS LOS EMOJIS
+  chain: ["📿", "⛓️", "🔗", "💎", "🏅", "🎖️", "🌟", "⚡", "🔥", "❄️"],
 }
 
 export default function DressUpGame() {
   const [slug, setSlug] = useState<SlugCustomization>({
-    baseSkin: "base-01",
+    baseSkin: "skin-01",
     eyes: "",
     mouth: "",
     hat: "",
@@ -106,7 +121,7 @@ export default function DressUpGame() {
 
   const resetSlug = () => {
     setSlug({
-      baseSkin: "base-01",
+      baseSkin: "skin-01",
       eyes: "",
       mouth: "",
       hat: "",
@@ -134,6 +149,8 @@ export default function DressUpGame() {
     const hat = customizationOptions.hat.find(h => h.id === slug.hat)
     return hat?.src || null
   }
+
+
 
   // Función para obtener la imagen del abrigo seleccionado
   const getCoatImage = () => {
@@ -238,8 +255,8 @@ export default function DressUpGame() {
                     <div 
                       className="absolute"
                                               style={{ 
-                          width: '399px',   // 📐 SLUG 5% MÁS PEQUEÑO (420 * 0.95)
-                          height: '456px',  // 📐 SLUG 5% MÁS PEQUEÑO (480 * 0.95)
+                          width: '371px',   // 📐 SLUG 7% MÁS PEQUEÑO (399 * 0.93)
+                          height: '424px',  // 📐 SLUG 7% MÁS PEQUEÑO (456 * 0.93)
                         top: '50%',       // 📍 CENTRADO VERTICAL EXACTO
                         left: '50%',      // 📍 CENTRADO HORIZONTAL EXACTO
                         transform: 'translate(-50%, -50%)', // 📍 CENTRADO PERFECTO
@@ -257,9 +274,10 @@ export default function DressUpGame() {
                         <Image
                           src={getBaseSkinImage()}
                           alt="Base Slug"
-                          width={399}
-                          height={456}
+                          width={800} // Aumentado para mejor calidad
+                          height={800} // Aumentado para mejor calidad
                           className="w-full h-full object-contain"
+                          quality={100} // Máxima calidad
                           priority
                         />
                       </motion.div>
@@ -273,19 +291,21 @@ export default function DressUpGame() {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
                             // 📍 POSICIÓN DE LA BOCA - AJUSTADA AL TAMAÑO VERTICAL:
-                            className="absolute top-[28%] left-[44.2%] transform -translate-x-1/2 -translate-y-1/2"
+                            className="absolute top-[4.5%] left-[33.1%] transform -translate-x-1/2 -translate-y-1/2"
                             style={{ 
-                              width: '12%', // Ajustado al slug más grande
-                              height: '10%', // Proporción vertical
-                              zIndex: 15 
+                              width: '35%', // Ajustado al slug más grande
+                              height: '35%', // Proporción vertical
+                              zIndex: 8 // Boca debajo de gorros
                             }}
                           >
                             <Image
                               src={getMouthImage()!}
                               alt="Mouth"
-                              width={36}
-                              height={36}
+                              width={400} // Aumentado para mejor calidad
+                              height={400} // Aumentado para mejor calidad
                               className="w-full h-full object-contain"
+                              quality={100} // Máxima calidad
+                              priority
                             />
                           </motion.div>
                         )}
@@ -300,25 +320,27 @@ export default function DressUpGame() {
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -50, opacity: 0 }}
                             // 📍 POSICIÓN DEL GORRO - AJUSTADO AL TAMAÑO VERTICAL:
-                            className="absolute top-[9%] left-[40%] transform -translate-x-1/2"
+                            className="absolute top-[1%] left-[31%] transform -translate-x-1/2"
                             style={{ 
-                              width: '21%', // Ajustado al slug más grande
-                              height: '21%', // Proporción vertical
-                              zIndex: 10 
+                              width: '40%', // Ajustado al slug más grande
+                              height: '40%', // Proporción vertical
+                              zIndex: 25 // Gorros en primer plano
                             }}
                           >
                             <Image
                               src={getHatImage()!}
                               alt="Hat"
-                              width={60}
-                              height={60}
+                              width={500} // Aumentado para mejor calidad
+                              height={500} // Aumentado para mejor calidad
                               className="w-full h-full object-contain"
+                              quality={100} // Máxima calidad
+                              priority
                             />
                           </motion.div>
                         )}
                       </AnimatePresence>
 
-                      {/* Coat Overlay - Ajustado al nuevo tamaño */}
+                      {/* Coat Overlay - Restaurado */}
                       <AnimatePresence>
                         {slug.coat && getCoatImage() && (
                           <motion.div
@@ -326,20 +348,22 @@ export default function DressUpGame() {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
-                            // 📍 POSICIÓN DEL ABRIGO - AJUSTADO AL TAMAÑO VERTICAL:
-                            className="absolute top-[29.8%] left-[19.8%] transform -translate-x-1/2"
+                            // 📍 POSICIÓN DEL ABRIGO:
+                            className="absolute top-[28%] left-[15.6%] transform -translate-x-1/2"
                             style={{ 
-                              width: '62.2%', 
-                              height: '60%', // Proporción vertical
+                              width: '70%', 
+                              height: '70%',
                               zIndex: 5 
                             }}
                           >
                             <Image
                               src={getCoatImage()!}
                               alt="Coat"
-                              width={130}
-                              height={130}
+                              width={600} // Aumentado para mejor calidad
+                              height={600} // Aumentado para mejor calidad
                               className="w-full h-full object-contain"
+                              quality={100} // Máxima calidad
+                              priority
                             />
                           </motion.div>
                         )}
@@ -354,19 +378,21 @@ export default function DressUpGame() {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
                             // 📍 POSICIÓN DE LOS OJOS - AJUSTADA AL TAMAÑO VERTICAL:
-                            className="absolute top-[19.5%] left-[40.4%] transform -translate-x-1/2 -translate-y-1/2"
+                            className="absolute top-[1%] left-[32.3%] transform -translate-x-1/2 -translate-y-1/2"
                             style={{ 
-                              width: '20%',
-                              height: '15%', // Proporción vertical
-                              zIndex: 20 
+                              width: '36%',
+                              height: '36%', // Proporción vertical
+                              zIndex: 9 // Ojos debajo de gorros pero encima de boca
                             }}
                           >
                             <Image
                               src={getEyesImage()!}
                               alt="Eyes"
-                              width={60}
-                              height={60}
+                              width={400} // Aumentado para mejor calidad
+                              height={400} // Aumentado para mejor calidad
                               className="w-full h-full object-contain"
+                              quality={100} // Máxima calidad
+                              priority
                             />
                           </motion.div>
                         )}
@@ -413,7 +439,7 @@ export default function DressUpGame() {
                         {category === 'baseSkin' ? 'Skin Base' :
                          category === 'eyes' ? 'Eyes' :
                          category === 'mouth' ? 'Mouth' :
-                         category === 'coat' ? 'Dress' :
+                         category === 'coat' ? 'Coats' :
                          category === 'hat' ? 'Hats' :
                          category === 'chain' ? 'Accessories' :
                          category.charAt(0).toUpperCase() + category.slice(1)}
@@ -454,7 +480,7 @@ export default function DressUpGame() {
                       Choose {activeCategory === 'baseSkin' ? 'Skin Base' :
                               activeCategory === 'eyes' ? 'Eyes' :
                               activeCategory === 'mouth' ? 'Mouth' :
-                              activeCategory === 'coat' ? 'Dress' :
+                              activeCategory === 'coat' ? 'Coats' :
                               activeCategory === 'hat' ? 'Hats' :
                               activeCategory === 'chain' ? 'Accessories' :
                               activeCategory}
