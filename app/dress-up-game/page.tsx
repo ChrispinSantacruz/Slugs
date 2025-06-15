@@ -214,37 +214,39 @@ export default function DressUpGame() {
             <div className="lg:col-span-1 flex flex-col items-center">
               <Card className="bg-transparent border-transparent sticky top-6 w-full">
 
-                <CardContent className="flex flex-col items-center justify-center p-8">
-                  {/* 🎯 CONTENEDOR DEL MARCO CON TAMAÑO FIJO */}
-                  <motion.div
-                    className="relative overflow-visible mb-6"
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ duration: 0.3 }}
-                    style={{
-                      width: '383px',   // 📏 MARCO REDUCIDO 15% MÁS (450px - 15% = 383px)
-                      height: '383px',  // 📏 REDUCIDO 15% ADICIONAL
-                      aspectRatio: '1/1',
-                      margin: '0 auto',
-                      backgroundImage: `url('/images/Game/GAME avatars/slugs_box-02.png')`,
-                      backgroundSize: 'contain',
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition: 'center',
-                    }}
-                  >
-                    {/* 🎯 ÁREA DEL SLUG CENTRADA */}
+                <CardContent className="flex flex-col items-center justify-center p-4">
+                  {/* 🎯 CONTENEDOR PRINCIPAL - MARCO Y SLUG MÁS GRANDES VERTICALMENTE */}
+                  <div className="relative mb-6" style={{ width: '450px', height: '500px' }}>
+                    
+                    {/* 📦 MARCO - INDEPENDIENTE Y MÁS GRANDE */}
+                    <motion.div
+                      className="absolute inset-0"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.3 }}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        backgroundImage: `url('/images/Game/GAME avatars/slugs_box-02.png')`,
+                        backgroundSize: 'contain',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
+                        zIndex: 10, // Marco encima del slug
+                      }}
+                    />
+
+                    {/* 🐌 SLUG - MÁS GRANDE VERTICALMENTE */}
                     <div 
-                      className="absolute inset-0 flex items-center justify-center"
+                      className="absolute"
                       style={{ 
-                        padding: '75px', // 📐 SEPARACIÓN DEL MARCO MANTENIDA
+                        width: '300px',   // 📐 SLUG MÁS ANCHO
+                        height: '350px',  // 📐 SLUG MÁS ALTO VERTICALMENTE
+                        top: '50%',       // 📍 CENTRADO VERTICAL EXACTO
+                        left: '50%',      // 📍 CENTRADO HORIZONTAL EXACTO
+                        transform: 'translate(-50%, -50%)', // 📍 CENTRADO PERFECTO
+                        zIndex: 5,        // Slug debajo del marco
                       }}
                     >
-                      <div 
-                        className="relative"
-                        style={{ 
-                          width: '300px',   // 📐 TAMAÑO REDUCIDO DEL SLUG (360px → 300px)
-                          height: '300px',  // 📐 REDUCIDO PROPORCIONALMENTE
-                        }}
-                      >
+                      <div className="relative w-full h-full">
                       {/* Base Slug Skin */}
                       <motion.div
                         key={slug.baseSkin}
@@ -256,13 +258,13 @@ export default function DressUpGame() {
                           src={getBaseSkinImage()}
                           alt="Base Slug"
                           width={300}
-                          height={300}
+                          height={350}
                           className="w-full h-full object-contain"
                           priority
                         />
                       </motion.div>
 
-                      {/* Mouth Overlay - Tamaño reducido 80% */}
+                      {/* Mouth Overlay - Ajustado al nuevo tamaño */}
                       <AnimatePresence>
                         {slug.mouth && getMouthImage() && (
                           <motion.div
@@ -270,28 +272,26 @@ export default function DressUpGame() {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
-                            // 📍 POSICIÓN DE LA BOCA:
-                            className="absolute top-[26%] left-[44.7%] transform -translate-x-1/2 -translate-y-1/2"
-                            // ⬆️ ARRIBA: top-[20%]  ⬇️ ABAJO: top-[30%]
-                            // ⬅️ IZQUIERDA: left-[40%]  ➡️ DERECHA: left-[50%]
+                            // 📍 POSICIÓN DE LA BOCA - AJUSTADA AL TAMAÑO VERTICAL:
+                            className="absolute top-[28%] left-[44.2%] transform -translate-x-1/2 -translate-y-1/2"
                             style={{ 
-                              width: '12%', // 80% de reducción = 20% del tamaño original
-                              height: '12%',
+                              width: '12%', // Ajustado al slug más grande
+                              height: '10%', // Proporción vertical
                               zIndex: 15 
                             }}
                           >
                             <Image
                               src={getMouthImage()!}
                               alt="Mouth"
-                              width={60} // Reducido de 300 a 60
-                              height={60}
+                              width={36}
+                              height={36}
                               className="w-full h-full object-contain"
                             />
                           </motion.div>
                         )}
                       </AnimatePresence>
 
-                      {/* Hat Overlay - Tamaño reducido 80% */}
+                      {/* Hat Overlay - Ajustado al nuevo tamaño */}
                       <AnimatePresence>
                         {slug.hat && getHatImage() && (
                           <motion.div
@@ -299,20 +299,18 @@ export default function DressUpGame() {
                             initial={{ y: -50, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -50, opacity: 0 }}
-                            // 📍 POSICIÓN DEL GORRO:
-                            className="absolute top-[8%] left-[41%] transform -translate-x-1/2"
-                            // ⬆️ MÁS ARRIBA: top-[5%]  ⬇️ MÁS ABAJO: top-[12%]
-                            // ⬅️ IZQUIERDA: left-[38%]  ➡️ DERECHA: left-[44%]
+                            // 📍 POSICIÓN DEL GORRO - AJUSTADO AL TAMAÑO VERTICAL:
+                            className="absolute top-[9%] left-[40%] transform -translate-x-1/2"
                             style={{ 
-                              width: '20%', // 80% de reducción = 20% del tamaño original
-                              height: '20%',
+                              width: '21%', // Ajustado al slug más grande
+                              height: '21%', // Proporción vertical
                               zIndex: 10 
                             }}
                           >
                             <Image
                               src={getHatImage()!}
                               alt="Hat"
-                              width={60} // Reducido de 300 a 60
+                              width={60}
                               height={60}
                               className="w-full h-full object-contain"
                             />
@@ -320,7 +318,7 @@ export default function DressUpGame() {
                         )}
                       </AnimatePresence>
 
-                      {/* Coat Overlay - Abrigo */}
+                      {/* Coat Overlay - Ajustado al nuevo tamaño */}
                       <AnimatePresence>
                         {slug.coat && getCoatImage() && (
                           <motion.div
@@ -328,28 +326,26 @@ export default function DressUpGame() {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
-                            // 📍 POSICIÓN DEL ABRIGO:
-                            className="absolute top-[34%] left-[23.9%] transform -translate-x-1/2"
-                            // ⬆️ MÁS ARRIBA: top-[30%]  ⬇️ MÁS ABAJO: top-[38%]
-                            // ⬅️ IZQUIERDA: left-[20%]  ➡️ DERECHA: left-[27%]
+                            // 📍 POSICIÓN DEL ABRIGO - AJUSTADO AL TAMAÑO VERTICAL:
+                            className="absolute top-[29.8%] left-[19.8%] transform -translate-x-1/2"
                             style={{ 
-                              width: '54%', 
-                              height: '54%',
+                              width: '62.2%', 
+                              height: '60%', // Proporción vertical
                               zIndex: 5 
                             }}
                           >
                             <Image
                               src={getCoatImage()!}
                               alt="Coat"
-                              width={300}
-                              height={300}
+                              width={130}
+                              height={130}
                               className="w-full h-full object-contain"
                             />
                           </motion.div>
                         )}
                       </AnimatePresence>
 
-                      {/* Eyes */}
+                      {/* Eyes - Ajustado al nuevo tamaño */}
                       <AnimatePresence>
                         {slug.eyes && getEyesImage() && (
                           <motion.div
@@ -357,32 +353,32 @@ export default function DressUpGame() {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
-                            // 📍 POSICIÓN DE LOS OJOS:
-                            className="absolute top-[15%] left-[42.3%] transform -translate-x-1/2 -translate-y-1/2"
-                            // ⬆️ MÁS ARRIBA: top-[12%]  ⬇️ MÁS ABAJO: top-[18%]
-                            // ⬅️ IZQUIERDA: left-[39%]  ➡️ DERECHA: left-[45%]
+                            // 📍 POSICIÓN DE LOS OJOS - AJUSTADA AL TAMAÑO VERTICAL:
+                            className="absolute top-[19.5%] left-[40.4%] transform -translate-x-1/2 -translate-y-1/2"
                             style={{ 
-                              width: '18%',
-                              height: '18%',
+                              width: '20%',
+                              height: '15%', // Proporción vertical
                               zIndex: 20 
                             }}
                           >
                             <Image
                               src={getEyesImage()!}
                               alt="Eyes"
-                              width={75}
-                              height={75}
+                              width={60}
+                              height={60}
                               className="w-full h-full object-contain"
                             />
                           </motion.div>
                         )}
+
+                        {/* Chain/Accessories - AJUSTADO AL TAMAÑO VERTICAL */}
                         {slug.chain && (
                           <motion.span
                             key={`chain-${slug.chain}`}
                             initial={{ scale: 0, rotate: 90 }}
                             animate={{ scale: 1, rotate: 0 }}
                             exit={{ scale: 0, rotate: -90 }}
-                            className="absolute top-2/5 left-1/2 transform -translate-x-1/2 text-3xl z-10"
+                            className="absolute top-[75%] left-1/2 transform -translate-x-1/2 text-4xl z-10"
                           >
                             {slug.chain}
                           </motion.span>
@@ -391,8 +387,7 @@ export default function DressUpGame() {
                       </AnimatePresence>
                       </div>
                     </div>
-                  </motion.div>
-
+                  </div>
 
                 </CardContent>
               </Card>
@@ -466,12 +461,12 @@ export default function DressUpGame() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
+                    <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-2">
                       {/* Clear Option para categorías que no son baseSkin */}
                       {activeCategory !== 'baseSkin' && (
                         <motion.button
                           onClick={() => updateSlug(activeCategory, "")}
-                          className={`aspect-square rounded-lg border-2 flex items-center justify-center text-2xl transition-all duration-300 ${
+                          className={`aspect-square rounded-lg border-2 flex items-center justify-center text-xl transition-all duration-300 ${
                             slug[activeCategory] === ""
                               ? "border-[#BBFF00] bg-[#BBFF00]/20"
                               : "border-gray-600 hover:border-[#BBFF00]/50"
@@ -505,8 +500,8 @@ export default function DressUpGame() {
                             <Image
                               src={option.src}
                               alt={option.name}
-                              width={80}
-                              height={80}
+                              width={60}
+                              height={60}
                               className="w-full h-full object-contain"
                             />
                           </motion.button>
@@ -517,7 +512,7 @@ export default function DressUpGame() {
                           <motion.button
                             key={`${activeCategory}-${option}-${index}`}
                             onClick={() => updateSlug(activeCategory, option)}
-                            className={`aspect-square rounded-lg border-2 flex items-center justify-center text-3xl transition-all duration-300 ${
+                            className={`aspect-square rounded-lg border-2 flex items-center justify-center text-xl transition-all duration-300 ${
                               slug[activeCategory] === option
                                 ? "border-[#BBFF00] bg-[#BBFF00]/20"
                                 : "border-gray-600 hover:border-[#BBFF00]/50"
