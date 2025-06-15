@@ -237,9 +237,9 @@ export default function DressUpGame() {
                     {/* 🐌 SLUG - MÁS GRANDE VERTICALMENTE */}
                     <div 
                       className="absolute"
-                      style={{ 
-                        width: '300px',   // 📐 SLUG MÁS ANCHO
-                        height: '350px',  // 📐 SLUG MÁS ALTO VERTICALMENTE
+                                              style={{ 
+                          width: '399px',   // 📐 SLUG 5% MÁS PEQUEÑO (420 * 0.95)
+                          height: '456px',  // 📐 SLUG 5% MÁS PEQUEÑO (480 * 0.95)
                         top: '50%',       // 📍 CENTRADO VERTICAL EXACTO
                         left: '50%',      // 📍 CENTRADO HORIZONTAL EXACTO
                         transform: 'translate(-50%, -50%)', // 📍 CENTRADO PERFECTO
@@ -257,8 +257,8 @@ export default function DressUpGame() {
                         <Image
                           src={getBaseSkinImage()}
                           alt="Base Slug"
-                          width={300}
-                          height={350}
+                          width={399}
+                          height={456}
                           className="w-full h-full object-contain"
                           priority
                         />
