@@ -7,6 +7,7 @@ import { RoadmapSection } from "@/components/sections/RoadmapSection"
 import { PromotionalBanner } from "@/components/sections/PromotionalBanner"
 import { TokenomicsSection } from "@/components/sections/TokenomicsSection"
 import { TeamSection } from "@/components/sections/TeamSection"
+import { SectionDivider } from "@/components/ui/SectionDivider"
 import { BackToTop } from "@/components/ui/BackToTop"
 import { LoadingScreen } from "@/components/ui/LoadingScreen"
 import { motion, AnimatePresence } from "framer-motion"
@@ -48,10 +49,15 @@ export default function HomePage() {
           <div className="relative z-10">
             {/* <SlimeNavbar /> */}
             <HomeSection />
+            <SectionDivider />
             <VideogameAvatarsSection />
+            <SectionDivider />
             <RoadmapSection />
+            <SectionDivider />
             <PromotionalBanner />
+            <SectionDivider />
             <TokenomicsSection />
+            <SectionDivider />
             <TeamSection />
 
             {/* Footer con efectos neon */}

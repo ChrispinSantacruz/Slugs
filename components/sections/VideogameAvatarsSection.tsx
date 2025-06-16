@@ -8,8 +8,10 @@ export function VideogameAvatarsSection() {
   return (
     <section 
       id="videogame-avatars" 
-      className="py-96 relative min-h-[200vh] flex items-center justify-center"
+      className="relative min-h-[200vh] flex items-center justify-center"
       style={{
+        paddingTop: "480px",
+        paddingBottom: "480px",
         backgroundImage: "url('/images/backgrounds/BackgroundGame.png')",
         backgroundSize: "cover",
         backgroundPosition: "center center",
