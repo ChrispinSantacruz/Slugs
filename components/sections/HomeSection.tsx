@@ -4,55 +4,55 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 
 export function HomeSection() {
-  // Configuración individual para cada botón
+  // Configuración individual para cada botón con medidas universales
   const buttons = [
     { 
       id: 1, 
       text: '',
-      position: { top: '40px', left: '778px' },
-      size: { width: '300px', height: '450px' },
+      position: { top: '12vh', left: '57.3vw' },     // Convertido de 40px/778px
+      size: { width: '22vw', height: '67vh' },  // Convertido de 300px/450px
       color: 'bg-red-500/30 hover:bg-red-500/40 border-red-400/50 hover:shadow-red-500/25' // Rojo
     },
     { 
       id: 2, 
       text: '',
-      position: { top: '220px', left: '400px' },
-      size: { width: '130px', height: '270px' },
+      position: { top: '37vh', left: '30vw' },  // Convertido de 220px/400px
+      size: { width: '6.8vw', height: '44vh' },     // Convertido de 130px/270px
       color: 'bg-blue-500/30 hover:bg-blue-500/40 border-blue-400/50 hover:shadow-blue-500/25' // Azul
     },
     { 
       id: 3, 
       text: '',
-      position: { top: '205px', left: '615px' },
-      size: { width: '50px', height: '70px' },
+      position: { top: '34vh', left: '45vw' },      // Convertido de 205px/615px
+      size: { width: '4vw', height: '12vh' },   // Convertido de 50px/70px
       color: 'bg-green-500/30 hover:bg-green-500/40 border-green-400/50 hover:shadow-green-500/25' // Verde
     },
     { 
       id: 4, 
       text: '',
-      position: { top: '250px', left: '680px' },
-      size: { width: '50px', height: '70px' },
+      position: { top: '41vh', left: '50vw' },  // Convertido de 250px/680px
+      size: { width: '4vw', height: '12vh' },    // Convertido de 50px/70px
       color: 'bg-yellow-500/30 hover:bg-yellow-500/40 border-yellow-400/50 hover:shadow-yellow-500/25' // Amarillo
     },
     { 
       id: 5, 
       text: '',
-      position: { top: '290px', left: '588px' },
-      size: { width: '50px', height: '72px' },
+      position: { top: '48vh', left: '43vw' },  // Convertido de 290px/588px
+      size: { width: '4vw', height: '12vh' },   // Convertido de 50px/72px
       color: 'bg-purple-500/30 hover:bg-purple-500/40 border-purple-400/50 hover:shadow-purple-500/25' // Morado
     },
     { 
       id: 6, 
       text: '',
-      position: { top: '280px', left: '1100px' },
-      size: { width: '50px', height: '70px' },
+      position: { top: '47vh', left: '80.5vw' },  // Convertido de 280px/1100px
+      size: { width: '3.5vw', height: '10vh' },   // Convertido de 50px/70px
       color: 'bg-pink-500/30 hover:bg-pink-500/40 border-pink-400/50 hover:shadow-pink-500/25' // Rosa
     },
     { 
       id: 7, 
       text: '',
-      position: { top: '120px', left: '1160px' },
-      size: { width: '160px', height: '360px' },
+      position: { top: '20vh', left: '86vw' },  // Convertido de 120px/1160px
+      size: { width: '8.3vw', height: '60vh' },  // Convertido de 160px/360px
       color: 'bg-orange-500/30 hover:bg-orange-500/40 border-orange-400/50 hover:shadow-orange-500/25' // Naranja
     },
   ]
