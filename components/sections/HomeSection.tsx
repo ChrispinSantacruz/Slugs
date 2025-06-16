@@ -9,51 +9,75 @@ export function HomeSection() {
     { 
       id: 1, 
       text: '',
-      position: { top: '12vh', left: '57.3vw' },     // Convertido de 40px/778px
-      size: { width: '22vw', height: '67vh' },  // Convertido de 300px/450px
-      color: 'bg-red-500/30 hover:bg-red-500/40 border-red-400/50 hover:shadow-red-500/25' // Rojo
+      position: { top: '12vh', left: '57.3vw' },
+      size: { width: '22vw', height: '67vh' },
+      action: () => {
+        // Navegar al videojuego - asumiendo que existe una ruta
+        window.location.href = '/dress-up-game';
+      }
     },
     { 
       id: 2, 
       text: '',
-      position: { top: '37vh', left: '30vw' },  // Convertido de 220px/400px
-      size: { width: '6.8vw', height: '44vh' },     // Convertido de 130px/270px
-      color: 'bg-blue-500/30 hover:bg-blue-500/40 border-blue-400/50 hover:shadow-blue-500/25' // Azul
+      position: { top: '37vh', left: '30vw' },
+      size: { width: '6.8vw', height: '44vh' },
+      action: () => {
+        // Abrir DexTools chart
+        window.open('https://www.dextools.io/app/en/solana/pair-explorer/Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE?t=1750116900418', '_blank');
+      }
     },
     { 
       id: 3, 
       text: '',
-      position: { top: '34vh', left: '45vw' },      // Convertido de 205px/615px
-      size: { width: '4vw', height: '12vh' },   // Convertido de 50px/70px
-      color: 'bg-green-500/30 hover:bg-green-500/40 border-green-400/50 hover:shadow-green-500/25' // Verde
+      position: { top: '34vh', left: '45vw' },
+      size: { width: '4vw', height: '12vh' },
+      action: () => {
+        // Abrir Telegram
+        window.open('https://t.me/+K0XqhNsSHPpmNWEx', '_blank');
+      }
     },
     { 
       id: 4, 
       text: '',
-      position: { top: '41vh', left: '50vw' },  // Convertido de 250px/680px
-      size: { width: '4vw', height: '12vh' },    // Convertido de 50px/70px
-      color: 'bg-yellow-500/30 hover:bg-yellow-500/40 border-yellow-400/50 hover:shadow-yellow-500/25' // Amarillo
+      position: { top: '41vh', left: '50vw' },
+      size: { width: '4vw', height: '12vh' },
+      action: () => {
+        // Abrir TikTok - asumiendo el handle de SlugDudes
+        window.open('https://www.tiktok.com/@slugdudes', '_blank');
+      }
     },
     { 
       id: 5, 
       text: '',
-      position: { top: '48vh', left: '43vw' },  // Convertido de 290px/588px
-      size: { width: '4vw', height: '12vh' },   // Convertido de 50px/72px
-      color: 'bg-purple-500/30 hover:bg-purple-500/40 border-purple-400/50 hover:shadow-purple-500/25' // Morado
+      position: { top: '48vh', left: '43vw' },
+      size: { width: '4vw', height: '12vh' },
+      action: () => {
+        // Abrir X (Twitter)
+        window.open('https://x.com/SlugDudes', '_blank');
+      }
     },
     { 
       id: 6, 
       text: '',
-      position: { top: '47vh', left: '80.5vw' },  // Convertido de 280px/1100px
-      size: { width: '3.5vw', height: '10vh' },   // Convertido de 50px/70px
-      color: 'bg-pink-500/30 hover:bg-pink-500/40 border-pink-400/50 hover:shadow-pink-500/25' // Rosa
+      position: { top: '47vh', left: '80.5vw' },
+      size: { width: '3.5vw', height: '10vh' },
+      action: () => {
+        // Abrir YouTube
+        window.open('https://www.youtube.com/', '_blank');
+      }
     },
     { 
       id: 7, 
       text: '',
-      position: { top: '20vh', left: '86vw' },  // Convertido de 120px/1160px
-      size: { width: '8.3vw', height: '60vh' },  // Convertido de 160px/360px
-      color: 'bg-orange-500/30 hover:bg-orange-500/40 border-orange-400/50 hover:shadow-orange-500/25' // Naranja
+      position: { top: '20vh', left: '86vw' },
+      size: { width: '8.3vw', height: '60vh' },
+      action: () => {
+        // Scroll suave a la sección roadmap
+        const roadmapSection = document.getElementById('roadmap') || document.querySelector('[id*="roadmap"]');
+        if (roadmapSection) {
+          roadmapSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     },
   ]
 
@@ -108,21 +132,14 @@ export function HomeSection() {
       {buttons.map((button, index) => (
         <motion.button
           key={button.id}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ 
             duration: 0.5, 
             delay: 0.8 + (index * 0.1),
             ease: "easeOut"
           }}
-          whileHover={{ 
-            scale: 1.05,
-            transition: { duration: 0.2 }
-          }}
-          whileTap={{ scale: 0.95 }}
-          className={`absolute z-10 ${button.color} rounded-lg 
-                     text-white font-medium transition-all duration-300 
-                     backdrop-blur-sm shadow-lg`}
+          className="absolute z-10 bg-transparent border-none cursor-pointer"
           style={{
             top: button.position.top,
             left: button.position.left,
@@ -135,8 +152,10 @@ export function HomeSection() {
             padding: '0',
             fontSize: '0',
             overflow: 'hidden',
+            background: 'transparent',
+            outline: 'none',
           }}
-          onClick={() => console.log(`Clicked ${button.text}`)}
+          onClick={button.action}
         >
           {button.text}
         </motion.button>
