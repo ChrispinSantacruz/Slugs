@@ -32,7 +32,7 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
         muted
         playsInline
       >
-        <source src="/animations/loading.mp4" type="video/mp4" />
+        <source src="/animations/loading2.mp4" type="video/mp4" />
       </video>
     </motion.div>
   )
