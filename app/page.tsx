@@ -6,12 +6,10 @@ import { VideogameAvatarsSection } from "@/components/sections/VideogameAvatarsS
 import { RoadmapSection } from "@/components/sections/RoadmapSection"
 import { PromotionalBanner } from "@/components/sections/PromotionalBanner"
 import { TokenomicsSection } from "@/components/sections/TokenomicsSection"
+import { TeamSection } from "@/components/sections/TeamSection"
 import { BackToTop } from "@/components/ui/BackToTop"
 import { LoadingScreen } from "@/components/ui/LoadingScreen"
 import { motion, AnimatePresence } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { TEAM_MEMBERS } from "@/lib/constants"
 import { useState, useEffect } from "react"
 
 export default function HomePage() {
@@ -54,77 +52,7 @@ export default function HomePage() {
             <RoadmapSection />
             <PromotionalBanner />
             <TokenomicsSection />
-
-            {/* Team Section con efectos neon */}
-            <section id="team" className="py-20 relative">
-              <div className="container mx-auto px-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="text-center mb-16"
-                >
-                  <div className="relative">
-                    <h2 className="neon-title text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#BBFF00] to-[#70FF00] bg-clip-text text-transparent">
-                      TEAM
-                    </h2>
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#BBFF00]/10 via-[#70FF00]/15 to-[#BBFF00]/10 blur-xl -z-10"></div>
-                  </div>
-                  <p className="text-xl text-[#BBFF00] max-w-2xl mx-auto font-bold slime-subtitle">
-                    Meet the masterminds behind the SlugDudes universe
-                  </p>
-                </motion.div>
-
-                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                  {TEAM_MEMBERS.map((member, index) => (
-                    <motion.div
-                      key={member.name}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.2 }}
-                      viewport={{ once: true }}
-                      className="relative group"
-                    >
-                      <Card className="neon-card hover:scale-105 transition-transform duration-300 relative z-10">
-                        <CardContent className="p-8 text-center">
-                          <motion.div
-                            className="text-6xl mb-4"
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            {member.avatar}
-                          </motion.div>
-                          <h3 className="text-2xl font-bold text-[#BBFF00] mb-2 neon-title">{member.name}</h3>
-                          <p className="text-[#70FF00] font-semibold mb-4">{member.role}</p>
-                          <p className="text-gray-300 mb-6">{member.description}</p>
-                          <div className="flex flex-wrap justify-center gap-2">
-                            {member.skills.map((skill) => (
-                              <Badge
-                                key={skill}
-                                variant="outline"
-                                className="border-[#BBFF00]/50 text-[#BBFF00] neon-badge"
-                              >
-                                {skill}
-                              </Badge>
-                            ))}
-                          </div>
-                        </CardContent>
-                      </Card>
-
-                      {/* Marco neon */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#BBFF00]/10 via-[#70FF00]/15 to-[#BBFF00]/10 blur-sm group-hover:blur-md transition-all duration-300 -z-10"></div>
-
-                      {/* Esquinas futuristas */}
-                      <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#BBFF00] -translate-x-2 -translate-y-2 group-hover:w-8 group-hover:h-8 transition-all duration-300"></div>
-                      <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#BBFF00] translate-x-2 -translate-y-2 group-hover:w-8 group-hover:h-8 transition-all duration-300"></div>
-                      <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#70FF00] -translate-x-2 translate-y-2 group-hover:w-8 group-hover:h-8 transition-all duration-300"></div>
-                      <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#70FF00] translate-x-2 translate-y-2 group-hover:w-8 group-hover:h-8 transition-all duration-300"></div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </section>
+            <TeamSection />
 
             {/* Footer con efectos neon */}
             <footer className="relative py-12 bg-black/90 border-t border-[#BBFF00]/20">

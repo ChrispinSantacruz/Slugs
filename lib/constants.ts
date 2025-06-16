@@ -43,18 +43,32 @@ export const TOKENOMICS_STATS = [
 
 export const TEAM_MEMBERS = [
   {
-    name: "SlugMaster Alpha",
-    role: "Lead Developer & Visionary",
-    avatar: "🐌",
-    description: "The original slug who discovered the primordial slime and founded the immortal colony.",
-    skills: ["Blockchain", "Smart Contracts", "Slime Physics"],
+    name: "Luthor Barbosa",
+    role: "DEV - Designer",
+    avatar: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-01.png",
+    description: "Líder creativo y desarrollador principal del universo SlugDudes",
+    skills: ["Blockchain", "Design", "Development"],
   },
   {
-    name: "CodeSlug Beta",
-    role: "Frontend Architect & Game Designer",
-    avatar: "🎮",
-    description: "Master of the digital realm, creating immersive experiences for the slug community.",
-    skills: ["React", "Game Development", "UI/UX"],
+    name: "Neo Whinters",
+    role: "Programming Developer",
+    avatar: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-02.png",
+    description: "Experto en programación y arquitectura de sistemas",
+    skills: ["React", "Solana", "Smart Contracts"],
+  },
+  {
+    name: "DereckForReal",
+    role: "Bot",
+    avatar: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-03.png",
+    description: "Especialista en automatización y sistemas inteligentes",
+    skills: ["AI", "Automation", "Backend"],
+  },
+  {
+    name: "Camilo",
+    role: "Community Manager",
+    avatar: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-04.png",
+    description: "Encargado de la comunidad y estrategias de crecimiento",
+    skills: ["Community", "Marketing", "Growth"],
   },
 ] as const
 
