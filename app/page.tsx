@@ -18,8 +18,8 @@ export default function HomePage() {
   const [showContent, setShowContent] = useState(false)
 
   const handleLoadingComplete = () => {
+    setShowContent(true)
     setIsLoading(false)
-    setTimeout(() => setShowContent(true), 300)
   }
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function HomePage() {
   }, [isLoading])
 
   return (
-    <>
+    <div className="min-h-screen w-full bg-black">
       <AnimatePresence mode="wait">
         {isLoading && (
           <LoadingScreen key="loading" onLoadingComplete={handleLoadingComplete} />
@@ -44,7 +44,7 @@ export default function HomePage() {
       </AnimatePresence>
 
       {showContent && (
-        <div className="min-h-screen w-full text-white relative">
+        <div className="min-h-screen w-full text-white relative bg-black">
           {/* Contenido principal con scroll único */}
           <div className="relative z-10">
             {/* <SlimeNavbar /> */}
@@ -135,6 +135,6 @@ export default function HomePage() {
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
