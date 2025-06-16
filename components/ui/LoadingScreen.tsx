@@ -13,7 +13,7 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress(prev => {
-        const newProgress = prev + Math.random() * 6 + 3
+        const newProgress = prev + Math.random() * 4 + 3
 
         if (newProgress >= 100) {
           clearInterval(interval)
@@ -22,7 +22,7 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
         }
         return newProgress
       })
-    }, 180)
+    }, 120)
 
     return () => clearInterval(interval)
   }, [onLoadingComplete])
@@ -34,9 +34,9 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
     >
-      {/* Video centered and half size */}
+      {/* Video centered and quarter size */}
       <video
-        className="w-1/2 h-1/2 object-contain mb-8"
+        className="w-1/4 h-1/4 object-contain mb-8"
         autoPlay
         loop
         muted
