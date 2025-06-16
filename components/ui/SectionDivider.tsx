@@ -4,12 +4,12 @@ import Image from "next/image"
 
 export function SectionDivider() {
   return (
-    <div className="w-full h-20 flex items-center justify-center relative overflow-hidden">
+    <div className="w-full h-40 flex items-center justify-center relative overflow-hidden">
       <Image
         src="/images/backgrounds/div.png"
         alt="Section Divider"
         width={1920}
-        height={80}
+        height={160}
         className="w-full h-full object-cover"
         quality={100}
         priority={false}
