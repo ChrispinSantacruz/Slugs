@@ -297,7 +297,7 @@ section {
   opacity: 1 !important;
 }
 
-#home-banner .absolute {
+#home-banner .absolute:not(button) {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
