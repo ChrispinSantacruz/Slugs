@@ -13,7 +13,7 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress(prev => {
-        const newProgress = prev + Math.random() * 15 + 10
+        const newProgress = prev + Math.random() * 6 + 3
 
         if (newProgress >= 100) {
           clearInterval(interval)
@@ -22,7 +22,7 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
         }
         return newProgress
       })
-    }, 120)
+    }, 180)
 
     return () => clearInterval(interval)
   }, [onLoadingComplete])
@@ -34,13 +34,6 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
     >
-      {/* SlugDudes Title */}
-      <div className="mb-8">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-[#BBFF00] to-[#70FF00] bg-clip-text text-transparent">
-          SlugDudes
-        </h1>
-      </div>
-
       {/* Video centered and half size */}
       <video
         className="w-1/2 h-1/2 object-contain mb-8"
