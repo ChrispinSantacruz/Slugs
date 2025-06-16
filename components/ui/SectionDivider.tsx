@@ -6,7 +6,7 @@ export function SectionDivider() {
   return (
     <div className="w-full h-40 flex items-center justify-center relative overflow-hidden">
       <Image
-        src="/images/backgrounds/div.png"
+        src="/images/backgrounds/slug_bar-02.png"
         alt="Section Divider"
         width={1920}
         height={160}
