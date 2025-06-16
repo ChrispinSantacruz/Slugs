@@ -1,42 +1,32 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void
 }
 
 export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
-  const [progress, setProgress] = useState(0)
-
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        const newProgress = prev + Math.random() * 4 + 3
+    // Set timeout to 3 seconds
+    const timer = setTimeout(() => {
+      onLoadingComplete()
+    }, 3000)
 
-        if (newProgress >= 100) {
-          clearInterval(interval)
-          setTimeout(() => onLoadingComplete(), 200)
-          return 100
-        }
-        return newProgress
-      })
-    }, 120)
-
-    return () => clearInterval(interval)
+    return () => clearTimeout(timer)
   }, [onLoadingComplete])
 
   return (
     <motion.div
-      className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
     >
       {/* Video centered and quarter size */}
       <video
-        className="w-1/4 h-1/4 object-contain mb-8"
+        className="w-1/4 h-1/4 object-contain"
         autoPlay
         loop
         muted
@@ -44,21 +34,6 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
       >
         <source src="/animations/loading2.mp4" type="video/mp4" />
       </video>
-
-      {/* Loading progress bar */}
-      <div className="w-96 max-w-sm mx-auto px-4">
-        <div className="w-full bg-gray-800/50 rounded-full h-3 border border-[#BBFF00]/30">
-          <motion.div
-            className="h-full bg-gradient-to-r from-[#BBFF00] to-[#70FF00] rounded-full relative overflow-hidden"
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Progress bar glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse" />
-          </motion.div>
-        </div>
-      </div>
     </motion.div>
   )
 } 
