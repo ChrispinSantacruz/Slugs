@@ -9,27 +9,32 @@ export function TeamSection() {
   // Miembros del equipo
   const teamMembers = [
     {
-      name: "Luthor BarBOSSa",
+      firstName: "Luthor",
+      lastName: "BarBOSSa",
       role: "Dev & Designer",
       avatar: "/images/team/luthorbarbosa.png",
     },
     {
-      name: "Neo Whinters", 
+      firstName: "Neo",
+      lastName: "Whinters",
       role: "Programming & Dev",
       avatar: "/images/team/neowhinters.png",
     },
     {
-      name: "Dominic Blancko",
+      firstName: "Dominic",
+      lastName: "Blancko",
       role: "Marketing",
       avatar: "/images/team/camilo.png", 
     },
     {
-      name: "Dereck Fo REAL",
-      role: "Automation & AI Specialist",
+      firstName: "Dereck",
+      lastName: "Fo REAL",
+      role: "AI Specialist",
       avatar: "/images/team/dereckforreal.png",
     },
     {
-      name: "Curti$ Blow",
+      firstName: "Curti$",
+      lastName: "Blow",
       role: "Community Manager",
       avatar: "/images/team/Slugrelleno.png",
     }
@@ -73,7 +78,7 @@ export function TeamSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
           {teamMembers.map((member, index) => (
             <motion.div
-              key={member.name}
+              key={member.firstName}
               initial={{ opacity: 0, scale: 0.5, y: 50 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ 
@@ -93,13 +98,14 @@ export function TeamSection() {
                   >
                     <Image
                       src={member.avatar}
-                      alt={member.name}
+                      alt={`${member.firstName} ${member.lastName}`}
                       fill
                       className="object-contain object-center p-1"
                       sizes="160px"
                     />
                   </motion.div>
-                  <h3 className="text-lg font-bold text-[#BBFF00] mb-3 neon-title">{member.name}</h3>
+                  <h3 className="text-lg font-bold text-[#BBFF00] mb-1 neon-title">{member.firstName}</h3>
+                  <h4 className="text-lg font-bold text-[#BBFF00] mb-3 neon-title">{member.lastName}</h4>
                   <p className="text-[#70FF00] font-semibold text-sm">{member.role}</p>
                 </CardContent>
               </Card>
