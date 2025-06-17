@@ -8,8 +8,20 @@ import { TEAM_MEMBERS } from "@/lib/constants"
 
 export function TeamSection() {
   return (
-    <section id="team" className="py-20 relative">
-      <div className="container mx-auto px-4">
+    <section 
+      id="team" 
+      className="py-20 relative"
+      style={{
+        backgroundImage: "url('/images/backgrounds/backgroundteam.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat"
+      }}
+    >
+      {/* Overlay sutil para mejor contraste con el contenido */}
+      <div className="absolute inset-0 bg-black/40"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

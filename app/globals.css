@@ -284,7 +284,7 @@ section {
   transform: translateZ(0);
 }
 
-/* FIX: Estilos específicos para la HomeSection */
+/* FIX: Estilos específicos para las secciones principales */
 #home-banner {
   position: relative !important;
   z-index: 1 !important;
@@ -297,7 +297,31 @@ section {
   opacity: 1 !important;
 }
 
-#home-banner .absolute:not(button) {
+#roadmap {
+  position: relative !important;
+  z-index: 1 !important;
+  height: 120vh !important;
+  min-height: 120vh !important;
+  max-height: 120vh !important;
+  overflow: hidden !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#tokenomics {
+  position: relative !important;
+  z-index: 1 !important;
+  height: 115vh !important;
+  min-height: 115vh !important;
+  max-height: 115vh !important;
+  overflow: hidden !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+#home-banner .absolute:not(button), #roadmap .absolute, #tokenomics .absolute {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
@@ -307,7 +331,7 @@ section {
   height: 100% !important;
 }
 
-#home-banner img {
+#home-banner img, #roadmap img, #tokenomics img {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
