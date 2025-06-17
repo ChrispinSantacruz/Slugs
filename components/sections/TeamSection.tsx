@@ -9,16 +9,6 @@ export function TeamSection() {
   // Miembros del equipo
   const teamMembers = [
     {
-      name: "SlugPro",
-      role: "Support",
-      avatar: "/images/team/Slugrelleno.png",
-    },
-    {
-      name: "Camilo",
-      role: "Developer",
-      avatar: "/images/team/camilo.png", 
-    },
-    {
       name: "Luthor Barbosa",
       role: "Dev - Designer",
       avatar: "/images/team/luthorbarbosa.png",
@@ -29,9 +19,19 @@ export function TeamSection() {
       avatar: "/images/team/neowhinters.png",
     },
     {
+      name: "CurtisBlow",
+      role: "Marketing - Social Networks",
+      avatar: "/images/team/camilo.png", 
+    },
+    {
       name: "Dereckforreal",
-      role: "Bot",
+      role: "Automation & AI Specialist",
       avatar: "/images/team/dereckforreal.png",
+    },
+    {
+      name: "DominicBlanco",
+      role: "Community Manager",
+      avatar: "/images/team/Slugrelleno.png",
     }
   ]
 
