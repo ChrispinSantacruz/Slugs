@@ -10,12 +10,12 @@ export function TeamSection() {
   const teamMembers = [
     {
       name: "Luthor BarBOSSa",
-      role: "Dev - Designer",
+      role: "Dev & Designer",
       avatar: "/images/team/luthorbarbosa.png",
     },
     {
       name: "Neo Whinters", 
-      role: "Programming - Dev",
+      role: "Programming & Dev",
       avatar: "/images/team/neowhinters.png",
     },
     {
