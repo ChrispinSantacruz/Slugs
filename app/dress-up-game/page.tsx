@@ -306,7 +306,7 @@ export default function DressUpGame() {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
                             // 📍 POSICIÓN DE LA BOCA - AJUSTADA AL TAMAÑO VERTICAL:
-                            className="absolute top-[4.5%] left-[33.1%] transform -translate-x-1/2 -translate-y-1/2"
+                            className="absolute top-[3.5%] left-[33.1%] transform -translate-x-1/2 -translate-y-1/2"
                             style={{ 
                               width: '35%', // Ajustado al slug más grande
                               height: '35%', // Proporción vertical
@@ -335,7 +335,7 @@ export default function DressUpGame() {
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -50, opacity: 0 }}
                             // 📍 POSICIÓN DEL GORRO - AJUSTADO AL TAMAÑO VERTICAL:
-                            className="absolute top-[1%] left-[31%] transform -translate-x-1/2"
+                            className="absolute top-[-2%] left-[30.5%] transform -translate-x-1/2"
                             style={{ 
                               width: '40%', // Ajustado al slug más grande
                               height: '40%', // Proporción vertical
