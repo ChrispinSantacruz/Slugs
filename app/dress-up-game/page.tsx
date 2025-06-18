@@ -356,34 +356,36 @@ export default function DressUpGame() {
       </div>
 
       <div className="relative z-20">
-        {/* Header */}
-        <header className="p-6 border-b border-[#BBFF00]/20 backdrop-blur-sm bg-black/30">
-          <div className="container mx-auto flex items-center justify-between">
+        {/* Header con imagen de navbar */}
+        <header 
+          className="relative h-24 w-full"
+          style={{
+            backgroundImage: `url('/images/backgrounds/slug_top_bar_game-02.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          {/* Overlay para mejor legibilidad */}
+          <div className="absolute inset-0 bg-black/10" />
+          
+          {/* Contenido del header */}
+          <div className="relative z-10 container mx-auto h-full flex items-center justify-between px-6">
+            {/* Botón de retroceso - solo ícono */}
             <Link href="/">
-              <Button variant="ghost" className="text-[#BBFF00] hover:text-[#70FF00]">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Colony
+              <Button 
+                variant="ghost" 
+                className="text-white hover:text-[#BBFF00] bg-black/30 hover:bg-black/50 backdrop-blur-sm border border-white/20"
+              >
+                <ArrowLeft className="h-4 w-4" />
               </Button>
             </Link>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-[#BBFF00] to-[#70FF00] bg-clip-text text-transparent">
-              SlugDude Creator
-            </h1>
-            <div className="flex gap-2">
-              <Button
-                onClick={randomizeSlug}
-                variant="outline"
-                className="border-[#BBFF00] text-[#BBFF00] hover:bg-[#BBFF00] hover:text-black"
-              >
-                <Shuffle className="h-4 w-4" />
-              </Button>
-              <Button
-                onClick={resetSlug}
-                variant="outline"
-                className="border-[#70FF00] text-[#70FF00] hover:bg-[#70FF00] hover:text-black"
-              >
-                <RotateCcw className="h-4 w-4" />
-              </Button>
-            </div>
+            
+            {/* Espacio vacío - header limpio */}
+            <div></div>
+            
+            {/* Espacio vacío para mantener layout */}
+            <div></div>
           </div>
         </header>
 
@@ -598,7 +600,7 @@ export default function DressUpGame() {
                     ))}
                   </div>
                   
-                  {/* Botón Guardar */}
+                  {/* Botones de acción */}
                   <div className="flex gap-2">
                     <Button 
                       onClick={saveSlugAsImage}
@@ -606,6 +608,20 @@ export default function DressUpGame() {
                     >
                       <Download className="mr-2 h-4 w-4" />
                       Save
+                    </Button>
+                    <Button
+                      onClick={randomizeSlug}
+                      variant="outline"
+                      className="border-[#BBFF00] text-[#BBFF00] hover:bg-[#BBFF00] hover:text-black"
+                    >
+                      <Shuffle className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      onClick={resetSlug}
+                      variant="outline"
+                      className="border-[#70FF00] text-[#70FF00] hover:bg-[#70FF00] hover:text-black"
+                    >
+                      <RotateCcw className="h-4 w-4" />
                     </Button>
                     <Button
                       variant="outline"
