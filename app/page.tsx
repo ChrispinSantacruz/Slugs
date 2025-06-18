@@ -59,6 +59,7 @@ export default function HomePage() {
             <TokenomicsSection />
             <SectionDivider />
             <TeamSection />
+            <SectionDivider />
 
             {/* Footer con efectos neon */}
             <footer className="relative py-12 bg-black/90 border-t border-[#BBFF00]/20">

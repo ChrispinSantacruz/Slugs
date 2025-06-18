@@ -12,7 +12,7 @@ export function TeamSection() {
       firstName: "Luthor",
       lastName: "BarBOSSa",
       role: "Dev & Designer",
-      avatar: "/images/team/luthorbarbosa.png",
+      avatar: "/images/team/luthor.png",
     },
     {
       firstName: "Neo",
