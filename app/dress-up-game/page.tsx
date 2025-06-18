@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowLeft, Download, Share2, Shuffle, RotateCcw } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import html2canvas from "html2canvas"
 
 interface SlugCustomization {
   baseSkin: string
@@ -98,6 +99,7 @@ export default function DressUpGame() {
   })
 
   const [activeCategory, setActiveCategory] = useState<keyof SlugCustomization>("baseSkin")
+  const slugContainerRef = useRef<HTMLDivElement>(null)
 
   const updateSlug = (category: keyof SlugCustomization, value: string) => {
     setSlug((prev) => ({
@@ -165,6 +167,150 @@ export default function DressUpGame() {
     if (!slug.eyes) return null
     const eyes = customizationOptions.eyes.find(e => e.id === slug.eyes)
     return eyes?.src || null
+  }
+
+  // 🎨 FUNCIÓN PARA CAPTURAR Y GUARDAR EL SLUG COMO PNG
+  const saveSlugAsImage = async () => {
+    if (!slugContainerRef.current) return
+
+    try {
+      // 🎯 Encontrar elementos y ajustar temporalmente para la captura
+      const coatElement = slugContainerRef.current.querySelector('[alt="Coat"]')?.parentElement
+      const mouthElement = slugContainerRef.current.querySelector('[alt="Mouth"]')?.parentElement
+      const eyesElement = slugContainerRef.current.querySelector('[alt="Eyes"]')?.parentElement
+      const hatElement = slugContainerRef.current.querySelector('[alt="Hat"]')?.parentElement
+      
+      // Guardar estilos originales
+      const originalStyles = {
+        coat: { height: '', top: '', left: '' },
+        mouth: { top: '', left: '' },
+        eyes: { top: '', left: '' },
+        hat: { top: '', left: '' }
+      }
+      
+      if (coatElement && slug.coat) {
+        const style = (coatElement as HTMLElement).style
+        originalStyles.coat = { 
+          height: style.height || '70%',
+          top: style.top || '24.5%',
+          left: style.left || '12.4%'
+        }
+        // Ajustes para la chaqueta en captura (buso más pequeño y mejor posicionado)
+        style.height = '65%'   // 🎯 REDUCIDO de 70% a 55% (-15% vertical)
+        style.top = '28%'      // 🎯 BAJADO un poco para mejor posición
+        style.left = '13%'   // Mantener posición horizontal
+        style.width = '75%'    // Mantener ancho
+      }
+      
+      if (mouthElement && slug.mouth) {
+        const style = (mouthElement as HTMLElement).style
+        originalStyles.mouth = { 
+          top: style.top || '3.5%',
+          left: style.left || '33%'
+        }
+        // Replicar exactamente las posiciones del videojuego
+        style.top = '3.5%'     // Misma posición vertical
+        style.left = '33%'     // Misma posición horizontal
+        style.width = '35%'    // Mismo ancho que en el juego
+        style.height = '35%'   // Misma altura que en el juego
+      }
+      
+      if (eyesElement && slug.eyes) {
+        const style = (eyesElement as HTMLElement).style
+        originalStyles.eyes = { 
+          top: style.top || '1%',
+          left: style.left || '32%'
+        }
+        // Replicar exactamente las posiciones del videojuego
+        style.top = '1%'       // Misma posición vertical
+        style.left = '32%'     // Misma posición horizontal
+        style.width = '36%'    // Mismo ancho que en el juego
+        style.height = '36%'   // Misma altura que en el juego
+      }
+      
+      if (hatElement && slug.hat) {
+        const style = (hatElement as HTMLElement).style
+        originalStyles.hat = { 
+          top: style.top || '-2%',
+          left: style.left || '30%'
+        }
+        // Replicar exactamente las posiciones del videojuego
+        style.top = '-2%'      // Misma posición vertical
+        style.left = '30%'     // Misma posición horizontal
+        style.width = '40%'    // Mismo ancho que en el juego
+        style.height = '40%'   // Misma altura que en el juego
+      }
+
+      // 📸 Capturar solo el contenedor del slug con configuración optimizada
+      const canvas = await html2canvas(slugContainerRef.current, {
+        backgroundColor: null, // Fondo transparente
+        useCORS: true,
+        allowTaint: false,
+        scale: 3, // Mayor resolución
+        width: 371,
+        height: 424,
+        logging: false,
+        x: 0,
+        y: 0,
+        scrollX: 0,
+        scrollY: 0,
+        foreignObjectRendering: false,
+      })
+
+      // 🔄 Restaurar los estilos originales de todos los elementos
+      if (coatElement && slug.coat) {
+        const style = (coatElement as HTMLElement).style
+        style.height = originalStyles.coat.height
+        style.top = originalStyles.coat.top
+        style.left = originalStyles.coat.left
+      }
+      
+      if (mouthElement && slug.mouth) {
+        const style = (mouthElement as HTMLElement).style
+        style.top = originalStyles.mouth.top
+        style.left = originalStyles.mouth.left
+      }
+      
+      if (eyesElement && slug.eyes) {
+        const style = (eyesElement as HTMLElement).style
+        style.top = originalStyles.eyes.top
+        style.left = originalStyles.eyes.left
+      }
+      
+      if (hatElement && slug.hat) {
+        const style = (hatElement as HTMLElement).style
+        style.top = originalStyles.hat.top
+        style.left = originalStyles.hat.left
+      }
+
+      // 📁 Crear y descargar el archivo PNG
+      const link = document.createElement('a')
+      link.download = `mi-slugdude-${Date.now()}.png`
+      link.href = canvas.toDataURL('image/png', 1.0)
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+
+      console.log('✅ SlugDude guardado exitosamente!')
+    } catch (error) {
+      console.error('❌ Error al guardar el SlugDude:', error)
+      
+      // 🔄 Asegurar que se restauren los estilos originales en caso de error
+      const elements = {
+        coat: slugContainerRef.current?.querySelector('[alt="Coat"]')?.parentElement,
+        mouth: slugContainerRef.current?.querySelector('[alt="Mouth"]')?.parentElement,
+        eyes: slugContainerRef.current?.querySelector('[alt="Eyes"]')?.parentElement,
+        hat: slugContainerRef.current?.querySelector('[alt="Hat"]')?.parentElement
+      }
+      
+      if (elements.coat && slug.coat) {
+        const style = (elements.coat as HTMLElement).style
+        style.height = '70%'
+        style.top = '24.5%'
+        style.left = '12.4%'
+        style.width = '75%'
+      }
+    }
   }
 
   return (
@@ -269,6 +415,7 @@ export default function DressUpGame() {
 
                     {/* 🐌 SLUG - MÁS GRANDE VERTICALMENTE */}
                     <div 
+                      ref={slugContainerRef}
                       className="absolute"
                                               style={{ 
                           width: '371px',   // 📐 SLUG 7% MÁS PEQUEÑO (399 * 0.93)
@@ -290,10 +437,10 @@ export default function DressUpGame() {
                         <Image
                           src={getBaseSkinImage()}
                           alt="Base Slug"
-                          width={800} // Aumentado para mejor calidad
-                          height={800} // Aumentado para mejor calidad
-                          className="w-full h-full object-contain"
-                          quality={100} // Máxima calidad
+                          width={800}
+                          height={800}
+                          className="w-[70%] h-full object-contain" // 🎯 Más estrecho para mejor proporción
+                          quality={100}
                           priority
                         />
                       </motion.div>
@@ -306,8 +453,8 @@ export default function DressUpGame() {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
-                            // 📍 POSICIÓN DE LA BOCA - AJUSTADA AL TAMAÑO VERTICAL:
-                            className="absolute top-[3.5%] left-[33.1%] transform -translate-x-1/2 -translate-y-1/2"
+                            // 📍 POSICIÓN DE LA BOCA - 15% MÁS A LA IZQUIERDA:
+                            className="absolute top-[3.5%] left-[33%] transform -translate-x-1/2 -translate-y-1/2"
                             style={{ 
                               width: '35%', // Ajustado al slug más grande
                               height: '35%', // Proporción vertical
@@ -335,8 +482,8 @@ export default function DressUpGame() {
                             initial={{ y: -50, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             exit={{ y: -50, opacity: 0 }}
-                            // 📍 POSICIÓN DEL GORRO - AJUSTADO AL TAMAÑO VERTICAL:
-                            className="absolute top-[-2%] left-[30.5%] transform -translate-x-1/2"
+                            // 📍 POSICIÓN DEL GORRO - 15% MÁS A LA IZQUIERDA:
+                            className="absolute top-[-2%] left-[30%] transform -translate-x-1/2"
                             style={{ 
                               width: '40%', // Ajustado al slug más grande
                               height: '40%', // Proporción vertical
@@ -364,10 +511,10 @@ export default function DressUpGame() {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
-                            // 📍 POSICIÓN DEL ABRIGO:
-                            className="absolute top-[24%] left-[14.8%] transform -translate-x-1/2"
+                            // 📍 POSICIÓN DEL ABRIGO - BAJADA UN POCO MÁS:
+                            className="absolute top-[24.5%] left-[12.4%] transform -translate-x-1/2"
                             style={{ 
-                              width: '70%', 
+                              width: '75%', 
                               height: '70%',
                               zIndex: 5 
                             }}
@@ -393,8 +540,8 @@ export default function DressUpGame() {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
-                            // 📍 POSICIÓN DE LOS OJOS - AJUSTADA AL TAMAÑO VERTICAL:
-                            className="absolute top-[1%] left-[32.3%] transform -translate-x-1/2 -translate-y-1/2"
+                            // 📍 POSICIÓN DE LOS OJOS - 15% MÁS A LA IZQUIERDA:
+                            className="absolute top-[1%] left-[32%] transform -translate-x-1/2 -translate-y-1/2"
                             style={{ 
                               width: '36%',
                               height: '36%', // Proporción vertical
@@ -453,7 +600,10 @@ export default function DressUpGame() {
                   
                   {/* Botón Guardar */}
                   <div className="flex gap-2">
-                    <Button className="bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold hover:scale-105 transition-transform duration-300">
+                    <Button 
+                      onClick={saveSlugAsImage}
+                      className="bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold hover:scale-105 transition-transform duration-300"
+                    >
                       <Download className="mr-2 h-4 w-4" />
                       Guardar
                     </Button>
@@ -581,6 +731,8 @@ export default function DressUpGame() {
           </div>
         </div>
       </div>
+
+
     </div>
   )
 }
