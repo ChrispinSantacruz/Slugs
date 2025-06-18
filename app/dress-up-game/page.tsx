@@ -14,7 +14,6 @@ interface SlugCustomization {
   mouth: string
   hat: string
   coat: string
-  chain: string
 }
 
 // 🎨 CONFIGURACIÓN ACTUALIZADA CON NUEVOS ASSETS
@@ -53,12 +52,19 @@ const customizationOptions = {
     { id: "mouth-10", name: "Expresión Épica", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-10.png" },
   ],
   
-  // 4. COATS - ABRIGOS DE LA CARPETA ORIGINAL
+  // 4. COATS - NUEVOS VESTIDOS
   coat: [
-    { id: "coat-01", name: "Abrigo Clásico", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-01.png" },
-    { id: "coat-02", name: "Abrigo Sport", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-02.png" },
-    { id: "coat-03", name: "Abrigo Elegante", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-03.png" },
-    { id: "coat-04", name: "Abrigo Premium", src: "/images/Game/GAME avatars/coats/coats/SLUG_coat-04.png" },
+    { id: "dress-03", name: "Vestido Elegante", src: "/images/Game/GAME avatars (2)/dress/dress/slugs_dress-03.png" },
+    { id: "dress-04", name: "Vestido Casual", src: "/images/Game/GAME avatars (2)/dress/dress/slugs_dress-04.png" },
+    { id: "dress-05", name: "Vestido Premium", src: "/images/Game/GAME avatars (2)/dress/dress/slugs_dress-05.png" },
+    { id: "dress-06", name: "Vestido Moderno", src: "/images/Game/GAME avatars (2)/dress/dress/slugs_dress-06.png" },
+    { id: "dress-07", name: "Vestido Exclusivo", src: "/images/Game/GAME avatars (2)/dress/dress/slugs_dress-07.png" },
+    { id: "dress-08", name: "Vestido Sofisticado", src: "/images/Game/GAME avatars (2)/dress/dress/slugs_dress-08.png" },
+    { id: "dress-09", name: "Vestido Minimalista", src: "/images/Game/GAME avatars (2)/dress/dress/slugs_dress-09.png" },
+    { id: "dress-10", name: "Vestido de Gala", src: "/images/Game/GAME avatars (2)/dress/dress/slugs_dress-10.png" },
+    { id: "dress-11", name: "Vestido Épico", src: "/images/Game/GAME avatars (2)/dress/dress/slugs_dress-11.png" },
+    { id: "dress-12", name: "Vestido Legendario", src: "/images/Game/GAME avatars (2)/dress/dress/slugs_dress-12.png" },
+    { id: "dress-13", name: "Vestido Mítico", src: "/images/Game/GAME avatars (2)/dress/dress/slugs_dress-13.png" },
   ],
 
   // 5. HATS - NUEVOS SOMBREROS (MÁS VARIEDAD)
@@ -79,9 +85,7 @@ const customizationOptions = {
     { id: "hat-16", name: "Sombrero Espacial", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-16.png" },
     { id: "hat-17", name: "Gorra Mítica", src: "/images/Game/GAME avatars (2)/caps/slugs_hats-17.png" },
   ],
-  
-  // 6. ACCESSORIES - MANTENEMOS LOS EMOJIS
-  chain: ["📿", "⛓️", "🔗", "💎", "🏅", "🎖️", "🌟", "⚡", "🔥", "❄️"],
+
 }
 
 export default function DressUpGame() {
@@ -91,7 +95,6 @@ export default function DressUpGame() {
     mouth: "",
     hat: "",
     coat: "",
-    chain: "",
   })
 
   const [activeCategory, setActiveCategory] = useState<keyof SlugCustomization>("baseSkin")
@@ -114,7 +117,6 @@ export default function DressUpGame() {
     newSlug.hat = Math.random() > 0.3 ? customizationOptions.hat[Math.floor(Math.random() * customizationOptions.hat.length)].id : ""
     newSlug.coat = Math.random() > 0.3 ? customizationOptions.coat[Math.floor(Math.random() * customizationOptions.coat.length)].id : ""
     newSlug.eyes = Math.random() > 0.3 ? customizationOptions.eyes[Math.floor(Math.random() * customizationOptions.eyes.length)].id : ""
-    newSlug.chain = Math.random() > 0.3 ? customizationOptions.chain[Math.floor(Math.random() * customizationOptions.chain.length)] : ""
     
     setSlug(newSlug)
   }
@@ -126,7 +128,6 @@ export default function DressUpGame() {
       mouth: "",
       hat: "",
       coat: "",
-      chain: "",
     })
   }
 
@@ -364,7 +365,7 @@ export default function DressUpGame() {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0, opacity: 0 }}
                             // 📍 POSICIÓN DEL ABRIGO:
-                            className="absolute top-[28%] left-[15.6%] transform -translate-x-1/2"
+                            className="absolute top-[24%] left-[14.8%] transform -translate-x-1/2"
                             style={{ 
                               width: '70%', 
                               height: '70%',
@@ -412,18 +413,7 @@ export default function DressUpGame() {
                           </motion.div>
                         )}
 
-                        {/* Chain/Accessories - AJUSTADO AL TAMAÑO VERTICAL */}
-                        {slug.chain && (
-                          <motion.span
-                            key={`chain-${slug.chain}`}
-                            initial={{ scale: 0, rotate: 90 }}
-                            animate={{ scale: 1, rotate: 0 }}
-                            exit={{ scale: 0, rotate: -90 }}
-                            className="absolute top-[75%] left-1/2 transform -translate-x-1/2 text-4xl z-10"
-                          >
-                            {slug.chain}
-                          </motion.span>
-                        )}
+
 
                       </AnimatePresence>
                       </div>
@@ -454,9 +444,8 @@ export default function DressUpGame() {
                         {category === 'baseSkin' ? 'Skin Base' :
                          category === 'eyes' ? 'Eyes' :
                          category === 'mouth' ? 'Mouth' :
-                         category === 'coat' ? 'Coats' :
+                         category === 'coat' ? 'Dress' :
                          category === 'hat' ? 'Hats' :
-                         category === 'chain' ? 'Accessories' :
                          category.charAt(0).toUpperCase() + category.slice(1)}
                       </Button>
                     ))}
@@ -495,9 +484,8 @@ export default function DressUpGame() {
                       Choose {activeCategory === 'baseSkin' ? 'Skin Base' :
                               activeCategory === 'eyes' ? 'Eyes' :
                               activeCategory === 'mouth' ? 'Mouth' :
-                              activeCategory === 'coat' ? 'Coats' :
+                              activeCategory === 'coat' ? 'Dress' :
                               activeCategory === 'hat' ? 'Hats' :
-                              activeCategory === 'chain' ? 'Accessories' :
                               activeCategory}
                     </CardTitle>
                   </CardHeader>
@@ -519,55 +507,32 @@ export default function DressUpGame() {
                         </motion.button>
                       )}
 
-                      {/* Render options based on category */}
-                      {(activeCategory === 'baseSkin' || activeCategory === 'mouth' || activeCategory === 'hat' || activeCategory === 'coat' || activeCategory === 'eyes') ? (
-                        // Render image options
-                        customizationOptions[activeCategory].map((option: any, index: number) => (
-                          <motion.button
-                            key={`${activeCategory}-${option.id}-${index}`}
-                            onClick={() => updateSlug(activeCategory, option.id)}
-                            className={`aspect-square rounded-lg border-2 flex items-center justify-center transition-all duration-300 overflow-hidden ${
-                              slug[activeCategory] === option.id
-                                ? "border-[#BBFF00] bg-[#BBFF00]/20"
-                                : "border-gray-600 hover:border-[#BBFF00]/50"
-                            }`}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.05 }}
-                            title={option.name}
-                          >
-                            <Image
-                              src={option.src}
-                              alt={option.name}
-                              width={60}
-                              height={60}
-                              className="w-full h-full object-contain"
-                            />
-                          </motion.button>
-                        ))
-                      ) : (
-                        // Render emoji options
-                        customizationOptions[activeCategory].map((option: string, index: number) => (
-                          <motion.button
-                            key={`${activeCategory}-${option}-${index}`}
-                            onClick={() => updateSlug(activeCategory, option)}
-                            className={`aspect-square rounded-lg border-2 flex items-center justify-center text-xl transition-all duration-300 ${
-                              slug[activeCategory] === option
-                                ? "border-[#BBFF00] bg-[#BBFF00]/20"
-                                : "border-gray-600 hover:border-[#BBFF00]/50"
-                            }`}
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.05 }}
-                          >
-                            {option}
-                          </motion.button>
-                        ))
-                      )}
+                      {/* Render image options */}
+                      {customizationOptions[activeCategory].map((option: any, index: number) => (
+                        <motion.button
+                          key={`${activeCategory}-${option.id}-${index}`}
+                          onClick={() => updateSlug(activeCategory, option.id)}
+                          className={`aspect-square rounded-lg border-2 flex items-center justify-center transition-all duration-300 overflow-hidden ${
+                            slug[activeCategory] === option.id
+                              ? "border-[#BBFF00] bg-[#BBFF00]/20"
+                              : "border-gray-600 hover:border-[#BBFF00]/50"
+                          }`}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                          title={option.name}
+                        >
+                          <Image
+                            src={option.src}
+                            alt={option.name}
+                            width={60}
+                            height={60}
+                            className="w-full h-full object-contain"
+                          />
+                        </motion.button>
+                      ))}
                     </div>
                   </CardContent>
                   </div>
