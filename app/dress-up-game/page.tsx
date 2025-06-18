@@ -358,11 +358,11 @@ export default function DressUpGame() {
       <div className="relative z-20">
         {/* Header con imagen de navbar */}
         <header 
-          className="relative h-24 w-full"
+          className="relative h-32 w-full"
           style={{
             backgroundImage: `url('/images/backgrounds/slug_top_bar_game-02.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundSize: 'contain',
+            backgroundPosition: 'top',
             backgroundRepeat: 'no-repeat',
           }}
         >
