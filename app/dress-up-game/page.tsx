@@ -21,36 +21,36 @@ interface SlugCustomization {
 const customizationOptions = {
   // 1. SKIN BASE - NUEVAS SKINS
   baseSkin: [
-    { id: "skin-01", name: "Skin Clásica", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-01.png" },
-    { id: "skin-02", name: "Skin Premium", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-02.png" },
-    { id: "skin-03", name: "Skin Élite", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-03.png" },
-    { id: "skin-04", name: "Skin Legendaria", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-04.png" },
-    { id: "skin-05", name: "Skin Épica", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-05.png" },
-    { id: "skin-06", name: "Skin Mítica", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-06.png" },
+    { id: "skin-01", name: "Classic Skin", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-01.png" },
+    { id: "skin-02", name: "Premium Skin", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-02.png" },
+    { id: "skin-03", name: "Elite Skin", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-03.png" },
+    { id: "skin-04", name: "Legendary Skin", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-04.png" },
+    { id: "skin-05", name: "Epic Skin", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-05.png" },
+    { id: "skin-06", name: "Mythic Skin", src: "/images/Game/GAME avatars (2)/slugs_base_skin/slugs_skins-06.png" },
   ],
   
   // 2. EYES - NUEVOS OJOS
   eyes: [
-    { id: "eyes-03", name: "Ojos Expresivos", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-03.png" },
-    { id: "eyes-04", name: "Ojos Minimalistas", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-04.png" },
-    { id: "eyes-05", name: "Ojos Brillantes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-05.png" },
-    { id: "eyes-06", name: "Ojos Elegantes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-06.png" },
-    { id: "eyes-07", name: "Ojos Serios", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-07.png" },
-    { id: "eyes-08", name: "Ojos Intensos", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-08.png" },
-    { id: "eyes-09", name: "Ojos Misteriosos", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-09.png" },
-    { id: "eyes-10", name: "Ojos Únicos", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-10.png" },
+    { id: "eyes-03", name: "Expressive Eyes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-03.png" },
+    { id: "eyes-04", name: "Minimalist Eyes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-04.png" },
+    { id: "eyes-05", name: "Bright Eyes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-05.png" },
+    { id: "eyes-06", name: "Elegant Eyes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-06.png" },
+    { id: "eyes-07", name: "Serious Eyes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-07.png" },
+    { id: "eyes-08", name: "Intense Eyes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-08.png" },
+    { id: "eyes-09", name: "Mysterious Eyes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-09.png" },
+    { id: "eyes-10", name: "Unique Eyes", src: "/images/Game/GAME avatars (2)/eyes/slugs_eyes-10.png" },
   ],
   
   // 3. MOUTH - NUEVAS BOCAS
   mouth: [
-    { id: "mouth-03", name: "Sonrisa Sutil", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-03.png" },
-    { id: "mouth-04", name: "Expresión Neutra", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-04.png" },
-    { id: "mouth-05", name: "Sonrisa Amplia", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-05.png" },
-    { id: "mouth-06", name: "Expresión Cool", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-06.png" },
-    { id: "mouth-07", name: "Sonrisa Traviesa", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-07.png" },
-    { id: "mouth-08", name: "Expresión Sorprendida", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-08.png" },
-    { id: "mouth-09", name: "Sonrisa Discreta", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-09.png" },
-    { id: "mouth-10", name: "Expresión Épica", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-10.png" },
+    { id: "mouth-03", name: "Subtle Smile", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-03.png" },
+    { id: "mouth-04", name: "Neutral Expression", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-04.png" },
+    { id: "mouth-05", name: "Wide Smile", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-05.png" },
+    { id: "mouth-06", name: "Cool Expression", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-06.png" },
+    { id: "mouth-07", name: "Mischievous Smile", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-07.png" },
+    { id: "mouth-08", name: "Surprised Expression", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-08.png" },
+    { id: "mouth-09", name: "Discreet Smile", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-09.png" },
+    { id: "mouth-10", name: "Epic Expression", src: "/images/Game/GAME avatars (2)/mouth/slugs_mouth-10.png" },
   ],
   
   // 4. COATS - NUEVOS VESTIDOS
@@ -291,9 +291,9 @@ export default function DressUpGame() {
       link.click()
       document.body.removeChild(link)
 
-      console.log('✅ SlugDude guardado exitosamente!')
+      console.log('✅ SlugDude saved successfully!')
     } catch (error) {
-      console.error('❌ Error al guardar el SlugDude:', error)
+      console.error('❌ Error saving SlugDude:', error)
       
       // 🔄 Asegurar que se restauren los estilos originales en caso de error
       const elements = {
@@ -362,11 +362,11 @@ export default function DressUpGame() {
             <Link href="/">
               <Button variant="ghost" className="text-[#BBFF00] hover:text-[#70FF00]">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Volver a la Colonia
+                Back to Colony
               </Button>
             </Link>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-[#BBFF00] to-[#70FF00] bg-clip-text text-transparent">
-              Creador de SlugDude
+              SlugDude Creator
             </h1>
             <div className="flex gap-2">
               <Button
@@ -588,7 +588,7 @@ export default function DressUpGame() {
                             : "border-[#BBFF00]/50 text-[#BBFF00] hover:bg-[#BBFF00]/10"
                         }
                       >
-                        {category === 'baseSkin' ? 'Skin Base' :
+                        {category === 'baseSkin' ? 'Base Skin' :
                          category === 'eyes' ? 'Eyes' :
                          category === 'mouth' ? 'Mouth' :
                          category === 'coat' ? 'Dress' :
@@ -605,7 +605,7 @@ export default function DressUpGame() {
                       className="bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold hover:scale-105 transition-transform duration-300"
                     >
                       <Download className="mr-2 h-4 w-4" />
-                      Guardar
+                      Save
                     </Button>
                     <Button
                       variant="outline"
@@ -631,7 +631,7 @@ export default function DressUpGame() {
                   <div className="relative z-10">
                   <CardHeader>
                     <CardTitle className="text-[#BBFF00] capitalize">
-                      Choose {activeCategory === 'baseSkin' ? 'Skin Base' :
+                      Choose {activeCategory === 'baseSkin' ? 'Base Skin' :
                               activeCategory === 'eyes' ? 'Eyes' :
                               activeCategory === 'mouth' ? 'Mouth' :
                               activeCategory === 'coat' ? 'Dress' :
@@ -702,26 +702,26 @@ export default function DressUpGame() {
                   <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-[#BBFF00]/20 to-transparent animate-pulse" />
                   <div className="relative z-10">
                   <CardContent className="p-6">
-                    <h3 className="text-[#70FF00] font-bold mb-4">Estadísticas del SlugDude</h3>
+                    <h3 className="text-[#70FF00] font-bold mb-4">SlugDude Stats</h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-[#BBFF00]">
-                          {Object.values(slug).filter(Boolean).length}
+                                              <div className="text-center">
+                          <div className="text-2xl font-bold text-[#BBFF00]">
+                            {Object.values(slug).filter(Boolean).length}
+                          </div>
+                          <div className="text-sm text-gray-400">Accessories</div>
                         </div>
-                        <div className="text-sm text-gray-400">Accesorios</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-[#BBFF00]">{Math.floor(Math.random() * 100) + 50}</div>
-                        <div className="text-sm text-gray-400">Poder Viscoso</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-[#BBFF00]">{Math.floor(Math.random() * 10) + 1}</div>
-                        <div className="text-sm text-gray-400">Rareza</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-[#BBFF00]">∞</div>
-                        <div className="text-sm text-gray-400">Inmortalidad</div>
-                      </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-[#BBFF00]">{Math.floor(Math.random() * 100) + 50}</div>
+                          <div className="text-sm text-gray-400">Slime Power</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-[#BBFF00]">{Math.floor(Math.random() * 10) + 1}</div>
+                          <div className="text-sm text-gray-400">Rarity</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-[#BBFF00]">∞</div>
+                          <div className="text-sm text-gray-400">Immortality</div>
+                        </div>
                     </div>
                   </CardContent>
                   </div>
