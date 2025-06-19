@@ -215,9 +215,11 @@ export default function DressUpGame() {
     }
     
     try {
-      // Cargar imagen base - ESCALA 5X
+      // Cargar imagen base - ESCALA 5X  
       const baseImg = await loadImage(getBaseSkinImage())
-      ctx.drawImage(baseImg, 437.5, 0, 875, 2000) // 5X escalado, centrado (87.5 * 5 = 437.5)
+      const baseWidth = 1225  // 70% de 1750 (más delgada que coat 1312.5px)
+      const baseX = (1750 - baseWidth) / 2
+      ctx.drawImage(baseImg, baseX, 0, baseWidth, 2000) // 5X escalado, centrado y más delgado
       
       // Cargar y dibujar coat si existe - ESCALA 5X
       if (slug.coat && getCoatImage()) {
@@ -228,19 +230,19 @@ export default function DressUpGame() {
       // Cargar y dibujar mouth si existe - ESCALA 5X
       if (slug.mouth && getMouthImage()) {
         const mouthImg = await loadImage(getMouthImage()!)
-        ctx.drawImage(mouthImg, 577.5, 160, 612.5, 700) // 5X escalado, posición ajustada (8% = 160px)
+        ctx.drawImage(mouthImg, 612.5, 160, 525, 600) // 5X escalado, más delgado (30% ancho)
       }
       
       // Cargar y dibujar eyes si existe - ESCALA 5X
       if (slug.eyes && getEyesImage()) {
         const eyesImg = await loadImage(getEyesImage()!)
-        ctx.drawImage(eyesImg, 560, 100, 630, 720) // 5X escalado, posición ajustada (5% = 100px)
+        ctx.drawImage(eyesImg, 595, 100, 560, 620) // 5X escalado, más delgado (32% ancho)
       }
       
       // Cargar y dibujar hat si existe (último para que esté encima) - ESCALA 5X
       if (slug.hat && getHatImage()) {
         const hatImg = await loadImage(getHatImage()!)
-        ctx.drawImage(hatImg, 525, 40, 700, 800) // 5X escalado, posición ajustada (2% = 40px)
+        ctx.drawImage(hatImg, 577.5, 40, 595, 680) // 5X escalado, más delgado (34% ancho)
       }
       
       // Descargar imagen
@@ -455,8 +457,8 @@ export default function DressUpGame() {
       // Dibujar imagen base (siempre presente) - ESCALA 6X
       try {
         const baseImg = await loadImage(getBaseSkinImage())
-        // Centrar y redimensionar base slug - 6X más grande
-        const baseWidth = 1785  // 85% de 2100 (más ancho como en desktop)
+        // Centrar y redimensionar base slug - más delgada que coat
+        const baseWidth = 1470  // 70% de 2100 (más delgada que coat 1575px)
         const baseHeight = 2400
         const baseX = (2100 - baseWidth) / 2
         ctx.drawImage(baseImg, baseX, 0, baseWidth, baseHeight)
@@ -479,7 +481,7 @@ export default function DressUpGame() {
       if (slug.mouth && getMouthImage()) {
         try {
           const mouthImg = await loadImage(getMouthImage()!)
-          ctx.drawImage(mouthImg, 693, 192, 735, 840) // 6X escalado, posición ajustada (8% = 192px)
+          ctx.drawImage(mouthImg, 735, 192, 630, 720) // 6X escalado, más delgado (30% ancho)
         } catch (error) {
           console.warn('Error cargando mouth:', error)
         }
@@ -489,7 +491,7 @@ export default function DressUpGame() {
       if (slug.eyes && getEyesImage()) {
         try {
           const eyesImg = await loadImage(getEyesImage()!)
-          ctx.drawImage(eyesImg, 672, 120, 756, 864) // 6X escalado, posición ajustada (5% = 120px)
+          ctx.drawImage(eyesImg, 714, 120, 672, 744) // 6X escalado, más delgado (32% ancho)
         } catch (error) {
           console.warn('Error cargando eyes:', error)
         }
@@ -499,7 +501,7 @@ export default function DressUpGame() {
       if (slug.hat && getHatImage()) {
         try {
           const hatImg = await loadImage(getHatImage()!)
-          ctx.drawImage(hatImg, 630, 48, 840, 960) // 6X escalado, posición ajustada (2% = 48px)
+          ctx.drawImage(hatImg, 693, 48, 714, 816) // 6X escalado, más delgado (34% ancho)
         } catch (error) {
           console.warn('Error cargando hat:', error)
         }
