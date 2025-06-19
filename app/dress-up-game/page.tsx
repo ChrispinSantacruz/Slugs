@@ -167,226 +167,369 @@ export default function DressUpGame() {
     return eyes?.src || null
   }
 
-  // 🎨 FUNCIÓN MEJORADA PARA CAPTURAR Y GUARDAR EL SLUG COMO PNG
+  // 🎨 FUNCIÓN ULTRA-ROBUSTA PARA CAPTURAR SLUG EN MÓVILES Y DESKTOP
   const saveSlugAsImage = async () => {
     if (!slugContainerRef.current) return
 
     try {
-      // 📱 Detectar si es móvil
+      // 📱 Detectar dispositivo y obtener dimensiones de pantalla
       const isMobile = window.innerWidth < 768
+      const screenWidth = window.innerWidth
+      const screenHeight = window.innerHeight
       
-      // 🎯 Encontrar elementos y ajustar temporalmente para la captura
-      const slugContainer = slugContainerRef.current
-      const coatElement = slugContainer.querySelector('[alt="Coat"]')?.parentElement as HTMLElement
-      const mouthElement = slugContainer.querySelector('[alt="Mouth"]')?.parentElement as HTMLElement
-      const eyesElement = slugContainer.querySelector('[alt="Eyes"]')?.parentElement as HTMLElement
-      const hatElement = slugContainer.querySelector('[alt="Hat"]')?.parentElement as HTMLElement
-      
-      // 💾 Guardar estilos originales
-      const originalStyles = {
-        container: { width: '', height: '', transform: '' },
-        coat: { height: '', top: '', left: '', width: '', transform: '' },
-        mouth: { top: '', left: '', width: '', height: '', transform: '' },
-        eyes: { top: '', left: '', width: '', height: '', transform: '' },
-        hat: { top: '', left: '', width: '', height: '', transform: '' }
-      }
-      
-      // 🔄 Guardar estilos del contenedor
-      originalStyles.container = {
-        width: slugContainer.style.width,
-        height: slugContainer.style.height,
-        transform: slugContainer.style.transform
-      }
-      
-      // 🎯 AJUSTAR CONTENEDOR PARA CAPTURA CONSISTENTE
-      slugContainer.style.width = '350px'
-      slugContainer.style.height = '400px'
-      slugContainer.style.transform = 'none'
-      slugContainer.style.position = 'relative'
-      
-      // 🎨 Aplicar estilos fijos para captura consistente
-      if (coatElement && slug.coat) {
-        originalStyles.coat = { 
-          height: coatElement.style.height,
-          top: coatElement.style.top,
-          left: coatElement.style.left,
-          width: coatElement.style.width,
-          transform: coatElement.style.transform
-        }
-        coatElement.style.height = '245px'      // 70% de 350px
-        coatElement.style.top = '98px'          // 24.5% de 400px
-        coatElement.style.left = '43.4px'       // 12.4% de 350px
-        coatElement.style.width = '262.5px'     // 75% de 350px
-        coatElement.style.transform = 'none'
-        coatElement.style.position = 'absolute'
-      }
-      
-      if (mouthElement && slug.mouth) {
-        originalStyles.mouth = { 
-          top: mouthElement.style.top,
-          left: mouthElement.style.left,
-          width: mouthElement.style.width,
-          height: mouthElement.style.height,
-          transform: mouthElement.style.transform
-        }
-        mouthElement.style.top = '14px'         // 3.5% de 400px
-        mouthElement.style.left = '115.5px'     // 33% de 350px
-        mouthElement.style.width = '122.5px'    // 35% de 350px
-        mouthElement.style.height = '140px'     // 35% de 400px
-        mouthElement.style.transform = 'none'
-        mouthElement.style.position = 'absolute'
-      }
-      
-      if (eyesElement && slug.eyes) {
-        originalStyles.eyes = { 
-          top: eyesElement.style.top,
-          left: eyesElement.style.left,
-          width: eyesElement.style.width,
-          height: eyesElement.style.height,
-          transform: eyesElement.style.transform
-        }
-        eyesElement.style.top = '4px'           // 1% de 400px
-        eyesElement.style.left = '112px'        // 32% de 350px
-        eyesElement.style.width = '126px'       // 36% de 350px
-        eyesElement.style.height = '144px'      // 36% de 400px
-        eyesElement.style.transform = 'none'
-        eyesElement.style.position = 'absolute'
-      }
-      
-      if (hatElement && slug.hat) {
-        originalStyles.hat = { 
-          top: hatElement.style.top,
-          left: hatElement.style.left,
-          width: hatElement.style.width,
-          height: hatElement.style.height,
-          transform: hatElement.style.transform
-        }
-        hatElement.style.top = '-8px'           // -2% de 400px
-        hatElement.style.left = '105px'         // 30% de 350px
-        hatElement.style.width = '140px'        // 40% de 350px
-        hatElement.style.height = '160px'       // 40% de 400px
-        hatElement.style.transform = 'none'
-        hatElement.style.position = 'absolute'
+      // 🎯 Usar método optimizado basado en el dispositivo
+      if (isMobile && screenWidth < 500) {
+        // Para móviles muy pequeños, usar método Canvas directo
+        await saveMobileOptimized()
+      } else {
+        // Para desktop y tablets, usar método estándar mejorado
+        await saveStandardMethod()
       }
 
-      // ⏰ Esperar un momento para que los estilos se apliquen
-      await new Promise(resolve => setTimeout(resolve, 100))
+    } catch (error) {
+      console.error('❌ Error guardando SlugDude:', error)
+      alert('Hubo un error al guardar la imagen. Por favor, inténtalo de nuevo.')
+    }
+  }
 
-      // 📸 Capturar con configuración mejorada
-      const canvas = await html2canvas(slugContainer, {
-        backgroundColor: null,
-        useCORS: true,
-        allowTaint: false,
-        scale: isMobile ? 3 : 3, // Misma escala para consistencia
-        width: 350,              // Tamaño fijo
-        height: 400,             // Tamaño fijo
-        logging: false,
-        x: 0,
-        y: 0,
-        scrollX: 0,
-        scrollY: 0,
-        foreignObjectRendering: false,
-        imageTimeout: 15000,
-        removeContainer: false,
+  // 📱 MÉTODO OPTIMIZADO PARA MÓVILES PEQUEÑOS
+  const saveMobileOptimized = async () => {
+    // Crear canvas directamente sin usar html2canvas
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+    if (!ctx) throw new Error('No se pudo crear contexto de canvas')
+    
+    canvas.width = 350
+    canvas.height = 400
+    
+    // Función auxiliar para cargar imágenes
+    const loadImage = (src: string): Promise<HTMLImageElement> => {
+      return new Promise((resolve, reject) => {
+        const img = new (window as any).Image() as HTMLImageElement
+        img.crossOrigin = 'anonymous'
+        img.onload = () => resolve(img)
+        img.onerror = reject
+        img.src = src
       })
-
-      // 🔄 Restaurar TODOS los estilos originales
-      slugContainer.style.width = originalStyles.container.width
-      slugContainer.style.height = originalStyles.container.height
-      slugContainer.style.transform = originalStyles.container.transform
+    }
+    
+    try {
+      // Cargar imagen base
+      const baseImg = await loadImage(getBaseSkinImage())
+      ctx.drawImage(baseImg, 87.5, 0, 175, 400) // Centrado y 70% del ancho
       
-      if (coatElement && slug.coat) {
-        coatElement.style.height = originalStyles.coat.height
-        coatElement.style.top = originalStyles.coat.top
-        coatElement.style.left = originalStyles.coat.left
-        coatElement.style.width = originalStyles.coat.width
-        coatElement.style.transform = originalStyles.coat.transform
+      // Cargar y dibujar coat si existe
+      if (slug.coat && getCoatImage()) {
+        const coatImg = await loadImage(getCoatImage()!)
+        ctx.drawImage(coatImg, 43.4, 98, 262.5, 245)
       }
       
-      if (mouthElement && slug.mouth) {
-        mouthElement.style.top = originalStyles.mouth.top
-        mouthElement.style.left = originalStyles.mouth.left
-        mouthElement.style.width = originalStyles.mouth.width
-        mouthElement.style.height = originalStyles.mouth.height
-        mouthElement.style.transform = originalStyles.mouth.transform
+      // Cargar y dibujar mouth si existe
+      if (slug.mouth && getMouthImage()) {
+        const mouthImg = await loadImage(getMouthImage()!)
+        ctx.drawImage(mouthImg, 115.5, 14, 122.5, 140)
       }
       
-      if (eyesElement && slug.eyes) {
-        eyesElement.style.top = originalStyles.eyes.top
-        eyesElement.style.left = originalStyles.eyes.left
-        eyesElement.style.width = originalStyles.eyes.width
-        eyesElement.style.height = originalStyles.eyes.height
-        eyesElement.style.transform = originalStyles.eyes.transform
+      // Cargar y dibujar eyes si existe
+      if (slug.eyes && getEyesImage()) {
+        const eyesImg = await loadImage(getEyesImage()!)
+        ctx.drawImage(eyesImg, 112, 4, 126, 144)
       }
       
-      if (hatElement && slug.hat) {
-        hatElement.style.top = originalStyles.hat.top
-        hatElement.style.left = originalStyles.hat.left
-        hatElement.style.width = originalStyles.hat.width
-        hatElement.style.height = originalStyles.hat.height
-        hatElement.style.transform = originalStyles.hat.transform
+      // Cargar y dibujar hat si existe (último para que esté encima)
+      if (slug.hat && getHatImage()) {
+        const hatImg = await loadImage(getHatImage()!)
+        ctx.drawImage(hatImg, 105, -8, 140, 160)
       }
-
-      // 📁 Crear y descargar el archivo PNG
+      
+      // Descargar imagen
       const link = document.createElement('a')
-      link.download = `mi-slugdude-${Date.now()}.png`
+      link.download = `mi-slugdude-mobile-${Date.now()}.png`
       link.href = canvas.toDataURL('image/png', 1.0)
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
-
-      console.log('✅ SlugDude guardado exitosamente!')
-    } catch (error) {
-      console.error('❌ Error guardando SlugDude:', error)
       
-      // 🔄 Forzar restauración en caso de error
-      const slugContainer = slugContainerRef.current
-      if (slugContainer) {
-        // Resetear estilos del contenedor
-        slugContainer.style.width = 'min(297px, 80vw)'
-        slugContainer.style.height = 'min(339px, 60vh)'
-        slugContainer.style.transform = 'translate(-50%, -50%)'
+      console.log('✅ SlugDude guardado exitosamente (método móvil optimizado)!')
+      
+    } catch (error) {
+      console.error('Error en método móvil, intentando método estándar...', error)
+      await saveStandardMethod()
+    }
+  }
+
+  // 🖥️ MÉTODO ESTÁNDAR MEJORADO PARA DESKTOP Y TABLETS
+  const saveStandardMethod = async () => {
+    // 🎯 Crear un contenedor temporal para la captura
+    const captureContainer = document.createElement('div')
+    captureContainer.style.position = 'fixed'
+    captureContainer.style.top = '-9999px'
+    captureContainer.style.left = '-9999px'
+    captureContainer.style.width = '350px'
+    captureContainer.style.height = '400px'
+    captureContainer.style.background = 'transparent'
+    captureContainer.style.zIndex = '-1'
+    captureContainer.style.overflow = 'visible'
+    
+    // 📦 Clonar solo la estructura necesaria del slug
+    const baseSlugImg = slugContainerRef.current?.querySelector('img[alt="Base Slug"]') as HTMLImageElement
+    
+    if (baseSlugImg) {
+      // Crear base slug
+      const baseDiv = document.createElement('div')
+      baseDiv.style.position = 'absolute'
+      baseDiv.style.width = '245px'      // 70% de 350px
+      baseDiv.style.height = '400px'
+      baseDiv.style.left = '50%'
+      baseDiv.style.top = '0'
+      baseDiv.style.transform = 'translateX(-50%)'
+      baseDiv.style.display = 'flex'
+      baseDiv.style.alignItems = 'center'
+      baseDiv.style.justifyContent = 'center'
+      
+      const baseImg = document.createElement('img')
+      baseImg.src = baseSlugImg.src
+      baseImg.style.width = '70%'
+      baseImg.style.height = '100%'
+      baseImg.style.objectFit = 'contain'
+      baseImg.crossOrigin = 'anonymous'
+      baseDiv.appendChild(baseImg)
+      captureContainer.appendChild(baseDiv)
+      
+      // 👔 Agregar coat si existe
+      if (slug.coat && getCoatImage()) {
+        const coatDiv = document.createElement('div')
+        coatDiv.style.position = 'absolute'
+        coatDiv.style.width = '262.5px'    // 75% de 350px
+        coatDiv.style.height = '245px'     // 70% de 350px
+        coatDiv.style.left = '43.4px'      // 12.4% de 350px
+        coatDiv.style.top = '98px'         // 24.5% de 400px
         
-        // Resetear elementos individuales
-        const elements = {
-          coat: slugContainer.querySelector('[alt="Coat"]')?.parentElement as HTMLElement,
-          mouth: slugContainer.querySelector('[alt="Mouth"]')?.parentElement as HTMLElement,
-          eyes: slugContainer.querySelector('[alt="Eyes"]')?.parentElement as HTMLElement,
-          hat: slugContainer.querySelector('[alt="Hat"]')?.parentElement as HTMLElement
-        }
+        const coatImg = document.createElement('img')
+        coatImg.src = getCoatImage()!
+        coatImg.style.width = '100%'
+        coatImg.style.height = '100%'
+        coatImg.style.objectFit = 'contain'
+        coatImg.crossOrigin = 'anonymous'
+        coatDiv.appendChild(coatImg)
+        captureContainer.appendChild(coatDiv)
+      }
+      
+      // 👄 Agregar mouth si existe
+      if (slug.mouth && getMouthImage()) {
+        const mouthDiv = document.createElement('div')
+        mouthDiv.style.position = 'absolute'
+        mouthDiv.style.width = '122.5px'   // 35% de 350px
+        mouthDiv.style.height = '140px'    // 35% de 400px
+        mouthDiv.style.left = '115.5px'    // 33% de 350px
+        mouthDiv.style.top = '14px'        // 3.5% de 400px
         
-        if (elements.coat && slug.coat) {
-          elements.coat.style.height = 'min(70%, 210px)'
-          elements.coat.style.top = '24.5%'
-          elements.coat.style.left = '12.4%'
-          elements.coat.style.width = 'min(75%, 225px)'
-          elements.coat.style.transform = 'translateX(-50%)'
-        }
+        const mouthImg = document.createElement('img')
+        mouthImg.src = getMouthImage()!
+        mouthImg.style.width = '100%'
+        mouthImg.style.height = '100%'
+        mouthImg.style.objectFit = 'contain'
+        mouthImg.crossOrigin = 'anonymous'
+        mouthDiv.appendChild(mouthImg)
+        captureContainer.appendChild(mouthDiv)
+      }
+      
+      // 👀 Agregar eyes si existe
+      if (slug.eyes && getEyesImage()) {
+        const eyesDiv = document.createElement('div')
+        eyesDiv.style.position = 'absolute'
+        eyesDiv.style.width = '126px'      // 36% de 350px
+        eyesDiv.style.height = '144px'     // 36% de 400px
+        eyesDiv.style.left = '112px'       // 32% de 350px
+        eyesDiv.style.top = '4px'          // 1% de 400px
         
-        if (elements.mouth && slug.mouth) {
-          elements.mouth.style.top = '3.5%'
-          elements.mouth.style.left = '33%'
-          elements.mouth.style.width = 'min(35%, 105px)'
-          elements.mouth.style.height = 'min(35%, 105px)'
-          elements.mouth.style.transform = 'translate(-50%, -50%)'
-        }
+        const eyesImg = document.createElement('img')
+        eyesImg.src = getEyesImage()!
+        eyesImg.style.width = '100%'
+        eyesImg.style.height = '100%'
+        eyesImg.style.objectFit = 'contain'
+        eyesImg.crossOrigin = 'anonymous'
+        eyesDiv.appendChild(eyesImg)
+        captureContainer.appendChild(eyesDiv)
+      }
+      
+      // 🎩 Agregar hat si existe
+      if (slug.hat && getHatImage()) {
+        const hatDiv = document.createElement('div')
+        hatDiv.style.position = 'absolute'
+        hatDiv.style.width = '140px'       // 40% de 350px
+        hatDiv.style.height = '160px'      // 40% de 400px
+        hatDiv.style.left = '105px'        // 30% de 350px
+        hatDiv.style.top = '-8px'          // -2% de 400px
+        hatDiv.style.zIndex = '10'         // Hat encima de todo
         
-        if (elements.eyes && slug.eyes) {
-          elements.eyes.style.top = '1%'
-          elements.eyes.style.left = '32%'
-          elements.eyes.style.width = 'min(36%, 108px)'
-          elements.eyes.style.height = 'min(36%, 108px)'
-          elements.eyes.style.transform = 'translate(-50%, -50%)'
-        }
-        
-        if (elements.hat && slug.hat) {
-          elements.hat.style.top = '-2%'
-          elements.hat.style.left = '30%'
-          elements.hat.style.width = 'min(40%, 120px)'
-          elements.hat.style.height = 'min(40%, 120px)'
-          elements.hat.style.transform = 'translateX(-50%)'
+        const hatImg = document.createElement('img')
+        hatImg.src = getHatImage()!
+        hatImg.style.width = '100%'
+        hatImg.style.height = '100%'
+        hatImg.style.objectFit = 'contain'
+        hatImg.crossOrigin = 'anonymous'
+        hatDiv.appendChild(hatImg)
+        captureContainer.appendChild(hatDiv)
+      }
+    }
+    
+    // 📎 Agregar al DOM temporalmente
+    document.body.appendChild(captureContainer)
+    
+    // ⏰ Esperar a que las imágenes se carguen
+    await new Promise(resolve => setTimeout(resolve, 500))
+    
+    // 📸 Capturar con configuración optimizada
+    const canvas = await html2canvas(captureContainer, {
+      backgroundColor: null,
+      useCORS: true,
+      allowTaint: false,
+      scale: 4, // Alta resolución para ambos dispositivos
+      width: 350,
+      height: 400,
+      logging: false,
+      x: 0,
+      y: 0,
+      scrollX: 0,
+      scrollY: 0,
+      foreignObjectRendering: false,
+      imageTimeout: 30000,
+      removeContainer: false,
+      onclone: (clonedDoc) => {
+        // Asegurar que el contenedor clonado tenga los estilos correctos
+        const clonedContainer = clonedDoc.body.lastChild as HTMLElement
+        if (clonedContainer) {
+          clonedContainer.style.position = 'relative'
+          clonedContainer.style.top = '0'
+          clonedContainer.style.left = '0'
+          clonedContainer.style.zIndex = '1'
         }
       }
+    })
+    
+    // 🧹 Limpiar el contenedor temporal
+    document.body.removeChild(captureContainer)
+    
+    // 📁 Crear y descargar el archivo PNG
+    const link = document.createElement('a')
+    link.download = `mi-slugdude-${Date.now()}.png`
+    link.href = canvas.toDataURL('image/png', 1.0)
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+
+    console.log('✅ SlugDude guardado exitosamente (método estándar)!')
+  }
+
+  // 🔧 FUNCIÓN ALTERNATIVA ESPECÍFICA PARA MÓVILES USANDO CANVAS DIRECTO
+  const saveSlugAsMobileImage = async () => {
+    try {
+      // Crear canvas directamente
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
+      if (!ctx) throw new Error('No se pudo crear contexto de canvas')
+      
+      // Tamaño estándar para móviles
+      canvas.width = 350
+      canvas.height = 400
+      
+      // Función auxiliar para cargar imágenes
+      const loadImage = (src: string): Promise<HTMLImageElement> => {
+        return new Promise((resolve, reject) => {
+          const img = new (window as any).Image() as HTMLImageElement
+          img.crossOrigin = 'anonymous'
+          img.onload = () => resolve(img)
+          img.onerror = () => {
+            console.warn(`Error cargando imagen: ${src}`)
+            reject(new Error(`No se pudo cargar: ${src}`))
+          }
+          img.src = src
+        })
+      }
+      
+      // Limpiar canvas con fondo transparente
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      
+      // Dibujar imagen base (siempre presente)
+      try {
+        const baseImg = await loadImage(getBaseSkinImage())
+        // Centrar y redimensionar base slug
+        const baseWidth = 245  // 70% de 350
+        const baseHeight = 400
+        const baseX = (350 - baseWidth) / 2
+        ctx.drawImage(baseImg, baseX, 0, baseWidth, baseHeight)
+      } catch (error) {
+        console.error('Error cargando imagen base:', error)
+        throw error
+      }
+      
+      // Dibujar coat si existe
+      if (slug.coat && getCoatImage()) {
+        try {
+          const coatImg = await loadImage(getCoatImage()!)
+          ctx.drawImage(coatImg, 43.4, 98, 262.5, 245)
+        } catch (error) {
+          console.warn('Error cargando coat:', error)
+        }
+      }
+      
+      // Dibujar mouth si existe
+      if (slug.mouth && getMouthImage()) {
+        try {
+          const mouthImg = await loadImage(getMouthImage()!)
+          ctx.drawImage(mouthImg, 115.5, 14, 122.5, 140)
+        } catch (error) {
+          console.warn('Error cargando mouth:', error)
+        }
+      }
+      
+      // Dibujar eyes si existe
+      if (slug.eyes && getEyesImage()) {
+        try {
+          const eyesImg = await loadImage(getEyesImage()!)
+          ctx.drawImage(eyesImg, 112, 4, 126, 144)
+        } catch (error) {
+          console.warn('Error cargando eyes:', error)
+        }
+      }
+      
+      // Dibujar hat si existe (último para que esté encima)
+      if (slug.hat && getHatImage()) {
+        try {
+          const hatImg = await loadImage(getHatImage()!)
+          ctx.drawImage(hatImg, 105, -8, 140, 160)
+        } catch (error) {
+          console.warn('Error cargando hat:', error)
+        }
+      }
+      
+      // Convertir a blob para mejor calidad
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const url = URL.createObjectURL(blob)
+          const link = document.createElement('a')
+          link.download = `mi-slugdude-mobile-${Date.now()}.png`
+          link.href = url
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+          URL.revokeObjectURL(url)
+          console.log('✅ SlugDude guardado exitosamente (Canvas móvil)!')
+        }
+      }, 'image/png', 1.0)
+      
+    } catch (error) {
+      console.error('❌ Error en método Canvas móvil:', error)
+      alert('Error al guardar la imagen. Intentando método alternativo...')
+      
+             // Fallback al método original con html2canvas
+       try {
+         await saveStandardMethod()
+       } catch (fallbackError) {
+         console.error('❌ Todos los métodos fallaron:', fallbackError)
+         alert('No se pudo guardar la imagen. Por favor, inténtalo de nuevo.')
+       }
     }
   }
 
@@ -693,7 +836,14 @@ export default function DressUpGame() {
                   {/* Botones de acción - Responsive */}
                   <div className="flex gap-2 w-full sm:w-auto justify-center sm:justify-end">
                     <Button 
-                      onClick={saveSlugAsImage}
+                      onClick={() => {
+                        const isMobile = window.innerWidth < 768
+                        if (isMobile && window.innerWidth < 500) {
+                          saveSlugAsMobileImage()
+                        } else {
+                          saveSlugAsImage()
+                        }
+                      }}
                       size="sm"
                       className="bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold hover:scale-105 transition-transform duration-300 text-xs sm:text-sm flex-1 sm:flex-none"
                     >
