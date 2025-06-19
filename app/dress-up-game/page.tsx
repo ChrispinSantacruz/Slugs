@@ -275,10 +275,10 @@ export default function DressUpGame() {
     const baseSlugImg = slugContainerRef.current?.querySelector('img[alt="Base Slug"]') as HTMLImageElement
     
     if (baseSlugImg) {
-      // Crear base slug
+      // Crear base slug - Más ancho para desktop
       const baseDiv = document.createElement('div')
       baseDiv.style.position = 'absolute'
-      baseDiv.style.width = '245px'      // 70% de 350px
+      baseDiv.style.width = '297.5px'    // 85% de 350px (más ancho para desktop)
       baseDiv.style.height = '400px'
       baseDiv.style.left = '50%'
       baseDiv.style.top = '0'
@@ -289,7 +289,7 @@ export default function DressUpGame() {
       
       const baseImg = document.createElement('img')
       baseImg.src = baseSlugImg.src
-      baseImg.style.width = '70%'
+      baseImg.style.width = '85%'        // 🖥️ Más ancho para desktop
       baseImg.style.height = '100%'
       baseImg.style.objectFit = 'contain'
       baseImg.crossOrigin = 'anonymous'
@@ -303,7 +303,7 @@ export default function DressUpGame() {
         coatDiv.style.width = '262.5px'    // 75% de 350px
         coatDiv.style.height = '245px'     // 70% de 350px
         coatDiv.style.left = '43.4px'      // 12.4% de 350px
-        coatDiv.style.top = '98px'         // 24.5% de 400px
+        coatDiv.style.top = '112px'        // 28% de 400px (más abajo para desktop)
         
         const coatImg = document.createElement('img')
         coatImg.src = getCoatImage()!
@@ -322,7 +322,7 @@ export default function DressUpGame() {
         mouthDiv.style.width = '122.5px'   // 35% de 350px
         mouthDiv.style.height = '140px'    // 35% de 400px
         mouthDiv.style.left = '115.5px'    // 33% de 350px
-        mouthDiv.style.top = '14px'        // 3.5% de 400px
+        mouthDiv.style.top = '18px'        // 4.5% de 400px (un pelin más arriba)
         
         const mouthImg = document.createElement('img')
         mouthImg.src = getMouthImage()!
@@ -341,7 +341,7 @@ export default function DressUpGame() {
         eyesDiv.style.width = '126px'      // 36% de 350px
         eyesDiv.style.height = '144px'     // 36% de 400px
         eyesDiv.style.left = '112px'       // 32% de 350px
-        eyesDiv.style.top = '4px'          // 1% de 400px
+        eyesDiv.style.top = '8px'          // 2% de 400px (un pelin más arriba)
         
         const eyesImg = document.createElement('img')
         eyesImg.src = getEyesImage()!
@@ -360,7 +360,7 @@ export default function DressUpGame() {
         hatDiv.style.width = '140px'       // 40% de 350px
         hatDiv.style.height = '160px'      // 40% de 400px
         hatDiv.style.left = '105px'        // 30% de 350px
-        hatDiv.style.top = '-8px'          // -2% de 400px
+        hatDiv.style.top = '-4px'          // -1% de 400px (un pelin más arriba)
         hatDiv.style.zIndex = '10'         // Hat encima de todo
         
         const hatImg = document.createElement('img')
@@ -671,7 +671,7 @@ export default function DressUpGame() {
                             alt="Base Slug"
                             width={800}
                             height={800}
-                            className="w-[70%] h-full object-contain" // 🎯 Más estrecho para mejor proporción
+                            className="w-[85%] sm:w-[70%] h-full object-contain" // 🎯 Más ancho en desktop, más estrecho en móvil
                             quality={100}
                             priority
                           />
@@ -687,7 +687,7 @@ export default function DressUpGame() {
                               exit={{ scale: 0, opacity: 0 }}
                               className="absolute transform -translate-x-1/2 -translate-y-1/2"
                               style={{ 
-                                top: '3.5%',
+                                top: window.innerWidth >= 768 ? '8%' : '3.5%', // 🖥️ Más abajo en desktop
                                 left: '33%',
                                 width: 'min(35%, 105px)',    // 📱 Responsive width
                                 height: 'min(35%, 105px)',   // 📱 Responsive height
@@ -717,7 +717,7 @@ export default function DressUpGame() {
                               exit={{ y: -50, opacity: 0 }}
                               className="absolute transform -translate-x-1/2"
                               style={{ 
-                                top: '-2%',
+                                top: window.innerWidth >= 768 ? '2%' : '-2%', // 🖥️ Más abajo en desktop
                                 left: '30%',
                                 width: 'min(40%, 120px)',    // 📱 Responsive width
                                 height: 'min(40%, 120px)',   // 📱 Responsive height
@@ -747,7 +747,7 @@ export default function DressUpGame() {
                               exit={{ scale: 0, opacity: 0 }}
                               className="absolute transform -translate-x-1/2"
                               style={{ 
-                                top: '24.5%',
+                                top: window.innerWidth >= 768 ? '28%' : '24.5%', // 🖥️ Más abajo en desktop
                                 left: '12.4%',
                                 width: 'min(75%, 225px)',    // 📱 Responsive width
                                 height: 'min(70%, 210px)',   // 📱 Responsive height
@@ -777,7 +777,7 @@ export default function DressUpGame() {
                               exit={{ scale: 0, opacity: 0 }}
                               className="absolute transform -translate-x-1/2 -translate-y-1/2"
                               style={{ 
-                                top: '1%',
+                                top: window.innerWidth >= 768 ? '5%' : '1%', // 🖥️ Más abajo en desktop
                                 left: '32%',
                                 width: 'min(36%, 108px)',    // 📱 Responsive width
                                 height: 'min(36%, 108px)',   // 📱 Responsive height
