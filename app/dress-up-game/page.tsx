@@ -153,8 +153,6 @@ export default function DressUpGame() {
     return hat?.src || null
   }
 
-
-
   // Función para obtener la imagen del abrigo seleccionado
   const getCoatImage = () => {
     if (!slug.coat) return null
@@ -241,14 +239,15 @@ export default function DressUpGame() {
         style.height = '40%'   // Misma altura que en el juego
       }
 
-      // 📸 Capturar solo el contenedor del slug con configuración optimizada
+      // 📸 Capturar solo el contenedor del slug con configuración optimizada y responsive
+      const slugRect = slugContainerRef.current.getBoundingClientRect()
       const canvas = await html2canvas(slugContainerRef.current, {
         backgroundColor: null, // Fondo transparente
         useCORS: true,
         allowTaint: false,
         scale: 3, // Mayor resolución
-        width: 371,
-        height: 424,
+        width: Math.min(297, window.innerWidth * 0.8), // 📱 Ancho responsive
+        height: Math.min(339, window.innerHeight * 0.6), // 📱 Alto responsive
         logging: false,
         x: 0,
         y: 0,
@@ -356,13 +355,13 @@ export default function DressUpGame() {
       </div>
 
       <div className="relative z-20">
-        {/* Header con imagen de navbar */}
+        {/* Header con imagen de navbar - Responsive */}
         <header 
-          className="relative h-32 w-full"
+          className="relative h-24 sm:h-28 lg:h-32 w-full overflow-hidden"
           style={{
             backgroundImage: `url('/images/backgrounds/slug_top_bar_game-02.png')`,
             backgroundSize: 'contain',
-            backgroundPosition: 'top',
+            backgroundPosition: 'center top',
             backgroundRepeat: 'no-repeat',
           }}
         >
@@ -370,14 +369,15 @@ export default function DressUpGame() {
           <div className="absolute inset-0 bg-black/10" />
           
           {/* Contenido del header */}
-          <div className="relative z-10 container mx-auto h-full flex items-center justify-between px-6">
+          <div className="relative z-10 container mx-auto h-full flex items-center justify-between px-3 sm:px-6">
             {/* Botón de retroceso - solo ícono */}
             <Link href="/">
               <Button 
                 variant="ghost" 
+                size="sm"
                 className="text-white hover:text-[#BBFF00] bg-black/30 hover:bg-black/50 backdrop-blur-sm border border-white/20"
               >
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4" />
               </Button>
             </Link>
             
@@ -389,182 +389,193 @@ export default function DressUpGame() {
           </div>
         </header>
 
-        <div className="container mx-auto p-6">
-          <div className="grid lg:grid-cols-3 gap-8">
+        <div className="container mx-auto p-3 sm:p-6">
+          <div className="grid lg:grid-cols-3 gap-4 lg:gap-8">
             {/* Slug Display */}
-            <div className="lg:col-span-1 flex flex-col items-center">
+            <div className="lg:col-span-1 flex flex-col items-center order-1 lg:order-none">
               <Card className="bg-transparent border-transparent sticky top-6 w-full">
 
                 <CardContent className="flex flex-col items-center justify-center p-4">
-                  {/* 🎯 CONTENEDOR PRINCIPAL - MARCO Y SLUG MÁS GRANDES VERTICALMENTE */}
-                  <div className="relative mb-6" style={{ width: '450px', height: '500px' }}>
-                    
-                    {/* 📦 MARCO - INDEPENDIENTE Y MÁS GRANDE */}
-                    <motion.div
-                      className="absolute inset-0"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.3 }}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        backgroundImage: `url('/images/Game/GAME avatars/slugs_box-02.png')`,
-                        backgroundSize: 'contain',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center',
-                        zIndex: 10, // Marco encima del slug
-                      }}
-                    />
-
-                    {/* 🐌 SLUG - MÁS GRANDE VERTICALMENTE */}
+                  {/* 🎯 CONTENEDOR PRINCIPAL - MARCO Y SLUG RESPONSIVE */}
+                  <div className="relative mb-6 w-full flex justify-center">
                     <div 
-                      ref={slugContainerRef}
-                      className="absolute"
-                                              style={{ 
-                          width: '371px',   // 📐 SLUG 7% MÁS PEQUEÑO (399 * 0.93)
-                          height: '424px',  // 📐 SLUG 7% MÁS PEQUEÑO (456 * 0.93)
-                        top: '50%',       // 📍 CENTRADO VERTICAL EXACTO
-                        left: '50%',      // 📍 CENTRADO HORIZONTAL EXACTO
-                        transform: 'translate(-50%, -50%)', // 📍 CENTRADO PERFECTO
-                        zIndex: 5,        // Slug debajo del marco
+                      className="relative"
+                      style={{ 
+                        width: 'min(350px, 85vw)',   // 📱 Responsive: max 350px o 85% del viewport
+                        height: 'min(400px, 70vh)',  // 📱 Responsive: max 400px o 70% de altura
+                        maxWidth: '350px',           // 📐 Máximo absoluto para pantallas grandes
+                        aspectRatio: '7/8'           // 📐 Mantener proporción
                       }}
                     >
-                      <div className="relative w-full h-full">
-                      {/* Base Slug Skin */}
+                    
+                      {/* 📦 MARCO - RESPONSIVE */}
                       <motion.div
-                        key={slug.baseSkin}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className="absolute inset-0 flex items-center justify-center"
+                        className="absolute inset-0"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.3 }}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          backgroundImage: `url('/images/Game/GAME avatars/slugs_box-02.png')`,
+                          backgroundSize: 'contain',
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'center',
+                          zIndex: 10, // Marco encima del slug
+                        }}
+                      />
+
+                      {/* 🐌 SLUG - RESPONSIVE */}
+                      <div 
+                        ref={slugContainerRef}
+                        className="absolute"
+                        style={{ 
+                          width: 'min(297px, 80vw)',   // 📱 Proporcional al contenedor (350 * 0.85)
+                          height: 'min(339px, 60vh)',  // 📱 Proporcional al contenedor (400 * 0.85)
+                          top: '50%',                   // 📍 CENTRADO VERTICAL EXACTO
+                          left: '50%',                  // 📍 CENTRADO HORIZONTAL EXACTO
+                          transform: 'translate(-50%, -50%)', // 📍 CENTRADO PERFECTO
+                          zIndex: 5,                    // Slug debajo del marco
+                        }}
                       >
-                        <Image
-                          src={getBaseSkinImage()}
-                          alt="Base Slug"
-                          width={800}
-                          height={800}
-                          className="w-[70%] h-full object-contain" // 🎯 Más estrecho para mejor proporción
-                          quality={100}
-                          priority
-                        />
-                      </motion.div>
+                        <div className="relative w-full h-full">
+                        {/* Base Slug Skin */}
+                        <motion.div
+                          key={slug.baseSkin}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="absolute inset-0 flex items-center justify-center"
+                        >
+                          <Image
+                            src={getBaseSkinImage()}
+                            alt="Base Slug"
+                            width={800}
+                            height={800}
+                            className="w-[70%] h-full object-contain" // 🎯 Más estrecho para mejor proporción
+                            quality={100}
+                            priority
+                          />
+                        </motion.div>
 
-                      {/* Mouth Overlay - Ajustado al nuevo tamaño */}
-                      <AnimatePresence>
-                        {slug.mouth && getMouthImage() && (
-                          <motion.div
-                            key={`mouth-${slug.mouth}`}
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0, opacity: 0 }}
-                            // 📍 POSICIÓN DE LA BOCA - 15% MÁS A LA IZQUIERDA:
-                            className="absolute top-[3.5%] left-[33%] transform -translate-x-1/2 -translate-y-1/2"
-                            style={{ 
-                              width: '35%', // Ajustado al slug más grande
-                              height: '35%', // Proporción vertical
-                              zIndex: 8 // Boca debajo de gorros
-                            }}
-                          >
-                            <Image
-                              src={getMouthImage()!}
-                              alt="Mouth"
-                              width={400} // Aumentado para mejor calidad
-                              height={400} // Aumentado para mejor calidad
-                              className="w-full h-full object-contain"
-                              quality={100} // Máxima calidad
-                              priority
-                            />
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                        {/* Mouth Overlay - Responsive */}
+                        <AnimatePresence>
+                          {slug.mouth && getMouthImage() && (
+                            <motion.div
+                              key={`mouth-${slug.mouth}`}
+                              initial={{ scale: 0, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              exit={{ scale: 0, opacity: 0 }}
+                              className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                              style={{ 
+                                top: '3.5%',
+                                left: '33%',
+                                width: 'min(35%, 105px)',    // 📱 Responsive width
+                                height: 'min(35%, 105px)',   // 📱 Responsive height
+                                zIndex: 8 // Boca debajo de gorros
+                              }}
+                            >
+                              <Image
+                                src={getMouthImage()!}
+                                alt="Mouth"
+                                width={400}
+                                height={400}
+                                className="w-full h-full object-contain"
+                                quality={100}
+                                priority
+                              />
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
 
-                      {/* Hat Overlay - Ajustado al nuevo tamaño */}
-                      <AnimatePresence>
-                        {slug.hat && getHatImage() && (
-                          <motion.div
-                            key={`hat-${slug.hat}`}
-                            initial={{ y: -50, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: -50, opacity: 0 }}
-                            // 📍 POSICIÓN DEL GORRO - 15% MÁS A LA IZQUIERDA:
-                            className="absolute top-[-2%] left-[30%] transform -translate-x-1/2"
-                            style={{ 
-                              width: '40%', // Ajustado al slug más grande
-                              height: '40%', // Proporción vertical
-                              zIndex: 25 // Gorros en primer plano
-                            }}
-                          >
-                            <Image
-                              src={getHatImage()!}
-                              alt="Hat"
-                              width={500} // Aumentado para mejor calidad
-                              height={500} // Aumentado para mejor calidad
-                              className="w-full h-full object-contain"
-                              quality={100} // Máxima calidad
-                              priority
-                            />
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                        {/* Hat Overlay - Responsive */}
+                        <AnimatePresence>
+                          {slug.hat && getHatImage() && (
+                            <motion.div
+                              key={`hat-${slug.hat}`}
+                              initial={{ y: -50, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              exit={{ y: -50, opacity: 0 }}
+                              className="absolute transform -translate-x-1/2"
+                              style={{ 
+                                top: '-2%',
+                                left: '30%',
+                                width: 'min(40%, 120px)',    // 📱 Responsive width
+                                height: 'min(40%, 120px)',   // 📱 Responsive height
+                                zIndex: 25 // Gorros en primer plano
+                              }}
+                            >
+                              <Image
+                                src={getHatImage()!}
+                                alt="Hat"
+                                width={500}
+                                height={500}
+                                className="w-full h-full object-contain"
+                                quality={100}
+                                priority
+                              />
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
 
-                      {/* Coat Overlay - Restaurado */}
-                      <AnimatePresence>
-                        {slug.coat && getCoatImage() && (
-                          <motion.div
-                            key={`coat-${slug.coat}`}
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0, opacity: 0 }}
-                            // 📍 POSICIÓN DEL ABRIGO - BAJADA UN POCO MÁS:
-                            className="absolute top-[24.5%] left-[12.4%] transform -translate-x-1/2"
-                            style={{ 
-                              width: '75%', 
-                              height: '70%',
-                              zIndex: 5 
-                            }}
-                          >
-                            <Image
-                              src={getCoatImage()!}
-                              alt="Coat"
-                              width={600} // Aumentado para mejor calidad
-                              height={600} // Aumentado para mejor calidad
-                              className="w-full h-full object-contain"
-                              quality={100} // Máxima calidad
-                              priority
-                            />
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                        {/* Coat Overlay - Responsive */}
+                        <AnimatePresence>
+                          {slug.coat && getCoatImage() && (
+                            <motion.div
+                              key={`coat-${slug.coat}`}
+                              initial={{ scale: 0, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              exit={{ scale: 0, opacity: 0 }}
+                              className="absolute transform -translate-x-1/2"
+                              style={{ 
+                                top: '24.5%',
+                                left: '12.4%',
+                                width: 'min(75%, 225px)',    // 📱 Responsive width
+                                height: 'min(70%, 210px)',   // 📱 Responsive height
+                                zIndex: 5 
+                              }}
+                            >
+                              <Image
+                                src={getCoatImage()!}
+                                alt="Coat"
+                                width={600}
+                                height={600}
+                                className="w-full h-full object-contain"
+                                quality={100}
+                                priority
+                              />
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
 
-                      {/* Eyes - Ajustado al nuevo tamaño */}
-                      <AnimatePresence>
-                        {slug.eyes && getEyesImage() && (
-                          <motion.div
-                            key={`eyes-${slug.eyes}`}
-                            initial={{ scale: 0, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0, opacity: 0 }}
-                            // 📍 POSICIÓN DE LOS OJOS - 15% MÁS A LA IZQUIERDA:
-                            className="absolute top-[1%] left-[32%] transform -translate-x-1/2 -translate-y-1/2"
-                            style={{ 
-                              width: '36%',
-                              height: '36%', // Proporción vertical
-                              zIndex: 9 // Ojos debajo de gorros pero encima de boca
-                            }}
-                          >
-                            <Image
-                              src={getEyesImage()!}
-                              alt="Eyes"
-                              width={400} // Aumentado para mejor calidad
-                              height={400} // Aumentado para mejor calidad
-                              className="w-full h-full object-contain"
-                              quality={100} // Máxima calidad
-                              priority
-                            />
-                          </motion.div>
-                        )}
-
-
-
-                      </AnimatePresence>
+                        {/* Eyes - Responsive */}
+                        <AnimatePresence>
+                          {slug.eyes && getEyesImage() && (
+                            <motion.div
+                              key={`eyes-${slug.eyes}`}
+                              initial={{ scale: 0, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              exit={{ scale: 0, opacity: 0 }}
+                              className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                              style={{ 
+                                top: '1%',
+                                left: '32%',
+                                width: 'min(36%, 108px)',    // 📱 Responsive width
+                                height: 'min(36%, 108px)',   // 📱 Responsive height
+                                zIndex: 9 // Ojos debajo de gorros pero encima de boca
+                              }}
+                            >
+                              <Image
+                                src={getEyesImage()!}
+                                alt="Eyes"
+                                width={400}
+                                height={400}
+                                className="w-full h-full object-contain"
+                                quality={100}
+                                priority
+                              />
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -574,21 +585,22 @@ export default function DressUpGame() {
             </div>
 
             {/* Customization Options */}
-            <div className="lg:col-span-2">
-              <div className="space-y-6">
-                {/* Category Tabs + Botón Guardar */}
-                <div className="flex flex-wrap gap-2 items-center justify-between mb-4">
-                  <div className="flex flex-wrap gap-2">
+            <div className="lg:col-span-2 order-2 lg:order-none">
+              <div className="space-y-4 lg:space-y-6">
+                {/* Category Tabs + Botón Guardar - Responsive */}
+                <div className="flex flex-col sm:flex-row flex-wrap gap-2 items-start sm:items-center justify-between mb-4">
+                  <div className="flex flex-wrap gap-2 w-full sm:w-auto">
                     {Object.keys(customizationOptions).map((category) => (
                       <Button
                         key={category}
                         onClick={() => setActiveCategory(category as keyof SlugCustomization)}
                         variant={activeCategory === category ? "default" : "outline"}
-                        className={
+                        size="sm"
+                        className={`text-xs sm:text-sm ${
                           activeCategory === category
                             ? "bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold"
                             : "border-[#BBFF00]/50 text-[#BBFF00] hover:bg-[#BBFF00]/10"
-                        }
+                        }`}
                       >
                         {category === 'baseSkin' ? 'Base Skin' :
                          category === 'eyes' ? 'Eyes' :
@@ -600,53 +612,57 @@ export default function DressUpGame() {
                     ))}
                   </div>
                   
-                  {/* Botones de acción */}
-                  <div className="flex gap-2">
+                  {/* Botones de acción - Responsive */}
+                  <div className="flex gap-2 w-full sm:w-auto justify-center sm:justify-end">
                     <Button 
                       onClick={saveSlugAsImage}
-                      className="bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold hover:scale-105 transition-transform duration-300"
+                      size="sm"
+                      className="bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold hover:scale-105 transition-transform duration-300 text-xs sm:text-sm flex-1 sm:flex-none"
                     >
-                      <Download className="mr-2 h-4 w-4" />
+                      <Download className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
                       Save
                     </Button>
                     <Button
                       onClick={randomizeSlug}
                       variant="outline"
+                      size="sm"
                       className="border-[#BBFF00] text-[#BBFF00] hover:bg-[#BBFF00] hover:text-black"
                     >
-                      <Shuffle className="h-4 w-4" />
+                      <Shuffle className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>
                     <Button
                       onClick={resetSlug}
                       variant="outline"
+                      size="sm"
                       className="border-[#70FF00] text-[#70FF00] hover:bg-[#70FF00] hover:text-black"
                     >
-                      <RotateCcw className="h-4 w-4" />
+                      <RotateCcw className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>
                     <Button
                       variant="outline"
+                      size="sm"
                       className="border-[#BBFF00] text-[#BBFF00] hover:bg-[#BBFF00] hover:text-black"
                     >
-                      <Share2 className="h-4 w-4" />
+                      <Share2 className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Button>
                   </div>
                 </div>
 
-                {/* Options Grid */}
+                {/* Options Grid - Responsive */}
                 <Card 
                   className="relative bg-transparent border-2 border-[#BBFF00] rounded-lg backdrop-blur-md"
                   style={{
                     background: 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,20,0,0.75) 50%, rgba(0,40,0,0.85) 100%)',
                     boxShadow: '0 0 25px rgba(187, 255, 0, 0.4), inset 0 0 25px rgba(187, 255, 0, 0.15)',
-                    padding: '20px',
+                    padding: '10px sm:20px',
                     position: 'relative',
                   }}
                 >
                   {/* Efectos neon adicionales */}
                   <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-[#BBFF00]/20 to-transparent animate-pulse" />
                   <div className="relative z-10">
-                  <CardHeader>
-                    <CardTitle className="text-[#BBFF00] capitalize">
+                  <CardHeader className="pb-3 sm:pb-6">
+                    <CardTitle className="text-[#BBFF00] capitalize text-lg sm:text-xl">
                       Choose {activeCategory === 'baseSkin' ? 'Base Skin' :
                               activeCategory === 'eyes' ? 'Eyes' :
                               activeCategory === 'mouth' ? 'Mouth' :
@@ -655,13 +671,13 @@ export default function DressUpGame() {
                               activeCategory}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-2">
+                  <CardContent className="pt-0">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-2">
                       {/* Clear Option para categorías que no son baseSkin */}
                       {activeCategory !== 'baseSkin' && (
                         <motion.button
                           onClick={() => updateSlug(activeCategory, "")}
-                          className={`aspect-square rounded-lg border-2 flex items-center justify-center text-xl transition-all duration-300 ${
+                          className={`aspect-square rounded-lg border-2 flex items-center justify-center text-lg sm:text-xl transition-all duration-300 ${
                             slug[activeCategory] === ""
                               ? "border-[#BBFF00] bg-[#BBFF00]/20"
                               : "border-gray-600 hover:border-[#BBFF00]/50"
@@ -704,40 +720,40 @@ export default function DressUpGame() {
                   </div>
                 </Card>
 
-                {/* Stats */}
+                {/* Stats - Responsive */}
                 <Card 
                   className="relative bg-transparent border-2 border-[#BBFF00] rounded-lg backdrop-blur-md"
                   style={{
                     background: 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,20,0,0.75) 50%, rgba(0,40,0,0.85) 100%)',
                     boxShadow: '0 0 25px rgba(187, 255, 0, 0.4), inset 0 0 25px rgba(187, 255, 0, 0.15)',
-                    padding: '20px',
+                    padding: '10px sm:20px',
                     position: 'relative',
                   }}
                 >
                   {/* Efectos neon adicionales */}
                   <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-[#BBFF00]/20 to-transparent animate-pulse" />
                   <div className="relative z-10">
-                  <CardContent className="p-6">
-                    <h3 className="text-[#70FF00] font-bold mb-4">SlugDude Stats</h3>
+                  <CardContent className="p-3 sm:p-6">
+                    <h3 className="text-[#70FF00] font-bold mb-4 text-lg sm:text-xl">SlugDude Stats</h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                              <div className="text-center">
-                          <div className="text-2xl font-bold text-[#BBFF00]">
-                            {Object.values(slug).filter(Boolean).length}
-                          </div>
-                          <div className="text-sm text-gray-400">Accessories</div>
+                      <div className="text-center">
+                        <div className="text-xl sm:text-2xl font-bold text-[#BBFF00]">
+                          {Object.values(slug).filter(Boolean).length}
                         </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-[#BBFF00]">{Math.floor(Math.random() * 100) + 50}</div>
-                          <div className="text-sm text-gray-400">Slime Power</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-[#BBFF00]">{Math.floor(Math.random() * 10) + 1}</div>
-                          <div className="text-sm text-gray-400">Rarity</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-[#BBFF00]">∞</div>
-                          <div className="text-sm text-gray-400">Immortality</div>
-                        </div>
+                        <div className="text-xs sm:text-sm text-gray-400">Accessories</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-xl sm:text-2xl font-bold text-[#BBFF00]">{Math.floor(Math.random() * 100) + 50}</div>
+                        <div className="text-xs sm:text-sm text-gray-400">Slime Power</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-xl sm:text-2xl font-bold text-[#BBFF00]">{Math.floor(Math.random() * 10) + 1}</div>
+                        <div className="text-xs sm:text-sm text-gray-400">Rarity</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-xl sm:text-2xl font-bold text-[#BBFF00]">∞</div>
+                        <div className="text-xs sm:text-sm text-gray-400">Immortality</div>
+                      </div>
                     </div>
                   </CardContent>
                   </div>
@@ -747,7 +763,6 @@ export default function DressUpGame() {
           </div>
         </div>
       </div>
-
 
     </div>
   )
