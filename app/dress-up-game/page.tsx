@@ -222,25 +222,25 @@ export default function DressUpGame() {
       // Cargar y dibujar coat si existe - ESCALA 5X
       if (slug.coat && getCoatImage()) {
         const coatImg = await loadImage(getCoatImage()!)
-        ctx.drawImage(coatImg, 217, 600, 1312.5, 1225) // 5X escalado, posición bajada (30% = 600px)
+        ctx.drawImage(coatImg, 217, 580, 1312.5, 1225) // 5X escalado, posición ajustada (29% = 580px)
       }
       
       // Cargar y dibujar mouth si existe - ESCALA 5X
       if (slug.mouth && getMouthImage()) {
         const mouthImg = await loadImage(getMouthImage()!)
-        ctx.drawImage(mouthImg, 577.5, 180, 612.5, 700) // 5X escalado, posición bajada (9% = 180px)
+        ctx.drawImage(mouthImg, 577.5, 160, 612.5, 700) // 5X escalado, posición ajustada (8% = 160px)
       }
       
       // Cargar y dibujar eyes si existe - ESCALA 5X
       if (slug.eyes && getEyesImage()) {
         const eyesImg = await loadImage(getEyesImage()!)
-        ctx.drawImage(eyesImg, 560, 120, 630, 720) // 5X escalado, posición bajada (6% = 120px)
+        ctx.drawImage(eyesImg, 560, 100, 630, 720) // 5X escalado, posición ajustada (5% = 100px)
       }
       
       // Cargar y dibujar hat si existe (último para que esté encima) - ESCALA 5X
       if (slug.hat && getHatImage()) {
         const hatImg = await loadImage(getHatImage()!)
-        ctx.drawImage(hatImg, 525, 60, 700, 800) // 5X escalado, posición bajada (3% = 60px)
+        ctx.drawImage(hatImg, 525, 40, 700, 800) // 5X escalado, posición ajustada (2% = 40px)
       }
       
       // Descargar imagen
@@ -469,7 +469,7 @@ export default function DressUpGame() {
       if (slug.coat && getCoatImage()) {
         try {
           const coatImg = await loadImage(getCoatImage()!)
-          ctx.drawImage(coatImg, 260.4, 720, 1575, 1470) // 6X escalado, posición bajada
+          ctx.drawImage(coatImg, 260.4, 696, 1575, 1470) // 6X escalado, posición ajustada (29% = 696px)
         } catch (error) {
           console.warn('Error cargando coat:', error)
         }
@@ -479,7 +479,7 @@ export default function DressUpGame() {
       if (slug.mouth && getMouthImage()) {
         try {
           const mouthImg = await loadImage(getMouthImage()!)
-          ctx.drawImage(mouthImg, 693, 216, 735, 840) // 6X escalado, posición bajada (9% = 216px)
+          ctx.drawImage(mouthImg, 693, 192, 735, 840) // 6X escalado, posición ajustada (8% = 192px)
         } catch (error) {
           console.warn('Error cargando mouth:', error)
         }
@@ -489,7 +489,7 @@ export default function DressUpGame() {
       if (slug.eyes && getEyesImage()) {
         try {
           const eyesImg = await loadImage(getEyesImage()!)
-          ctx.drawImage(eyesImg, 672, 144, 756, 864) // 6X escalado, posición bajada (6% = 144px)
+          ctx.drawImage(eyesImg, 672, 120, 756, 864) // 6X escalado, posición ajustada (5% = 120px)
         } catch (error) {
           console.warn('Error cargando eyes:', error)
         }
@@ -499,7 +499,7 @@ export default function DressUpGame() {
       if (slug.hat && getHatImage()) {
         try {
           const hatImg = await loadImage(getHatImage()!)
-          ctx.drawImage(hatImg, 630, 72, 840, 960) // 6X escalado, posición bajada (3% = 72px)
+          ctx.drawImage(hatImg, 630, 48, 840, 960) // 6X escalado, posición ajustada (2% = 48px)
         } catch (error) {
           console.warn('Error cargando hat:', error)
         }
