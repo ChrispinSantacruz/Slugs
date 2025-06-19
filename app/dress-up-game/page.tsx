@@ -183,73 +183,84 @@ export default function DressUpGame() {
       
       // Guardar estilos originales
       const originalStyles = {
-        coat: { height: '', top: '', left: '' },
-        mouth: { top: '', left: '' },
-        eyes: { top: '', left: '' },
-        hat: { top: '', left: '' }
+        coat: { height: '', top: '', left: '', width: '' },
+        mouth: { top: '', left: '', width: '', height: '' },
+        eyes: { top: '', left: '', width: '', height: '' },
+        hat: { top: '', left: '', width: '', height: '' }
       }
       
       if (coatElement && slug.coat) {
         const style = (coatElement as HTMLElement).style
         originalStyles.coat = { 
-          height: style.height || 'min(70%, 210px)',
-          top: style.top || '24.5%',
-          left: style.left || '12.4%'
+          height: style.height,
+          top: style.top,
+          left: style.left,
+          width: style.width
         }
-        // Mantener los estilos responsivos para la captura
-        style.height = 'min(70%, 210px)'
+        // Aplicar estilos fijos para captura consistente (como web)
+        style.height = '70%'
         style.top = '24.5%'
         style.left = '12.4%'
-        style.width = 'min(75%, 225px)'
+        style.width = '75%'
       }
       
       if (mouthElement && slug.mouth) {
         const style = (mouthElement as HTMLElement).style
         originalStyles.mouth = { 
-          top: style.top || '3.5%',
-          left: style.left || '33%'
+          top: style.top,
+          left: style.left,
+          width: style.width,
+          height: style.height
         }
-        // Mantener los estilos responsivos para la captura
+        // Aplicar estilos fijos para captura consistente (como web)
         style.top = '3.5%'
         style.left = '33%'
-        style.width = 'min(35%, 105px)'
-        style.height = 'min(35%, 105px)'
+        style.width = '35%'
+        style.height = '35%'
       }
       
       if (eyesElement && slug.eyes) {
         const style = (eyesElement as HTMLElement).style
         originalStyles.eyes = { 
-          top: style.top || '1%',
-          left: style.left || '32%'
+          top: style.top,
+          left: style.left,
+          width: style.width,
+          height: style.height
         }
-        // Mantener los estilos responsivos para la captura
+        // Aplicar estilos fijos para captura consistente (como web)
         style.top = '1%'
         style.left = '32%'
-        style.width = 'min(36%, 108px)'
-        style.height = 'min(36%, 108px)'
+        style.width = '36%'
+        style.height = '36%'
       }
       
       if (hatElement && slug.hat) {
         const style = (hatElement as HTMLElement).style
         originalStyles.hat = { 
-          top: style.top || '-2%',
-          left: style.left || '30%'
+          top: style.top,
+          left: style.left,
+          width: style.width,
+          height: style.height
         }
-        // Mantener los estilos responsivos para la captura
+        // Aplicar estilos fijos para captura consistente (como web)
         style.top = '-2%'
         style.left = '30%'
-        style.width = 'min(40%, 120px)'
-        style.height = 'min(40%, 120px)'
+        style.width = '40%'
+        style.height = '40%'
       }
 
-      // 📸 Capturar solo el contenedor del slug con configuración optimizada y responsive
+      // 📸 Capturar con dimensiones fijas proporcionales (como web pero escalado)
+      const isMobile = window.innerWidth < 768
+      const captureWidth = isMobile ? 297 : 350  // Responsive pero fijo
+      const captureHeight = isMobile ? 339 : 400 // Responsive pero fijo
+      
       const canvas = await html2canvas(slugContainerRef.current, {
         backgroundColor: null, // Fondo transparente
         useCORS: true,
         allowTaint: false,
-        scale: 2, // Resolución optimizada para responsive
-        width: containerRect.width, // 📱 Usar ancho real del contenedor
-        height: containerRect.height, // 📱 Usar alto real del contenedor
+        scale: isMobile ? 2 : 3, // Mayor resolución en desktop
+        width: captureWidth,
+        height: captureHeight,
         logging: false,
         x: 0,
         y: 0,
@@ -264,25 +275,31 @@ export default function DressUpGame() {
         style.height = originalStyles.coat.height
         style.top = originalStyles.coat.top
         style.left = originalStyles.coat.left
-        style.width = 'min(75%, 225px)' // Restaurar ancho responsive
+        style.width = originalStyles.coat.width
       }
       
       if (mouthElement && slug.mouth) {
         const style = (mouthElement as HTMLElement).style
         style.top = originalStyles.mouth.top
         style.left = originalStyles.mouth.left
+        style.width = originalStyles.mouth.width
+        style.height = originalStyles.mouth.height
       }
       
       if (eyesElement && slug.eyes) {
         const style = (eyesElement as HTMLElement).style
         style.top = originalStyles.eyes.top
         style.left = originalStyles.eyes.left
+        style.width = originalStyles.eyes.width
+        style.height = originalStyles.eyes.height
       }
       
       if (hatElement && slug.hat) {
         const style = (hatElement as HTMLElement).style
         style.top = originalStyles.hat.top
         style.left = originalStyles.hat.left
+        style.width = originalStyles.hat.width
+        style.height = originalStyles.hat.height
       }
 
       // 📁 Crear y descargar el archivo PNG
@@ -311,6 +328,30 @@ export default function DressUpGame() {
         style.top = '24.5%'
         style.left = '12.4%'
         style.width = 'min(75%, 225px)'
+      }
+      
+      if (elements.mouth && slug.mouth) {
+        const style = (elements.mouth as HTMLElement).style
+        style.top = '3.5%'
+        style.left = '33%'
+        style.width = 'min(35%, 105px)'
+        style.height = 'min(35%, 105px)'
+      }
+      
+      if (elements.eyes && slug.eyes) {
+        const style = (elements.eyes as HTMLElement).style
+        style.top = '1%'
+        style.left = '32%'
+        style.width = 'min(36%, 108px)'
+        style.height = 'min(36%, 108px)'
+      }
+      
+      if (elements.hat && slug.hat) {
+        const style = (elements.hat as HTMLElement).style
+        style.top = '-2%'
+        style.left = '30%'
+        style.width = 'min(40%, 120px)'
+        style.height = 'min(40%, 120px)'
       }
     }
   }
