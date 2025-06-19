@@ -199,8 +199,9 @@ export default function DressUpGame() {
     const ctx = canvas.getContext('2d')
     if (!ctx) throw new Error('No se pudo crear contexto de canvas')
     
-    canvas.width = 350
-    canvas.height = 400
+    // 🚀 ALTA CALIDAD para móviles pequeños (>1500p)
+    canvas.width = 1750  // 5x más grande = 1750px width
+    canvas.height = 2000 // 5x más grande = 2000px height
     
     // Función auxiliar para cargar imágenes
     const loadImage = (src: string): Promise<HTMLImageElement> => {
@@ -214,32 +215,32 @@ export default function DressUpGame() {
     }
     
     try {
-      // Cargar imagen base
+      // Cargar imagen base - ESCALA 5X
       const baseImg = await loadImage(getBaseSkinImage())
-      ctx.drawImage(baseImg, 87.5, 0, 175, 400) // Centrado y 70% del ancho
+      ctx.drawImage(baseImg, 437.5, 0, 875, 2000) // 5X escalado, centrado (87.5 * 5 = 437.5)
       
-      // Cargar y dibujar coat si existe
+      // Cargar y dibujar coat si existe - ESCALA 5X
       if (slug.coat && getCoatImage()) {
         const coatImg = await loadImage(getCoatImage()!)
-        ctx.drawImage(coatImg, 43.4, 98, 262.5, 245)
+        ctx.drawImage(coatImg, 217, 600, 1312.5, 1225) // 5X escalado, posición bajada (30% = 600px)
       }
       
-      // Cargar y dibujar mouth si existe
+      // Cargar y dibujar mouth si existe - ESCALA 5X
       if (slug.mouth && getMouthImage()) {
         const mouthImg = await loadImage(getMouthImage()!)
-        ctx.drawImage(mouthImg, 115.5, 14, 122.5, 140)
+        ctx.drawImage(mouthImg, 577.5, 180, 612.5, 700) // 5X escalado, posición bajada (9% = 180px)
       }
       
-      // Cargar y dibujar eyes si existe
+      // Cargar y dibujar eyes si existe - ESCALA 5X
       if (slug.eyes && getEyesImage()) {
         const eyesImg = await loadImage(getEyesImage()!)
-        ctx.drawImage(eyesImg, 112, 4, 126, 144)
+        ctx.drawImage(eyesImg, 560, 120, 630, 720) // 5X escalado, posición bajada (6% = 120px)
       }
       
-      // Cargar y dibujar hat si existe (último para que esté encima)
+      // Cargar y dibujar hat si existe (último para que esté encima) - ESCALA 5X
       if (slug.hat && getHatImage()) {
         const hatImg = await loadImage(getHatImage()!)
-        ctx.drawImage(hatImg, 105, -8, 140, 160)
+        ctx.drawImage(hatImg, 525, 60, 700, 800) // 5X escalado, posición bajada (3% = 60px)
       }
       
       // Descargar imagen
@@ -380,12 +381,12 @@ export default function DressUpGame() {
     // ⏰ Esperar a que las imágenes se carguen
     await new Promise(resolve => setTimeout(resolve, 500))
     
-    // 📸 Capturar con configuración optimizada
+    // 📸 Capturar con configuración de SÚPER ALTA CALIDAD (>1000p)
     const canvas = await html2canvas(captureContainer, {
       backgroundColor: null,
       useCORS: true,
       allowTaint: false,
-      scale: 4, // Alta resolución para ambos dispositivos
+      scale: 6, // 🚀 SÚPER ALTA resolución: 350x6 = 2100px width
       width: 350,
       height: 400,
       logging: false,
@@ -394,7 +395,7 @@ export default function DressUpGame() {
       scrollX: 0,
       scrollY: 0,
       foreignObjectRendering: false,
-      imageTimeout: 30000,
+      imageTimeout: 45000, // Más tiempo para procesar alta calidad
       removeContainer: false,
       onclone: (clonedDoc) => {
         // Asegurar que el contenedor clonado tenga los estilos correctos
@@ -430,9 +431,9 @@ export default function DressUpGame() {
       const ctx = canvas.getContext('2d')
       if (!ctx) throw new Error('No se pudo crear contexto de canvas')
       
-      // Tamaño estándar para móviles
-      canvas.width = 350
-      canvas.height = 400
+      // 🚀 MÁXIMA CALIDAD para móviles (>2000p)
+      canvas.width = 2100  // 6x más grande = 2100px width
+      canvas.height = 2400 // 6x más grande = 2400px height
       
       // Función auxiliar para cargar imágenes
       const loadImage = (src: string): Promise<HTMLImageElement> => {
@@ -451,54 +452,54 @@ export default function DressUpGame() {
       // Limpiar canvas con fondo transparente
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       
-      // Dibujar imagen base (siempre presente)
+      // Dibujar imagen base (siempre presente) - ESCALA 6X
       try {
         const baseImg = await loadImage(getBaseSkinImage())
-        // Centrar y redimensionar base slug
-        const baseWidth = 245  // 70% de 350
-        const baseHeight = 400
-        const baseX = (350 - baseWidth) / 2
+        // Centrar y redimensionar base slug - 6X más grande
+        const baseWidth = 1785  // 85% de 2100 (más ancho como en desktop)
+        const baseHeight = 2400
+        const baseX = (2100 - baseWidth) / 2
         ctx.drawImage(baseImg, baseX, 0, baseWidth, baseHeight)
       } catch (error) {
         console.error('Error cargando imagen base:', error)
         throw error
       }
       
-      // Dibujar coat si existe
+      // Dibujar coat si existe - ESCALA 6X
       if (slug.coat && getCoatImage()) {
         try {
           const coatImg = await loadImage(getCoatImage()!)
-          ctx.drawImage(coatImg, 43.4, 98, 262.5, 245)
+          ctx.drawImage(coatImg, 260.4, 720, 1575, 1470) // 6X escalado, posición bajada
         } catch (error) {
           console.warn('Error cargando coat:', error)
         }
       }
       
-      // Dibujar mouth si existe
+      // Dibujar mouth si existe - ESCALA 6X  
       if (slug.mouth && getMouthImage()) {
         try {
           const mouthImg = await loadImage(getMouthImage()!)
-          ctx.drawImage(mouthImg, 115.5, 14, 122.5, 140)
+          ctx.drawImage(mouthImg, 693, 216, 735, 840) // 6X escalado, posición bajada (9% = 216px)
         } catch (error) {
           console.warn('Error cargando mouth:', error)
         }
       }
       
-      // Dibujar eyes si existe
+      // Dibujar eyes si existe - ESCALA 6X
       if (slug.eyes && getEyesImage()) {
         try {
           const eyesImg = await loadImage(getEyesImage()!)
-          ctx.drawImage(eyesImg, 112, 4, 126, 144)
+          ctx.drawImage(eyesImg, 672, 144, 756, 864) // 6X escalado, posición bajada (6% = 144px)
         } catch (error) {
           console.warn('Error cargando eyes:', error)
         }
       }
       
-      // Dibujar hat si existe (último para que esté encima)
+      // Dibujar hat si existe (último para que esté encima) - ESCALA 6X
       if (slug.hat && getHatImage()) {
         try {
           const hatImg = await loadImage(getHatImage()!)
-          ctx.drawImage(hatImg, 105, -8, 140, 160)
+          ctx.drawImage(hatImg, 630, 72, 840, 960) // 6X escalado, posición bajada (3% = 72px)
         } catch (error) {
           console.warn('Error cargando hat:', error)
         }
@@ -687,7 +688,7 @@ export default function DressUpGame() {
                               exit={{ scale: 0, opacity: 0 }}
                               className="absolute transform -translate-x-1/2 -translate-y-1/2"
                               style={{ 
-                                top: window.innerWidth >= 768 ? '8%' : '3.5%', // 🖥️ Más abajo en desktop
+                                top: window.innerWidth >= 768 ? '8%' : '8%', // 🖥️ Desktop 8%, Móvil ajustado a 8%
                                 left: '33%',
                                 width: 'min(35%, 105px)',    // 📱 Responsive width
                                 height: 'min(35%, 105px)',   // 📱 Responsive height
@@ -717,7 +718,7 @@ export default function DressUpGame() {
                               exit={{ y: -50, opacity: 0 }}
                               className="absolute transform -translate-x-1/2"
                               style={{ 
-                                top: window.innerWidth >= 768 ? '2%' : '-2%', // 🖥️ Más abajo en desktop
+                                top: window.innerWidth >= 768 ? '2%' : '2%', // 🖥️ Desktop 2%, Móvil ajustado a 2%
                                 left: '30%',
                                 width: 'min(40%, 120px)',    // 📱 Responsive width
                                 height: 'min(40%, 120px)',   // 📱 Responsive height
@@ -747,7 +748,7 @@ export default function DressUpGame() {
                               exit={{ scale: 0, opacity: 0 }}
                               className="absolute transform -translate-x-1/2"
                               style={{ 
-                                top: window.innerWidth >= 768 ? '28%' : '24.5%', // 🖥️ Más abajo en desktop
+                                top: window.innerWidth >= 768 ? '28%' : '29%', // 🖥️ Desktop 28%, Móvil ajustado a 29%
                                 left: '12.4%',
                                 width: 'min(75%, 225px)',    // 📱 Responsive width
                                 height: 'min(70%, 210px)',   // 📱 Responsive height
@@ -777,7 +778,7 @@ export default function DressUpGame() {
                               exit={{ scale: 0, opacity: 0 }}
                               className="absolute transform -translate-x-1/2 -translate-y-1/2"
                               style={{ 
-                                top: window.innerWidth >= 768 ? '5%' : '1%', // 🖥️ Más abajo en desktop
+                                top: window.innerWidth >= 768 ? '5%' : '5%', // 🖥️ Desktop 5%, Móvil ajustado a 5%
                                 left: '32%',
                                 width: 'min(36%, 108px)',    // 📱 Responsive width
                                 height: 'min(36%, 108px)',   // 📱 Responsive height
