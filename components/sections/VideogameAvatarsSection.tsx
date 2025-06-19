@@ -23,11 +23,12 @@ export function VideogameAvatarsSection() {
         paddingBottom: '100px'
       }}
     >
+      {/* Background para Desktop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full hidden md:block"
         style={{
           position: 'absolute',
           top: 0,
@@ -45,6 +46,38 @@ export function VideogameAvatarsSection() {
           style={{ 
             objectPosition: 'center center',
             objectFit: 'cover',
+            width: '100%',
+            height: '100%'
+          }}
+          priority={false}
+          quality={100}
+          sizes="100vw"
+        />
+      </motion.div>
+
+      {/* Background para Mobile */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="absolute inset-0 w-full h-full block md:hidden"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 1
+        }}
+      >
+        <Image
+          src="/images/backgroundResponsive/videogame.png"
+          alt="Videogame Background Mobile"
+          fill
+          className="object-contain object-center"
+          style={{ 
+            objectPosition: 'center center',
+            objectFit: 'contain',
             width: '100%',
             height: '100%'
           }}

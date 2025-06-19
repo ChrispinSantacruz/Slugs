@@ -45,13 +45,39 @@ export function TeamSection() {
       id="team" 
       className="py-20 relative"
       style={{
-        backgroundImage: "url('/images/backgrounds/backgroundteam.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
-        backgroundRepeat: "no-repeat",
         minHeight: "100vh"
       }}
     >
+      {/* Background para Desktop */}
+      <div 
+        className="absolute inset-0 hidden md:block"
+        style={{
+          backgroundImage: "url('/images/backgrounds/backgroundteam.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat"
+        }}
+      ></div>
+
+      {/* Background para Mobile */}
+      <div className="absolute inset-0 block md:hidden">
+        <Image
+          src="/images/backgroundResponsive/Team.png"
+          alt="Team Background Mobile"
+          fill
+          className="object-contain object-center"
+          style={{ 
+            objectPosition: 'center center',
+            objectFit: 'contain',
+            width: '100%',
+            height: '100%'
+          }}
+          priority={false}
+          quality={100}
+          sizes="100vw"
+        />
+      </div>
+
       {/* Overlay sutil para mejor contraste con el contenido */}
       <div className="absolute inset-0 bg-black/40"></div>
       

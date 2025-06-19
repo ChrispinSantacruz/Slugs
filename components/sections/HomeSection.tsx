@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 export function HomeSection() {
   // Configuración individual para cada botón con medidas universales
@@ -94,11 +95,12 @@ export function HomeSection() {
         justifyContent: 'center'
       }}
     >
+      {/* Background para Desktop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full hidden md:block"
         style={{
           position: 'absolute',
           top: 0,
@@ -124,7 +126,39 @@ export function HomeSection() {
         />
       </motion.div>
 
-      {/* Botones individuales con posición y tamaño independiente */}
+      {/* Background para Mobile */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="absolute inset-0 w-full h-full block md:hidden"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 1
+        }}
+      >
+        <Image
+          src="/images/backgroundResponsive/home.png"
+          alt="SlugDudes Home Banner Mobile"
+          fill
+          className="object-contain object-center"
+          style={{ 
+            objectPosition: 'center center',
+            objectFit: 'contain',
+            width: '100%',
+            height: '100%'
+          }}
+          priority={true}
+          quality={100}
+          sizes="100vw"
+        />
+      </motion.div>
+
+      {/* Botones individuales con posición y tamaño independiente - Solo Desktop */}
       {buttons.map((button, index) => (
         <motion.button
           key={button.id}
@@ -135,7 +169,7 @@ export function HomeSection() {
             delay: 0.8 + (index * 0.1),
             ease: "easeOut"
           }}
-          className="absolute z-10 bg-transparent border-none cursor-pointer"
+          className="absolute z-10 bg-transparent border-none cursor-pointer hidden md:block"
           style={{
             top: button.position.top,
             left: button.position.left,
