@@ -167,139 +167,164 @@ export default function DressUpGame() {
     return eyes?.src || null
   }
 
-  // 🎨 FUNCIÓN PARA CAPTURAR Y GUARDAR EL SLUG COMO PNG
+  // 🎨 FUNCIÓN MEJORADA PARA CAPTURAR Y GUARDAR EL SLUG COMO PNG
   const saveSlugAsImage = async () => {
     if (!slugContainerRef.current) return
 
     try {
-      // 📐 Obtener dimensiones reales del contenedor
-      const containerRect = slugContainerRef.current.getBoundingClientRect()
+      // 📱 Detectar si es móvil
+      const isMobile = window.innerWidth < 768
       
       // 🎯 Encontrar elementos y ajustar temporalmente para la captura
-      const coatElement = slugContainerRef.current.querySelector('[alt="Coat"]')?.parentElement
-      const mouthElement = slugContainerRef.current.querySelector('[alt="Mouth"]')?.parentElement
-      const eyesElement = slugContainerRef.current.querySelector('[alt="Eyes"]')?.parentElement
-      const hatElement = slugContainerRef.current.querySelector('[alt="Hat"]')?.parentElement
+      const slugContainer = slugContainerRef.current
+      const coatElement = slugContainer.querySelector('[alt="Coat"]')?.parentElement as HTMLElement
+      const mouthElement = slugContainer.querySelector('[alt="Mouth"]')?.parentElement as HTMLElement
+      const eyesElement = slugContainer.querySelector('[alt="Eyes"]')?.parentElement as HTMLElement
+      const hatElement = slugContainer.querySelector('[alt="Hat"]')?.parentElement as HTMLElement
       
-      // Guardar estilos originales
+      // 💾 Guardar estilos originales
       const originalStyles = {
-        coat: { height: '', top: '', left: '', width: '' },
-        mouth: { top: '', left: '', width: '', height: '' },
-        eyes: { top: '', left: '', width: '', height: '' },
-        hat: { top: '', left: '', width: '', height: '' }
+        container: { width: '', height: '', transform: '' },
+        coat: { height: '', top: '', left: '', width: '', transform: '' },
+        mouth: { top: '', left: '', width: '', height: '', transform: '' },
+        eyes: { top: '', left: '', width: '', height: '', transform: '' },
+        hat: { top: '', left: '', width: '', height: '', transform: '' }
       }
       
+      // 🔄 Guardar estilos del contenedor
+      originalStyles.container = {
+        width: slugContainer.style.width,
+        height: slugContainer.style.height,
+        transform: slugContainer.style.transform
+      }
+      
+      // 🎯 AJUSTAR CONTENEDOR PARA CAPTURA CONSISTENTE
+      slugContainer.style.width = '350px'
+      slugContainer.style.height = '400px'
+      slugContainer.style.transform = 'none'
+      slugContainer.style.position = 'relative'
+      
+      // 🎨 Aplicar estilos fijos para captura consistente
       if (coatElement && slug.coat) {
-        const style = (coatElement as HTMLElement).style
         originalStyles.coat = { 
-          height: style.height,
-          top: style.top,
-          left: style.left,
-          width: style.width
+          height: coatElement.style.height,
+          top: coatElement.style.top,
+          left: coatElement.style.left,
+          width: coatElement.style.width,
+          transform: coatElement.style.transform
         }
-        // Aplicar estilos fijos para captura consistente (como web)
-        style.height = '70%'
-        style.top = '24.5%'
-        style.left = '12.4%'
-        style.width = '75%'
+        coatElement.style.height = '245px'      // 70% de 350px
+        coatElement.style.top = '98px'          // 24.5% de 400px
+        coatElement.style.left = '43.4px'       // 12.4% de 350px
+        coatElement.style.width = '262.5px'     // 75% de 350px
+        coatElement.style.transform = 'none'
+        coatElement.style.position = 'absolute'
       }
       
       if (mouthElement && slug.mouth) {
-        const style = (mouthElement as HTMLElement).style
         originalStyles.mouth = { 
-          top: style.top,
-          left: style.left,
-          width: style.width,
-          height: style.height
+          top: mouthElement.style.top,
+          left: mouthElement.style.left,
+          width: mouthElement.style.width,
+          height: mouthElement.style.height,
+          transform: mouthElement.style.transform
         }
-        // Aplicar estilos fijos para captura consistente (como web)
-        style.top = '3.5%'
-        style.left = '33%'
-        style.width = '35%'
-        style.height = '35%'
+        mouthElement.style.top = '14px'         // 3.5% de 400px
+        mouthElement.style.left = '115.5px'     // 33% de 350px
+        mouthElement.style.width = '122.5px'    // 35% de 350px
+        mouthElement.style.height = '140px'     // 35% de 400px
+        mouthElement.style.transform = 'none'
+        mouthElement.style.position = 'absolute'
       }
       
       if (eyesElement && slug.eyes) {
-        const style = (eyesElement as HTMLElement).style
         originalStyles.eyes = { 
-          top: style.top,
-          left: style.left,
-          width: style.width,
-          height: style.height
+          top: eyesElement.style.top,
+          left: eyesElement.style.left,
+          width: eyesElement.style.width,
+          height: eyesElement.style.height,
+          transform: eyesElement.style.transform
         }
-        // Aplicar estilos fijos para captura consistente (como web)
-        style.top = '1%'
-        style.left = '32%'
-        style.width = '36%'
-        style.height = '36%'
+        eyesElement.style.top = '4px'           // 1% de 400px
+        eyesElement.style.left = '112px'        // 32% de 350px
+        eyesElement.style.width = '126px'       // 36% de 350px
+        eyesElement.style.height = '144px'      // 36% de 400px
+        eyesElement.style.transform = 'none'
+        eyesElement.style.position = 'absolute'
       }
       
       if (hatElement && slug.hat) {
-        const style = (hatElement as HTMLElement).style
         originalStyles.hat = { 
-          top: style.top,
-          left: style.left,
-          width: style.width,
-          height: style.height
+          top: hatElement.style.top,
+          left: hatElement.style.left,
+          width: hatElement.style.width,
+          height: hatElement.style.height,
+          transform: hatElement.style.transform
         }
-        // Aplicar estilos fijos para captura consistente (como web)
-        style.top = '-2%'
-        style.left = '30%'
-        style.width = '40%'
-        style.height = '40%'
+        hatElement.style.top = '-8px'           // -2% de 400px
+        hatElement.style.left = '105px'         // 30% de 350px
+        hatElement.style.width = '140px'        // 40% de 350px
+        hatElement.style.height = '160px'       // 40% de 400px
+        hatElement.style.transform = 'none'
+        hatElement.style.position = 'absolute'
       }
 
-      // 📸 Capturar con dimensiones fijas proporcionales (como web pero escalado)
-      const isMobile = window.innerWidth < 768
-      const captureWidth = isMobile ? 297 : 350  // Responsive pero fijo
-      const captureHeight = isMobile ? 339 : 400 // Responsive pero fijo
-      
-      const canvas = await html2canvas(slugContainerRef.current, {
-        backgroundColor: null, // Fondo transparente
+      // ⏰ Esperar un momento para que los estilos se apliquen
+      await new Promise(resolve => setTimeout(resolve, 100))
+
+      // 📸 Capturar con configuración mejorada
+      const canvas = await html2canvas(slugContainer, {
+        backgroundColor: null,
         useCORS: true,
         allowTaint: false,
-        scale: isMobile ? 2 : 3, // Mayor resolución en desktop
-        width: captureWidth,
-        height: captureHeight,
+        scale: isMobile ? 3 : 3, // Misma escala para consistencia
+        width: 350,              // Tamaño fijo
+        height: 400,             // Tamaño fijo
         logging: false,
         x: 0,
         y: 0,
         scrollX: 0,
         scrollY: 0,
         foreignObjectRendering: false,
+        imageTimeout: 15000,
+        removeContainer: false,
       })
 
-      // 🔄 Restaurar los estilos originales de todos los elementos
+      // 🔄 Restaurar TODOS los estilos originales
+      slugContainer.style.width = originalStyles.container.width
+      slugContainer.style.height = originalStyles.container.height
+      slugContainer.style.transform = originalStyles.container.transform
+      
       if (coatElement && slug.coat) {
-        const style = (coatElement as HTMLElement).style
-        style.height = originalStyles.coat.height
-        style.top = originalStyles.coat.top
-        style.left = originalStyles.coat.left
-        style.width = originalStyles.coat.width
+        coatElement.style.height = originalStyles.coat.height
+        coatElement.style.top = originalStyles.coat.top
+        coatElement.style.left = originalStyles.coat.left
+        coatElement.style.width = originalStyles.coat.width
+        coatElement.style.transform = originalStyles.coat.transform
       }
       
       if (mouthElement && slug.mouth) {
-        const style = (mouthElement as HTMLElement).style
-        style.top = originalStyles.mouth.top
-        style.left = originalStyles.mouth.left
-        style.width = originalStyles.mouth.width
-        style.height = originalStyles.mouth.height
+        mouthElement.style.top = originalStyles.mouth.top
+        mouthElement.style.left = originalStyles.mouth.left
+        mouthElement.style.width = originalStyles.mouth.width
+        mouthElement.style.height = originalStyles.mouth.height
+        mouthElement.style.transform = originalStyles.mouth.transform
       }
       
       if (eyesElement && slug.eyes) {
-        const style = (eyesElement as HTMLElement).style
-        style.top = originalStyles.eyes.top
-        style.left = originalStyles.eyes.left
-        style.width = originalStyles.eyes.width
-        style.height = originalStyles.eyes.height
+        eyesElement.style.top = originalStyles.eyes.top
+        eyesElement.style.left = originalStyles.eyes.left
+        eyesElement.style.width = originalStyles.eyes.width
+        eyesElement.style.height = originalStyles.eyes.height
+        eyesElement.style.transform = originalStyles.eyes.transform
       }
       
       if (hatElement && slug.hat) {
-        const style = (hatElement as HTMLElement).style
-        style.top = originalStyles.hat.top
-        style.left = originalStyles.hat.left
-        style.width = originalStyles.hat.width
-        style.height = originalStyles.hat.height
+        hatElement.style.top = originalStyles.hat.top
+        hatElement.style.left = originalStyles.hat.left
+        hatElement.style.width = originalStyles.hat.width
+        hatElement.style.height = originalStyles.hat.height
+        hatElement.style.transform = originalStyles.hat.transform
       }
 
       // 📁 Crear y descargar el archivo PNG
@@ -310,48 +335,57 @@ export default function DressUpGame() {
       link.click()
       document.body.removeChild(link)
 
-      console.log('✅ SlugDude saved successfully!')
+      console.log('✅ SlugDude guardado exitosamente!')
     } catch (error) {
-      console.error('❌ Error saving SlugDude:', error)
+      console.error('❌ Error guardando SlugDude:', error)
       
-      // 🔄 Asegurar que se restauren los estilos originales en caso de error
-      const elements = {
-        coat: slugContainerRef.current?.querySelector('[alt="Coat"]')?.parentElement,
-        mouth: slugContainerRef.current?.querySelector('[alt="Mouth"]')?.parentElement,
-        eyes: slugContainerRef.current?.querySelector('[alt="Eyes"]')?.parentElement,
-        hat: slugContainerRef.current?.querySelector('[alt="Hat"]')?.parentElement
-      }
-      
-      if (elements.coat && slug.coat) {
-        const style = (elements.coat as HTMLElement).style
-        style.height = 'min(70%, 210px)'
-        style.top = '24.5%'
-        style.left = '12.4%'
-        style.width = 'min(75%, 225px)'
-      }
-      
-      if (elements.mouth && slug.mouth) {
-        const style = (elements.mouth as HTMLElement).style
-        style.top = '3.5%'
-        style.left = '33%'
-        style.width = 'min(35%, 105px)'
-        style.height = 'min(35%, 105px)'
-      }
-      
-      if (elements.eyes && slug.eyes) {
-        const style = (elements.eyes as HTMLElement).style
-        style.top = '1%'
-        style.left = '32%'
-        style.width = 'min(36%, 108px)'
-        style.height = 'min(36%, 108px)'
-      }
-      
-      if (elements.hat && slug.hat) {
-        const style = (elements.hat as HTMLElement).style
-        style.top = '-2%'
-        style.left = '30%'
-        style.width = 'min(40%, 120px)'
-        style.height = 'min(40%, 120px)'
+      // 🔄 Forzar restauración en caso de error
+      const slugContainer = slugContainerRef.current
+      if (slugContainer) {
+        // Resetear estilos del contenedor
+        slugContainer.style.width = 'min(297px, 80vw)'
+        slugContainer.style.height = 'min(339px, 60vh)'
+        slugContainer.style.transform = 'translate(-50%, -50%)'
+        
+        // Resetear elementos individuales
+        const elements = {
+          coat: slugContainer.querySelector('[alt="Coat"]')?.parentElement as HTMLElement,
+          mouth: slugContainer.querySelector('[alt="Mouth"]')?.parentElement as HTMLElement,
+          eyes: slugContainer.querySelector('[alt="Eyes"]')?.parentElement as HTMLElement,
+          hat: slugContainer.querySelector('[alt="Hat"]')?.parentElement as HTMLElement
+        }
+        
+        if (elements.coat && slug.coat) {
+          elements.coat.style.height = 'min(70%, 210px)'
+          elements.coat.style.top = '24.5%'
+          elements.coat.style.left = '12.4%'
+          elements.coat.style.width = 'min(75%, 225px)'
+          elements.coat.style.transform = 'translateX(-50%)'
+        }
+        
+        if (elements.mouth && slug.mouth) {
+          elements.mouth.style.top = '3.5%'
+          elements.mouth.style.left = '33%'
+          elements.mouth.style.width = 'min(35%, 105px)'
+          elements.mouth.style.height = 'min(35%, 105px)'
+          elements.mouth.style.transform = 'translate(-50%, -50%)'
+        }
+        
+        if (elements.eyes && slug.eyes) {
+          elements.eyes.style.top = '1%'
+          elements.eyes.style.left = '32%'
+          elements.eyes.style.width = 'min(36%, 108px)'
+          elements.eyes.style.height = 'min(36%, 108px)'
+          elements.eyes.style.transform = 'translate(-50%, -50%)'
+        }
+        
+        if (elements.hat && slug.hat) {
+          elements.hat.style.top = '-2%'
+          elements.hat.style.left = '30%'
+          elements.hat.style.width = 'min(40%, 120px)'
+          elements.hat.style.height = 'min(40%, 120px)'
+          elements.hat.style.transform = 'translateX(-50%)'
+        }
       }
     }
   }
