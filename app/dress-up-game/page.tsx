@@ -172,6 +172,9 @@ export default function DressUpGame() {
     if (!slugContainerRef.current) return
 
     try {
+      // 📐 Obtener dimensiones reales del contenedor
+      const containerRect = slugContainerRef.current.getBoundingClientRect()
+      
       // 🎯 Encontrar elementos y ajustar temporalmente para la captura
       const coatElement = slugContainerRef.current.querySelector('[alt="Coat"]')?.parentElement
       const mouthElement = slugContainerRef.current.querySelector('[alt="Mouth"]')?.parentElement
@@ -189,15 +192,15 @@ export default function DressUpGame() {
       if (coatElement && slug.coat) {
         const style = (coatElement as HTMLElement).style
         originalStyles.coat = { 
-          height: style.height || '70%',
+          height: style.height || 'min(70%, 210px)',
           top: style.top || '24.5%',
           left: style.left || '12.4%'
         }
-        // Ajustes para la chaqueta en captura (buso más pequeño y mejor posicionado)
-        style.height = '65%'   // 🎯 REDUCIDO de 70% a 55% (-15% vertical)
-        style.top = '28%'      // 🎯 BAJADO un poco para mejor posición
-        style.left = '13%'   // Mantener posición horizontal
-        style.width = '75%'    // Mantener ancho
+        // Mantener los estilos responsivos para la captura
+        style.height = 'min(70%, 210px)'
+        style.top = '24.5%'
+        style.left = '12.4%'
+        style.width = 'min(75%, 225px)'
       }
       
       if (mouthElement && slug.mouth) {
@@ -206,11 +209,11 @@ export default function DressUpGame() {
           top: style.top || '3.5%',
           left: style.left || '33%'
         }
-        // Replicar exactamente las posiciones del videojuego
-        style.top = '3.5%'     // Misma posición vertical
-        style.left = '33%'     // Misma posición horizontal
-        style.width = '35%'    // Mismo ancho que en el juego
-        style.height = '35%'   // Misma altura que en el juego
+        // Mantener los estilos responsivos para la captura
+        style.top = '3.5%'
+        style.left = '33%'
+        style.width = 'min(35%, 105px)'
+        style.height = 'min(35%, 105px)'
       }
       
       if (eyesElement && slug.eyes) {
@@ -219,11 +222,11 @@ export default function DressUpGame() {
           top: style.top || '1%',
           left: style.left || '32%'
         }
-        // Replicar exactamente las posiciones del videojuego
-        style.top = '1%'       // Misma posición vertical
-        style.left = '32%'     // Misma posición horizontal
-        style.width = '36%'    // Mismo ancho que en el juego
-        style.height = '36%'   // Misma altura que en el juego
+        // Mantener los estilos responsivos para la captura
+        style.top = '1%'
+        style.left = '32%'
+        style.width = 'min(36%, 108px)'
+        style.height = 'min(36%, 108px)'
       }
       
       if (hatElement && slug.hat) {
@@ -232,22 +235,21 @@ export default function DressUpGame() {
           top: style.top || '-2%',
           left: style.left || '30%'
         }
-        // Replicar exactamente las posiciones del videojuego
-        style.top = '-2%'      // Misma posición vertical
-        style.left = '30%'     // Misma posición horizontal
-        style.width = '40%'    // Mismo ancho que en el juego
-        style.height = '40%'   // Misma altura que en el juego
+        // Mantener los estilos responsivos para la captura
+        style.top = '-2%'
+        style.left = '30%'
+        style.width = 'min(40%, 120px)'
+        style.height = 'min(40%, 120px)'
       }
 
       // 📸 Capturar solo el contenedor del slug con configuración optimizada y responsive
-      const slugRect = slugContainerRef.current.getBoundingClientRect()
       const canvas = await html2canvas(slugContainerRef.current, {
         backgroundColor: null, // Fondo transparente
         useCORS: true,
         allowTaint: false,
-        scale: 3, // Mayor resolución
-        width: Math.min(297, window.innerWidth * 0.8), // 📱 Ancho responsive
-        height: Math.min(339, window.innerHeight * 0.6), // 📱 Alto responsive
+        scale: 2, // Resolución optimizada para responsive
+        width: containerRect.width, // 📱 Usar ancho real del contenedor
+        height: containerRect.height, // 📱 Usar alto real del contenedor
         logging: false,
         x: 0,
         y: 0,
@@ -262,6 +264,7 @@ export default function DressUpGame() {
         style.height = originalStyles.coat.height
         style.top = originalStyles.coat.top
         style.left = originalStyles.coat.left
+        style.width = 'min(75%, 225px)' // Restaurar ancho responsive
       }
       
       if (mouthElement && slug.mouth) {
@@ -304,10 +307,10 @@ export default function DressUpGame() {
       
       if (elements.coat && slug.coat) {
         const style = (elements.coat as HTMLElement).style
-        style.height = '70%'
+        style.height = 'min(70%, 210px)'
         style.top = '24.5%'
         style.left = '12.4%'
-        style.width = '75%'
+        style.width = 'min(75%, 225px)'
       }
     }
   }
