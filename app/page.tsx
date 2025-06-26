@@ -103,6 +103,22 @@ export default function HomePage() {
                           </a>
                         </li>
                       ))}
+                      <li>
+                        <a
+                          href="/dress-up-game"
+                          className="text-gray-400 hover:text-[#BBFF00] transition-colors duration-300 hover:text-shadow-neon"
+                        >
+                          🎨 Dress Up Game
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="/meme-generator"
+                          className="text-gray-400 hover:text-[#BBFF00] transition-colors duration-300 hover:text-shadow-neon"
+                        >
+                          🎭 Meme Generator
+                        </a>
+                      </li>
                     </ul>
                   </div>
 

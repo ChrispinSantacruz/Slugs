@@ -11,8 +11,8 @@ export function TokenomicsSection() {
       style={{
         position: 'relative',
         zIndex: 1,
-        minHeight: '115vh',
-        height: '115vh',
+        minHeight: '350vh',
+        height: '350vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -34,13 +34,13 @@ export function TokenomicsSection() {
         }}
       >
         <Image
-          src="/images/backgrounds/backgroundtokenomics.png"
+          src="/images/backgrounds/tokenomicsv2_02.png"
           alt="Tokenomics Background"
           fill
-          className="object-cover object-center"
+          className="object-contain object-center"
           style={{ 
             objectPosition: 'center center',
-            objectFit: 'cover',
+            objectFit: 'contain',
             width: '100%',
             height: '100%'
           }}

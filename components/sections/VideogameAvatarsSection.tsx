@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Gamepad2, Users, Crown, Palette } from "lucide-react"
+import { Gamepad2, Users, Crown, Palette, Clock } from "lucide-react"
 import { SlimeCard } from "@/components/ui/SlimeCard"
 import { SlimeTitle } from "@/components/ui/SlimeTitle"
 import Image from "next/image"
@@ -92,79 +92,161 @@ export function VideogameAvatarsSection() {
       
       {/* Contenido principal centrado */}
       <div className="relative z-10 container mx-auto max-w-7xl px-4">
-        <div className="flex justify-center">
-          <div className="w-full max-w-md">
-            {/* Cuadro explicativo pequeño y compacto */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <SlimeCard className="p-4 md:p-5 bg-black/80 backdrop-blur-md border-2 border-[#BBFF00]/30">
-                <div className="text-center mb-4">
-                  <Gamepad2 className="w-8 h-8 text-[#BBFF00] mx-auto mb-2" />
-                  <h3 className="text-lg md:text-xl font-bold text-[#BBFF00] mb-2">
-                    Dress-Up Game
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                    Create unique avatars by combining different elements.
-                  </p>
-                </div>
+        {/* Título de la sección */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-8"
+        >
+          <SlimeTitle className="text-4xl md:text-5xl font-bold text-[#BBFF00] mb-4">
+            🎮 SlugDudes Games
+          </SlimeTitle>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            Explore the SlugDudes universe with our interactive mini-games
+          </p>
+        </motion.div>
 
-                <div className="space-y-3">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="flex items-center p-2 bg-[#BBFF00]/10 rounded border border-[#BBFF00]/20"
-                  >
-                    <Users className="w-6 h-6 text-[#BBFF00] mr-2 flex-shrink-0" />
-                    <div>
-                      <h4 className="text-sm font-bold text-[#BBFF00]">Infinite Variety</h4>
-                      <p className="text-xs text-gray-300">Hundreds of combinations</p>
-                    </div>
-                  </motion.div>
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {/* Dress Up Game */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <SlimeCard className="p-4 md:p-5 bg-black/80 backdrop-blur-md border-2 border-[#BBFF00]/30 h-full">
+              <div className="text-center mb-4">
+                <Gamepad2 className="w-8 h-8 text-[#BBFF00] mx-auto mb-2" />
+                <h3 className="text-lg md:text-xl font-bold text-[#BBFF00] mb-2">
+                  🎨 Dress-Up Game
+                </h3>
+                <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+                  Create unique avatars by combining different elements.
+                </p>
+              </div>
 
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="flex items-center p-2 bg-[#BBFF00]/10 rounded border border-[#BBFF00]/20"
-                  >
-                    <Crown className="w-6 h-6 text-[#BBFF00] mr-2 flex-shrink-0" />
-                    <div>
-                      <h4 className="text-sm font-bold text-[#BBFF00]">Epic Accessories</h4>
-                      <p className="text-xs text-gray-300">Unique hats and elements</p>
-                    </div>
-                  </motion.div>
+              <div className="space-y-3">
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center p-2 bg-[#BBFF00]/10 rounded border border-[#BBFF00]/20"
+                >
+                  <Users className="w-6 h-6 text-[#BBFF00] mr-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-sm font-bold text-[#BBFF00]">Infinite Variety</h4>
+                    <p className="text-xs text-gray-300">Hundreds of combinations</p>
+                  </div>
+                </motion.div>
 
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    className="flex items-center p-2 bg-[#BBFF00]/10 rounded border border-[#BBFF00]/20"
-                  >
-                    <Palette className="w-6 h-6 text-[#BBFF00] mr-2 flex-shrink-0" />
-                    <div>
-                      <h4 className="text-sm font-bold text-[#BBFF00]">Total Customization</h4>
-                      <p className="text-xs text-gray-300">Colors and expressions</p>
-                    </div>
-                  </motion.div>
-                </div>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center p-2 bg-[#BBFF00]/10 rounded border border-[#BBFF00]/20"
+                >
+                  <Crown className="w-6 h-6 text-[#BBFF00] mr-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-sm font-bold text-[#BBFF00]">Epic Accessories</h4>
+                    <p className="text-xs text-gray-300">Hats and unique elements</p>
+                  </div>
+                </motion.div>
 
-                <div className="mt-4 text-center">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-block"
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center p-2 bg-[#BBFF00]/10 rounded border border-[#BBFF00]/20"
+                >
+                  <Palette className="w-6 h-6 text-[#BBFF00] mr-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-sm font-bold text-[#BBFF00]">Total Customization</h4>
+                    <p className="text-xs text-gray-300">Colors and expressions</p>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="mt-4 text-center">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-block"
+                >
+                  <a
+                    href="/dress-up-game"
+                    className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold text-sm rounded-full hover:shadow-lg hover:shadow-[#BBFF00]/50 transition-all duration-300"
                   >
-                    <a
-                      href="/dress-up-game"
-                      className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold text-sm rounded-full hover:shadow-lg hover:shadow-[#BBFF00]/50 transition-all duration-300"
-                    >
-                      <Gamepad2 className="w-4 h-4 mr-1" />
-                      Play Now!
-                    </a>
-                  </motion.div>
-                </div>
-              </SlimeCard>
-            </motion.div>
-          </div>
+                    <Gamepad2 className="w-4 h-4 mr-1" />
+                    Play Now!
+                  </a>
+                </motion.div>
+              </div>
+            </SlimeCard>
+          </motion.div>
+
+          {/* Meme Generator */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <SlimeCard className="p-4 md:p-5 bg-black/80 backdrop-blur-md border-2 border-purple-400/30 h-full">
+              <div className="text-center mb-4">
+                <div className="text-4xl mb-2">🎭</div>
+                <h3 className="text-lg md:text-xl font-bold text-purple-400 mb-2">
+                  Meme Generator
+                </h3>
+                <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
+                  Create funny memes with SlugDudes faces.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center p-2 bg-purple-400/10 rounded border border-purple-400/20"
+                >
+                  <div className="w-6 h-6 text-purple-400 mr-2 flex-shrink-0 text-center">😂</div>
+                  <div>
+                    <h4 className="text-sm font-bold text-purple-400">Epic Memes</h4>
+                    <p className="text-xs text-gray-300">One and two face templates</p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center p-2 bg-purple-400/10 rounded border border-purple-400/20"
+                >
+                  <div className="w-6 h-6 text-purple-400 mr-2 flex-shrink-0 text-center">🎨</div>
+                  <div>
+                    <h4 className="text-sm font-bold text-purple-400">Advanced Editor</h4>
+                    <p className="text-xs text-gray-300">Position, scale and rotation</p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center p-2 bg-purple-400/10 rounded border border-purple-400/20"
+                >
+                  <div className="w-6 h-6 text-purple-400 mr-2 flex-shrink-0 text-center">📥</div>
+                  <div>
+                    <h4 className="text-sm font-bold text-purple-400">Direct Download</h4>
+                    <p className="text-xs text-gray-300">Share on social media</p>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="mt-4 text-center">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-block"
+                >
+                  <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-gray-600 to-gray-500 text-white font-bold text-sm rounded-full cursor-not-allowed opacity-75">
+                    <Clock className="w-4 h-4 mr-1" />
+                    Coming Soon
+                  </div>
+                </motion.div>
+              </div>
+            </SlimeCard>
+          </motion.div>
         </div>
       </div>
     </section>

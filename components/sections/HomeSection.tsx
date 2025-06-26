@@ -33,7 +33,7 @@ export function HomeSection() {
       size: { width: '4vw', height: '12vh' },
       action: () => {
         // Abrir Telegram
-        window.open('https://t.me/+K0XqhNsSHPpmNWEx', '_blank');
+        window.open('https://t.me/+M5bA9GQmHX9jODdh', '_blank');
       }
     },
     { 
@@ -63,7 +63,7 @@ export function HomeSection() {
       size: { width: '3.5vw', height: '10vh' },
       action: () => {
         // Abrir YouTube
-        window.open('https://www.youtube.com/', '_blank');
+        window.open('https://www.youtube.com/@SLUG_BEATS', '_blank');
       }
     },
     { 

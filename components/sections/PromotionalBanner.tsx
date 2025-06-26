@@ -1,14 +1,30 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Zap } from "lucide-react"
+import { Copy, CheckCircle, ExternalLink } from "lucide-react"
 import { SlimeTitle } from "@/components/ui/SlimeTitle"
-import { SlimeButton } from "@/components/ui/SlimeButton"
 import { generateSlimeBlobs } from "@/utils/slimeEffects"
 import { slimePulse } from "@/utils/animations"
+import { useState } from "react"
 
 export function PromotionalBanner() {
   const backgroundBlobs = generateSlimeBlobs(8)
+  const [copied, setCopied] = useState(false)
+  const contractAddress = "Dgx93iyJxhfpTcT5mrtmKVFYUysvXC9SijbisneErzP1"
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(contractAddress)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Error copying to clipboard:', err)
+    }
+  }
+
+  const openSolscan = () => {
+    window.open(`https://solscan.io/token/${contractAddress}`, '_blank')
+  }
 
   return (
     <section className="py-16 relative overflow-hidden">
@@ -38,18 +54,55 @@ export function PromotionalBanner() {
         >
           <motion.div animate={slimePulse}>
             <SlimeTitle size="md" className="mb-4">
-              🚀 LIMITED GENESIS DROP COMING SOON! 🚀
+              Contract Address
             </SlimeTitle>
           </motion.div>
 
-          <p className="text-2xl text-[#BBFF00] mb-6 font-bold slime-subtitle">
-            Be among the first 1000 SlugDudes to join the immortal colony
-          </p>
+          <motion.p 
+            className="text-[#70FF00] font-mono text-lg md:text-xl lg:text-2xl font-semibold tracking-wider break-all mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            {contractAddress}
+          </motion.p>
 
-          <SlimeButton size="lg" className="text-xl px-10 py-6">
-            <Zap className="mr-2 h-6 w-6" />
-            Get Notified
-          </SlimeButton>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <motion.button
+              onClick={copyToClipboard}
+              className="inline-flex items-center space-x-2 px-8 py-4 bg-[#BBFF00]/20 hover:bg-[#BBFF00]/30 rounded-lg border border-[#BBFF00]/40 transition-all duration-300 font-bold text-[#BBFF00] text-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              {copied ? (
+                <>
+                  <CheckCircle className="w-6 h-6" />
+                  <span>Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-6 h-6" />
+                  <span>Copy</span>
+                </>
+              )}
+            </motion.button>
+
+            <motion.button
+              onClick={openSolscan}
+              className="inline-flex items-center space-x-2 px-8 py-4 bg-purple-600/20 hover:bg-purple-600/30 rounded-lg border border-purple-400/40 transition-all duration-300 font-bold text-purple-400 text-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <ExternalLink className="w-6 h-6" />
+              <span>View on Solscan</span>
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </section>
