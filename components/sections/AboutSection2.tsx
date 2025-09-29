@@ -7,18 +7,18 @@ import { SlimeTitle } from "@/components/ui/SlimeTitle"
 export function AboutSection2() {
   return (
     <section 
-      id="roadmap" 
+      id="about2" 
       className="relative w-full overflow-hidden bg-gradient-to-b from-green-900 to-black"
       style={{
         position: 'relative',
         zIndex: 1,
-        minHeight: '150vh',
+        minHeight: '800vh',
         height: 'auto',
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingTop: '50px',
-        paddingBottom: '200px'
+        paddingTop: '120px',
+        paddingBottom: '600px'
       }}
     >
       {/* Background para Desktop */}
@@ -38,7 +38,7 @@ export function AboutSection2() {
       >
         <Image
           src="/images/backgrounds/seccion_about2.png"
-          alt="About Background"
+          alt="About Background 2"
           fill
           className="object-cover object-center"
           style={{ 
@@ -70,12 +70,12 @@ export function AboutSection2() {
       >
         <Image
           src="/images/backgrounds/seccion_about2.png"
-          alt="About Background Mobile"
+          alt="About Background Mobile 2"
           fill
-          className="object-contain object-center"
+          className="object-cover object-center"
           style={{ 
             objectPosition: 'center center',
-            objectFit: 'contain',
+            objectFit: 'cover',
             width: '100%',
             height: '100%'
           }}
@@ -84,6 +84,7 @@ export function AboutSection2() {
           sizes="100vw"
         />
       </motion.div>
+
     </section>
   )
 }
