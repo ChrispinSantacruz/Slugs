@@ -2,6 +2,8 @@
 
 // import { SlimeNavbar } from "@/components/layout/SlimeNavbar"
 import { HomeSection } from "@/components/sections/HomeSection"
+import { AboutSection } from "@/components/sections/AboutSection"
+import { AboutSection2 } from "@/components/sections/AboutSection2"
 import { VideogameAvatarsSection } from "@/components/sections/VideogameAvatarsSection"
 import { RoadmapSection } from "@/components/sections/RoadmapSection"
 import { PromotionalBanner } from "@/components/sections/PromotionalBanner"
@@ -49,6 +51,10 @@ export default function HomePage() {
           <div className="relative z-10">
             {/* <SlimeNavbar /> */}
             <HomeSection />
+            <SectionDivider />
+            <AboutSection />
+            <SectionDivider />
+            <AboutSection2 />
             <SectionDivider />
             <VideogameAvatarsSection />
             <SectionDivider />

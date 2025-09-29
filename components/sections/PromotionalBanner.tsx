@@ -10,7 +10,7 @@ import { useState } from "react"
 export function PromotionalBanner() {
   const backgroundBlobs = generateSlimeBlobs(8)
   const [copied, setCopied] = useState(false)
-  const contractAddress = "Dgx93iyJxhfpTcT5mrtmKVFYUysvXC9SijbisneErzP1"
+  const contractAddress = "HusumSkat3cL5bSZWWu1fTMQakarBcT5rFtHzH5Lpump"
 
   const copyToClipboard = async () => {
     try {
@@ -22,8 +22,8 @@ export function PromotionalBanner() {
     }
   }
 
-  const openSolscan = () => {
-    window.open(`https://solscan.io/token/${contractAddress}`, '_blank')
+  const openPumpfun = () => {
+    window.open('https://pump.fun/coin/HusumSkat3cL5bSZWWu1fTMQakarBcT5rFtHzH5Lpump', '_blank')
   }
 
   return (
@@ -91,8 +91,8 @@ export function PromotionalBanner() {
             </motion.button>
 
             <motion.button
-              onClick={openSolscan}
-              className="inline-flex items-center space-x-2 px-8 py-4 bg-purple-600/20 hover:bg-purple-600/30 rounded-lg border border-purple-400/40 transition-all duration-300 font-bold text-purple-400 text-lg"
+              onClick={openPumpfun}
+              className="inline-flex items-center space-x-2 px-8 py-4 bg-orange-600/20 hover:bg-orange-600/30 rounded-lg border border-orange-400/40 transition-all duration-300 font-bold text-orange-400 text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}
@@ -100,7 +100,7 @@ export function PromotionalBanner() {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <ExternalLink className="w-6 h-6" />
-              <span>View on Solscan</span>
+              <span>Buy Pumpfun</span>
             </motion.button>
           </div>
         </motion.div>
