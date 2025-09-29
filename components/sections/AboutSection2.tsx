@@ -17,8 +17,8 @@ export function AboutSection2() {
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingTop: '30vh',
-        paddingBottom: '75vh'
+        paddingTop: '27vh',
+        paddingBottom: '72vh'
       }}
     >
       {/* Background para Desktop */}
