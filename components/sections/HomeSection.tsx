@@ -23,7 +23,7 @@ export function HomeSection() {
       size: { width: '6.8vw', height: '44vh' },
       action: () => {
         // Abrir DexTools chart
-        window.open('https://www.dextools.io/app/en/solana/pair-explorer/Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE?t=1750116900418', '_blank');
+        window.open('https://pump.fun/coin/HusumSkat3cL5bSZWWu1fTMQakarBcT5rFtHzH5Lpump');
       }
     },
     { 
