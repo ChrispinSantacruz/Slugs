@@ -14,13 +14,13 @@ export function VideogameAvatarsSection() {
       style={{
         position: 'relative',
         zIndex: 1,
-        minHeight: '100vh',
+        minHeight: '800vh',
         height: 'auto',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'start',
-        paddingTop: '100px',
-        paddingBottom: '100px'
+        justifyContent: 'center',
+        paddingTop: '22vh',
+        paddingBottom: '44vh'
       }}
     >
       {/* Background para Desktop */}
@@ -39,7 +39,7 @@ export function VideogameAvatarsSection() {
         }}
       >
         <Image
-          src="/images/backgrounds/videojuegoback.png"
+          src="/images/backgrounds/backgroundgame1.png"
           alt="Videogame Background"
           fill
           className="object-cover object-center"
@@ -71,7 +71,7 @@ export function VideogameAvatarsSection() {
         }}
       >
         <Image
-          src="/images/backgroundResponsive/videogame.png"
+          src="/images/backgrounds/backgroundgame1.png"
           alt="Videogame Background Mobile"
           fill
           className="object-contain object-center"
@@ -100,152 +100,61 @@ export function VideogameAvatarsSection() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <SlimeTitle className="text-4xl md:text-5xl font-bold text-[#BBFF00] mb-4">
-            🎮 SlugDudes Games
-          </SlimeTitle>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Explore the SlugDudes universe with our interactive mini-games
-          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-[26.5rem] md:max-w-[38.5rem] mx-auto px-4">
           {/* Dress Up Game */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
+            className="w-full"
           >
-            <SlimeCard className="p-4 md:p-5 bg-black/80 backdrop-blur-md border-2 border-[#BBFF00]/30 h-full">
-              <div className="text-center mb-4">
-                <Gamepad2 className="w-8 h-8 text-[#BBFF00] mx-auto mb-2" />
-                <h3 className="text-lg md:text-xl font-bold text-[#BBFF00] mb-2">
-                  🎨 Dress-Up Game
-                </h3>
-                <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                  Create unique avatars by combining different elements.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="flex items-center p-2 bg-[#BBFF00]/10 rounded border border-[#BBFF00]/20"
-                >
-                  <Users className="w-6 h-6 text-[#BBFF00] mr-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="text-sm font-bold text-[#BBFF00]">Infinite Variety</h4>
-                    <p className="text-xs text-gray-300">Hundreds of combinations</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="flex items-center p-2 bg-[#BBFF00]/10 rounded border border-[#BBFF00]/20"
-                >
-                  <Crown className="w-6 h-6 text-[#BBFF00] mr-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="text-sm font-bold text-[#BBFF00]">Epic Accessories</h4>
-                    <p className="text-xs text-gray-300">Hats and unique elements</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="flex items-center p-2 bg-[#BBFF00]/10 rounded border border-[#BBFF00]/20"
-                >
-                  <Palette className="w-6 h-6 text-[#BBFF00] mr-2 flex-shrink-0" />
-                  <div>
-                    <h4 className="text-sm font-bold text-[#BBFF00]">Total Customization</h4>
-                    <p className="text-xs text-gray-300">Colors and expressions</p>
-                  </div>
-                </motion.div>
-              </div>
-
-              <div className="mt-4 text-center">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-block"
-                >
-                  <a
-                    href="/dress-up-game"
-                    className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#BBFF00] to-[#70FF00] text-black font-bold text-sm rounded-full hover:shadow-lg hover:shadow-[#BBFF00]/50 transition-all duration-300"
-                  >
-                    <Gamepad2 className="w-4 h-4 mr-1" />
-                    Play Now!
-                  </a>
-                </motion.div>
-              </div>
-            </SlimeCard>
+            <motion.a
+              href="/dress-up-game"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="block relative w-full aspect-[3/2] rounded-lg overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <Image
+                src="/images/Game/dressup.png"
+                alt="Slugs Dudes Dress Up Game"
+                fill
+                className="object-cover object-center hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 25vw"
+                priority
+                quality={90}
+              />
+            </motion.a>
           </motion.div>
 
-          {/* Meme Generator */}
+          {/* Slugs Pot Game */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
+            className="w-full"
           >
-            <SlimeCard className="p-4 md:p-5 bg-black/80 backdrop-blur-md border-2 border-purple-400/30 h-full">
-              <div className="text-center mb-4">
-                <div className="text-4xl mb-2">🎭</div>
-                <h3 className="text-lg md:text-xl font-bold text-purple-400 mb-2">
-                  Meme Generator
-                </h3>
-                <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
-                  Create funny memes with SlugDudes faces.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="flex items-center p-2 bg-purple-400/10 rounded border border-purple-400/20"
-                >
-                  <div className="w-6 h-6 text-purple-400 mr-2 flex-shrink-0 text-center">😂</div>
-                  <div>
-                    <h4 className="text-sm font-bold text-purple-400">Epic Memes</h4>
-                    <p className="text-xs text-gray-300">One and two face templates</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="flex items-center p-2 bg-purple-400/10 rounded border border-purple-400/20"
-                >
-                  <div className="w-6 h-6 text-purple-400 mr-2 flex-shrink-0 text-center">🎨</div>
-                  <div>
-                    <h4 className="text-sm font-bold text-purple-400">Advanced Editor</h4>
-                    <p className="text-xs text-gray-300">Position, scale and rotation</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="flex items-center p-2 bg-purple-400/10 rounded border border-purple-400/20"
-                >
-                  <div className="w-6 h-6 text-purple-400 mr-2 flex-shrink-0 text-center">📥</div>
-                  <div>
-                    <h4 className="text-sm font-bold text-purple-400">Direct Download</h4>
-                    <p className="text-xs text-gray-300">Share on social media</p>
-                  </div>
-                </motion.div>
-              </div>
-
-              <div className="mt-4 text-center">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-block"
-                >
-                  <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-gray-600 to-gray-500 text-white font-bold text-sm rounded-full cursor-not-allowed opacity-75">
-                    <Clock className="w-4 h-4 mr-1" />
-                    Coming Soon
-                  </div>
-                </motion.div>
-              </div>
-            </SlimeCard>
+            <motion.a
+              href="https://slugs-pot.vercel.app/login.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="block relative w-full aspect-[3/2] rounded-lg overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <Image
+                src="/images/Game/slugspot.png"
+                alt="Slugs Dudes Pot Game"
+                fill
+                className="object-cover object-center hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 25vw"
+                priority
+                quality={90}
+              />
+            </motion.a>
           </motion.div>
         </div>
       </div>
